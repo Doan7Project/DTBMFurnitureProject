@@ -43,7 +43,7 @@
                 data-bs-target="#filter" aria-expanded="false" aria-controls="collapseExample">
                 <i class="bi bi-funnel"></i> Filter
             </button>
-            <a href="{{ url('/productRedirect') }}" class="btn btn-secondary text-decoration-none shadow-none ">All</a>
+            <a href="{{ route('product') }}" class="btn btn-secondary text-decoration-none shadow-none ">All</a>
         </div>
         <div class="bodyfilter collapse pt-1" id="filter">
             <div class="filter card card-body bg-gradient d-flex">

@@ -141,7 +141,7 @@ Route::controller(FeedbackController::class)->group(function () {
 ## Droplist
 
 Route::controller(NavbarController::class)->group(function () {
-    Route::get('link/{data}', 'link');
+    // Route::get('link/{data}', 'link');
     Route::get('LogoutUser','logout');
 });
 #1 Home
@@ -195,7 +195,7 @@ Route::controller(AccountController::class)->group(function () {
 });
 # 9 Product
 Route::controller(UserProductController::class)->group(function () {
-
+    Route::get('/searchProduct/{data}', 'searchProduct');
     route::get('/product', 'product')->name('product');
     route::get('/productRedirect', 'productRedirect');
 });

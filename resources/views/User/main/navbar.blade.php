@@ -138,7 +138,6 @@
 </style>
 <nav class="navbar bg-gradient navbar-expand-lg navbar-dark" aria-label="Offcanvas navbar large">
   <div class="container-fluid ">
-    {{-- <img style="width: 100px;" src="images/mim.png" alt=""> --}}
     <a class="navbar-brand mb-1" href="/">DTBM Furniture</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
       aria-controls="offcanvasNavbar2">
@@ -161,12 +160,12 @@
               Furniture <i class="iconfur bi bi-caret-down-fill"></i>
             </a>
             <ul class="parentdropdown dropdown-menu">
-              <h5 class="px-4  p-2"><a href="{{ url('/productRedirect') }}"
+              <h5 class="px-4  p-2"><a href="{{ route('product') }}"
                   class="text-decoration-none text-white-50"><i class="bi bi-shop pe-2"></i>Visit Furniture Store </a>
                 </h3>
                 @foreach ($category as $data)
                 <li>
-                  <a class="rotateIcon dropdown-item   pt-2 pb-2" href="{{ url("link/{$data->id}") }}">{{
+                  <a class="rotateIcon dropdown-item   pt-2 pb-2" href="{{ url("/searchProduct/{$data->id}") }}">{{
                     $data->CategoryName }}
                   </a>
                 </li>
