@@ -3,20 +3,28 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Menu\CartService;
 use App\Http\Services\Menu\ProductService;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\ProductCategory;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class NavbarController extends Controller
 {
     //
+    protected $cartService;
     private $productservice;
 
-    public function __construct(ProductService $productservice)
+    public function __construct(
+        ProductService $productservice,
+        CartService $cartService
+        )
     {
+        $this->cartService = $cartService;
         $this->productservice = $productservice;
     }
 
@@ -29,6 +37,10 @@ class NavbarController extends Controller
             'product' => $this->productservice->getAll(),
             'getproduct' => $this->productservice->getProduct(),
             'datas' => $data,
+
+            'products' => $this->cartService->getProduct(),
+            'carts' => Session::get('carts'),
+            
             session()->flash('link', $data->id),
             session()->flash('linkName', $data->CategoryName),
 

@@ -181,80 +181,78 @@
             <a href="{{ url('/contact') }}" class="nav-link">Contact us</a>
           </li>
         </ul>
+
         <div class="#">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            @if (session('LoggedUser') == 0)
-            <li class="nav-item dropdown d-none">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="bi bi-person-circle pe-1"></i>{{session('LoggedUser') }}</a>
-              <ul class="dropdown-menu dropbgcolor">
-                <li><a class="dropdown-item" href="{{ url('/account') }}"><i class="bi bi-person pe-1"></i>Account
-                    detail</a></li>
-                <li><a class="dropdown-item" href="{{ url('/order') }}"><i class="bi bi-cart pe-1"></i>Orders</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{{ url('LogoutUser') }}"><i
-                      class="bi bi-box-arrow-left pe-1"></i>Logout</a></li>
+            @if (session('LoggedUser'))
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" 
+                  href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="bi bi-person-circle pe-1"></i>
+                  {{ session('LoggedUser')}}
+                </a>
+                  
+                {{-- lấy session theo id --}}
+                <a class="d-none" href="">{{ session('LoggedUserid') }}</a>
+                @php
+                  $getdata = session('LoggedUserid');
+                @endphp
+                <ul class="dropdown-menu dropbgcolor">
+                  <li class="pt-2">
+                    <a class="dropdown-item py-2" 
+                      href="{{ url("/account/{$getdata}") }}">
+                      <i class="bi bi-person pe-1"></i>
+                      Account detail
+                    </a>
+                  </li>
 
-              </ul>
-            </li>
+                  <li>
+                    <a class="dropdown-item py-2" 
+                      href="{{ url("/getpassword/{$getdata}") }}">
+                      <i class="bi bi-wrench-adjustable pe-1"></i>
+                      Change your password
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item py-2" 
+                      href="{{ url('/my_order') }}">
+                      <i class="bi bi-cart pe-1"></i>
+                      My Orders
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" 
+                      href="{{ url('LogoutUser') }}">
+                      <i class="bi bi-box-arrow-left pe-1"></i>
+                      Logout
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/feedback') }}" class="nav-link">Feedback</a>
+              </li>
+
+              <li class="nav-item">
+                @include('User.cart')
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-megaphone-fill"></i></a>
+              </li>
             @else
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="bi bi-person-circle pe-1"></i>{{ session('LoggedUser')}}</a>
-                
-              {{-- lấy session theo id --}}
-              <a class="d-none" href="">{{ session('LoggedUserid') }}</a>
-              @php
-              if (session('LoggedUserid')):
-              $getdata = session('LoggedUserid');
-              endif;
-              @endphp
-              <ul class="dropdown-menu dropbgcolor">
-                <li class="pt-2"><a class="dropdown-item py-2" href="{{ url("/account/{$getdata}") }}"><i
-                      class="bi bi-person pe-1"></i>Account
-                    detail</a></li>
-                <li>
-        
-
-                  <a class="dropdown-item py-2" href="{{ url("/getpassword/{$getdata}") }}"><i
-                      class="bi bi-wrench-adjustable pe-1"></i>Change your password</a>
-
-                </li>
-                <li><a class="dropdown-item py-2" href="{{ url('/order') }}"><i class="bi bi-cart pe-1"></i>Orders</a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item py-2" href="{{ url('LogoutUser') }}"><i
-                      class="bi bi-box-arrow-left pe-1"></i>Logout</a></li>
-
-              </ul>
-            </li>
+              <li class="nav-item">
+                <a href="{{ url('/login') }}" class="nav-link "><i class="bi bi-box-arrow-in-right pe-1"></i>Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus pe-1"></i>Register</a>
+              </li>
             @endif
-            @if (session('LoggedUser') != 0)
-            <li class="nav-item d-none">
-              <a href="{{ url('/login') }}" class="nav-link">Sign in</a>
-            </li>
-            @else
-            <li class="nav-item">
-              <a href="{{ url('/login') }}" class="nav-link "><i class="bi bi-box-arrow-in-right pe-1"></i>Sign in</a>
-            </li>
-            @endif
-            <li class="nav-item">
-              <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus pe-1"></i>Register</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url('/feedback') }}" class="nav-link">Feedback</a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{ url('/cart') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><i class="bi bi-megaphone-fill"></i></a>
-            </li>
           </ul>
         </div>
         {{-- <form class="d-flex mt-3 mt-lg-0" role="search">

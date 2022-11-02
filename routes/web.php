@@ -179,9 +179,13 @@ Route::controller(UserRegisterController::class)->group(function () {
 # 7 Cart
 Route::controller(CartController::class)->group(function () {
 
-    route::get('/cart', 'cart');
-    route::get('/order', 'order');
-    route::get('/orderdetail/{data}', 'orderdetail');
+    route::get('/vwProduct/{data}', 'orderdetail');
+    route::post('/add_cart', 'index');
+    route::get('/carts', 'show');
+    route::post('/carts', 'addCart');
+    route::post('/update-cart', 'update');
+    Route::get('/carts/delete/{id}', 'remove');
+    route::get('/my_order', 'showOrder');
 });
 # 8 Account
 Route::controller(AccountController::class)->group(function () {

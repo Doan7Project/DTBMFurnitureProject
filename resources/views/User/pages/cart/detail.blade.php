@@ -28,12 +28,12 @@
         width: 100%;
         margin: auto;
         transition: all 0.5s ease;
-
+       
         /* justify-content:center ; */
     }
 
     .img-showcase img {
-
+      
         min-width: 100%;
     }
 
@@ -240,7 +240,6 @@
         }
     }
 </style>
-
 <div class="card-wrapper">
     <div class="card cards">
         <!-- card left -->
@@ -248,9 +247,9 @@
             <div class="img-display">
                 <div class="img-showcase">
                     <?php $count=1?>
-                    <img src="{{ $product->images }}" alt="shoe image">
+                    <img src="{{ $productdetail->images }}" alt="shoe image">
                     @foreach ($imagedata as $imagedatas)
-                    @if ($imagedatas->product_id == $product->id)
+                    @if ($imagedatas->product_id == $productdetail->product_code)
                     <?php $count++?>
                     <img src="{{ $imagedatas->image }}" alt="shoe image">
                     @endif
@@ -258,24 +257,22 @@
                 </div>
             </div>
             <div class="img-select">
-
                 @if ($count>1)
                 <div class="img-item">
                     <a href="#" data-id="1">
-                        <img class="img-fluid" src="{{ $product->images }}" alt="shoe image">
+                        <img class="img-fluid" src="{{ $productdetail->images }}" alt="shoe image">
                     </a>
                 </div>
                 @else
                 <div class="img-item d-none">
                     <a href="#" data-id="1">
-                        <img class="img-fluid" src="{{ $product->images }}" alt="shoe image">
+                        <img class="img-fluid" src="{{ $productdetail->images }}" alt="shoe image">
                     </a>
                 </div>
                 @endif
-
                 <?php $i=1?>
                 @foreach ($imagedata as $key=> $imagedatas)
-                @if ($imagedatas->product_id == $product->id)
+                @if ($imagedatas->product_id == $productdetail->product_code)
                 <?php $i++ ?>
                 <div class="img-item">
                     <a href="#" data-id="<?= $i ?>">
@@ -288,9 +285,8 @@
         </div>
         <!-- card right -->
         <div class="product-content">
-            <h2 class="product-title">{{ $product->product_name }}</h2>
-            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
-                furniture store</a>
+            <h2 class="product-title">{{ $productdetail->product_name }}</h2>
+            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit furniture store</a>
             <div class="product-rating">
 
                 <i class="bi bi-star-fill"></i>
@@ -301,26 +297,38 @@
                 <span>4.7(21)</span>
             </div>
             <div class="product-price">
-                <p class="new-price">New Price: <span>${{ $product->price }}</span></p>
+                <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
             <div class="product-detail">
                 <h3>Product Information </h2>
-                    <p>{{ $product->content }}</p>
-                    <div>{{ $product->description }}</div>
+                    <p>{{ $productdetail->content }}</p>
+                    <div>{{ $productdetail->description }}</div>
                     <ul>
-                        <li>Made in: <span>{{ $product->made_in }}</span></li>
-                        <li>Category: <span>{{ $product->product_categories->CategoryName }}</span></li>
-                        <li>Product Code: <span>{{ $product->product_code }}</span></li>
+                        <li>Made in: <span>{{ $productdetail->made_in }}</span></li>
+                        @foreach ($category as $categorys)
+                        @if ($productdetail->category_id == $categorys->id)
+                        <li>Category: <span>{{ $categorys->CategoryName }}</span></li>
+                        @endif
+                        @endforeach
+                        <li>Product Code: <span>{{ $productdetail->product_code }}</span></li>
                         <li>Shipping Area: <span>All over the world</span></li>
                     </ul>
             </div>
 
             <div class="purchase-info">
-
-                <button type="button" class="btn btn-primary">
-                    Add to Cart <i class="bi bi-cart-fill"></i>
-                </button>
-                <input type="number" min="0" value="1">
+                <form action="/add_cart" method="POST">
+                    
+                        <div class="buttons_added">
+                            <input class="minus is-form hover text-center" type="button" value="-">
+                            <input aria-label="quantity" class="input-qty" max="10" min="1" type="number" name="num_product" value="1">
+                            <input class="plus is-form hover text-center" type="button" value="+">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Add to Cart <i class="bi bi-cart-fill"></i>
+                        </button>
+                        <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
+                    @csrf
+                </form>
             </div>
 
             <div class="social-links">
@@ -333,23 +341,43 @@
 
 <script>
     const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
+    const imgBtns = [...imgs];
+    let imgId = 1;
 
-imgBtns.forEach((imgItem) => {
-    imgItem.addEventListener('click', (event) => {
-        event.preventDefault();
-        imgId = imgItem.dataset.id;
-        slideImage();
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
     });
-});
 
-function slideImage(){
-    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+    function slideImage(){
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
 
-    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-}
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
 
-window.addEventListener('resize', slideImage);
+    window.addEventListener('resize', slideImage);
+
+    // up dow number
+    $('input.input-qty').each(function() {
+        var $this = $(this),
+            qty = $this.parent().find('.is-form'),
+            min = Number($this.attr('min')),
+            max = Number($this.attr('max'))
+        if (min == 0) {
+            var d = 0
+        } else d = min
+        $(qty).on('click', function() {
+            if ($(this).hasClass('minus')) {
+            if (d > min) d += -1
+            } else if ($(this).hasClass('plus')) {
+            var x = Number($this.val()) + 1
+            if (x <= max) d += 1
+            }
+            $this.attr('value', d).val(d)
+        })
+    })
 </script>
 @endsection

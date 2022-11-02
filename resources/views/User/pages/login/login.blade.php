@@ -135,7 +135,9 @@
             <div class="row-cols-1 pb-4 pt-3">
                 <input type="submit" class="btn btn-secondary fw-bold" value="Sign In">
             </div>
-
+            <div>
+                <a href="{{url('/register')}}">Register</a>
+            </div>
             @csrf
         </form>
 

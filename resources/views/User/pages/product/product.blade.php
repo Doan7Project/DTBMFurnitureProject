@@ -141,7 +141,7 @@
         <div class="imgstyle">
           <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
 
-          <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping now
+          <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-success shadow-none">Shopping now
 
           </a>
         </div>
@@ -179,7 +179,7 @@
         <div class="imgstyle">
           <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
 
-          <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping now
+          <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-success shadow-none">Shopping now
 
           </a>
         </div>

@@ -88,7 +88,7 @@
                             @endforeach
                             <div class="d-flex justify-content-between align-items-center pt-3">
                                 <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                                    <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
                                 </div>
                                 <small class="">${{ $products->price }}.00</small>
                             </div>
@@ -116,7 +116,7 @@
                             <small class="text-muted">{{ $products->product_categories->CategoryName }}</small>                      
                             <div class="d-flex justify-content-between align-items-center pt-3">
                                 <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                                    <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
                                 </div>
                                 <small class="">${{ $products->price }}.00</small>
                             </div>
@@ -148,7 +148,7 @@
                             @endforeach
                             <div class="d-flex justify-content-between align-items-center pt-3">
                                 <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                                    <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
                                 </div>
                                 <small class="">${{ $products->price }}.00</small>
                             </div>
@@ -180,7 +180,7 @@
                             @endforeach
                             <div class="d-flex justify-content-between align-items-center pt-3">
                                 <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                                    <a href="{{url("/vwProduct/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
                                 </div>
                                 <small class="">${{ $products->price }}.00</small>
                             </div>
