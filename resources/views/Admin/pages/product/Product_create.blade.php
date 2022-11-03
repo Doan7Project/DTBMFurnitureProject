@@ -8,12 +8,14 @@ $arrstatus = [
     [
 
         'id' => '1',
-        'status' => 'Active'
+        'status' => '0',
+        'descrip' => 'Active'
     ],
     [
 
         'id' => '2',
-        'status' => 'Inative'
+        'status' => '1',
+        'descrip' => 'Inative'
     ]
 
 
@@ -155,7 +157,7 @@ $arrmade = [
                 <label for="status" class="form-label text-black">Status</label>
                 <select class="form-select shadow-none" name="txtStatus" id="status">
                     @foreach($arrstatus as $value)
-                    <option value="{{$value['status']}}">{{$value['status']}}</option>
+                    <option value="{{$value['status']}}">{{$value['descrip']}}</option>
                     @endforeach
                 </select>
 

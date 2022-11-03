@@ -125,13 +125,13 @@
                         {{-- <td VALIGN=Middle Align=Left>{{$data->price}}</td>
                         <td VALIGN=Middle Align=Middle>{{$data->unit}}</td>
                         <td VALIGN=Middle Align=Middle>{{$data->quantity}}</td> --}}
-                        @if($data->status=="Active")
+                        @if($data->status=="0")
                         <td VALIGN=Middle Align=Left>
-                            <div class="text-center py-2 text-white rounded bg-success">{{$data->status}}</div>
+                            <div class="text-center py-2 text-white rounded bg-success">{{ $data->status == 0 ? 'Active' : 'Inative' }}</div>
                         </td>
                         @else
                         <td VALIGN=Middle Align=Left>
-                            <div class="text-center py-2 text-white rounded bg-secondary">{{$data->status}}</div>
+                            <div class="text-center py-2 text-white rounded bg-secondary">{{ $data->status == 0 ? 'Active' : 'Inative' }}</div>
                         </td>
                         @endif
 

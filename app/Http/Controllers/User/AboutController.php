@@ -15,6 +15,7 @@ class AboutController extends Controller
         $this->productservice = $productservice;
     }
     public function about(){
+        //Nạp dữ liệu category vào trang about
         return view('User.pages.about.about',[        
             'category'=>$this->productservice->getCategoryName(),
            ]);

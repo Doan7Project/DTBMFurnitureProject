@@ -2,16 +2,19 @@
 @section('content')
 <?php
 
+
 $arrstatus = [
     [
 
         'id' => '1',
-        'status' => 'Active'
+        'status' => '0',
+        'descrip' => 'Active'
     ],
     [
 
         'id' => '2',
-        'status' => 'Inative'
+        'status' => '1',
+        'descrip' => 'Inative'
     ]
 
 
@@ -161,9 +164,9 @@ $arrmodels = [
                 <select class="form-select shadow-none" name="txtStatus" id="status">
                     @foreach($arrstatus as $value)
                     @if($value['status']==$menu->status)
-                    <option value="{{$value['status']}}" selected>{{$value['status']}}</option>
+                    <option value="{{$value['status']}}" selected>{{$value['descrip']}}</option>
                     @else
-                    <option value="{{$value['status']}}">{{$value['status']}}</option>
+                    <option value="{{$value['status']}}">{{$value['descrip']}}</option>
                     @endif
                     @endforeach
                 </select>

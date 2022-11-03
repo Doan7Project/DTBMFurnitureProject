@@ -21,7 +21,6 @@ class AccountController extends Controller
     }
     public function account(Customer $data)
     {   
-        // dd($data);
         return view('User.pages.account.account', [
             'category' => $this->productservice->getCategoryName(),
             'accinfo' => $data,

@@ -25,10 +25,10 @@ class CategoryController extends Controller
     {
         // $rs = ProductCategory::all();
         // return view('Admin.pages.category.Category_list')->with(['rs' => $rs]);
-   
+            // dd($this->categoryservice->getAll());
         return view('Admin.pages.category.Category_list',[
             'title' => 'Danh sach moi',
-            'rs' => $this->categoryservice->getAll()
+            'category' => $this->categoryservice->getAll()
 
         ]);
     }

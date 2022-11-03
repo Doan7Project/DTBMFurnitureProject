@@ -1,11 +1,13 @@
 <!-- JavaScript Bundle with Popper -->
 <style>
     /*---------------------
-      Footer
-    -----------------------*/
+          Footer
+        -----------------------*/
+    
     
     .footer {
-        background: rgb(29, 200, 212);
+        background: #5ea0aa;
+        /* background: #17a2b8; */
         padding-top: 30px;
         padding-bottom: 0;
         font-family: "Cairo", sans-serif;
@@ -18,7 +20,7 @@
     
     .footer__about ul li {
         font-size: 14px;
-        color: #1c1c1c;
+        color: white;
         line-height: 36px;
         list-style: none;
         font-family: "Cairo", sans-serif;
@@ -53,12 +55,21 @@
         list-style: none;
         font-family: "Cairo", sans-serif;
         -webkit-font-smoothing: antialiased;
+        color: white;
+    
     }
     
     .footer__widget ul li a {
-        color: #1c1c1c;
+        /* color: #1c1c1c; */
         font-size: 14px;
         line-height: 32px;
+        color: white;
+        text-decoration: none;
+    
+    }
+    
+    .footer__widget ul li a:hover {
+        transform: scale(2.0);
     }
     
     .footer__widget p {
@@ -97,10 +108,11 @@
         display: inline-block;
         height: 41px;
         width: 41px;
+    
         font-size: 16px;
-        color: #e9e9e9;
+        color: #C0C0C0;
         /* border: 1px solid #ededed; */
-        border-radius: 50%;
+        /* border-radius: 50%; */
         line-height: 38px;
         text-align: center;
         /* background: #ffffff; */
@@ -110,22 +122,22 @@
         -o-transition: all, 0.3s;
         transition: all, 0.3s;
         margin-right: 10px;
+        margin-bottom: 7px;
+    }
     
-    }
-    .color{
-        color: white;
-    }
     d .footer__widget .footer__widget__social a:last-child {
         margin-right: 0;
     }
     
     .footer__widget .footer__widget__social a:hover {
         /* background: #17a2b8;
-        color: #ffffff;
+       
         border-color: #ffffff; */
-        color: white;
-        transform: scale(1.1);
+        transform: scale(1.2);
+        color: #ffffff;
     }
+    
+    
     
     .footer__copyright {
         border-top: 1px solid #ebebeb;
@@ -136,7 +148,7 @@
     
     .footer__copyright__text {
         font-size: 14px;
-        color: #ffffff;
+        color: white;
         float: left;
         line-height: 25px;
     }
@@ -148,6 +160,16 @@
     .links {
         padding-top: 30px;
     }
+    
+    .sologan {
+        color: #FFDAB9;
+        font-family: "Noto Nastaliq Urdu rev=1" !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: initial;
+        font-size: 27px;
+    font-weight: bold;
+    }
     </style>
     <footer class="footer spad">
         <div class="container">
@@ -158,9 +180,9 @@
                             <a href=""><img src="images/mim.png" width="200px" alt=""></a>
                         </div>
                         <ul>
-                            <li><b>Address:</b> 590 Cách mạng tháng 8 - district 3- HCM city</li>
-    <li><b>Phone:</b> +65 11.188.888</li>
-                            <li><b>Email:</b> hello@colorlib.com</li>
+                            <li><b style="color: #FFDAB9">Address:</b> 590 Cách mạng tháng 8 - district 3- HCM city</li>
+                            <li><b style="color: #FFDAB9">Phone:</b> +65 11.188.888</li>
+                            <li><b style="color: #FFDAB9">Email:</b> hello@colorlib.com</li>
                         </ul>
                     </div>
                 </div>
@@ -168,7 +190,7 @@
                     <div class="footer__widget">
     
                         <ul>
-                            <h6>Links</h6>
+                            <h6 style="color: #FFDAB9">Links</h6>
                             <li><a href="#">Home</a></li>
                             <li><a href="{{ url('/about') }}">About Us</a></li>
                             <li><a href="{{ url('/contact') }}">Contact us</a></li>
@@ -177,7 +199,7 @@
     
                         </ul>
                         <ul>
-                            <h6>Policy</h6>
+                            <h6 style="color: #FFDAB9">Policy</h6>
                             <li><a href="#">Payment policy</a></li>
                             <li><a href="#">Shipping Policy</a></li>
                             <li><a href="#">Warranty Policy</a></li>
@@ -190,7 +212,7 @@
     
                         <div class="footer__widget__social">
                             <ul>
-                                <li> <a class="" href="#"><i class="fa fa-facebook"></i> </a>Facebook</li>
+                                <li> <a href="#"><i class="fa fa-facebook"></i> </a>Facebook</li>
                                 <li><a href="#"><i class="fa fa-instagram"></i></a>Instagram</li>
                                 <li> <a href="#"><i class="fa fa-twitter"></i> </a>Twitter</li>
                                 <li> <a href="#"><i class="fa fa-linkedin"></i> </a>Linkedin</li>
@@ -203,6 +225,7 @@
                     </div>
                 </div>
             </div>
+            <div class="sologan ">Change the look of your house, change the perspective of others</div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
@@ -211,7 +234,7 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="fa fa-heart"
+    </script> All rights reserved | This template is made with <i class="fa fa-heart"
                                     aria-hidden="true"></i> by <a href="" target="_blank">DTBM</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
@@ -223,14 +246,11 @@
     
         </div>
     </footer>
-<!-- JavaScript Bundle with Popper -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-</script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    <!-- JavaScript Bundle with Popper -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>

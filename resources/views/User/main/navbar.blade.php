@@ -156,7 +156,7 @@
             <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link" href="" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Furniture <i class="iconfur bi bi-caret-down-fill"></i>
             </a>

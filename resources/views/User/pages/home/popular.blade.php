@@ -140,7 +140,7 @@
             </div>
             <div class="boxout">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "popular_1" && $products->status == "Active")
+                @if ($products->models == "popular_1" && $products->status == "0")
                 <div id="boxcard1" class="boxcard1 shadow-none card bg-gradient">
                     <div>
                         <img class="img-fluid" src="{{ $products->images }}" alt="">
@@ -150,7 +150,7 @@
                         <p class="text-justify">{{ $products->description }}</p>
                         <div class="d-flex">
                             <div>
-                                <a href="{{ url('/productRedirect') }}">Continue to shopping</a>
+                                <a href="{{ route('product') }}">Continue to shopping</a>
                             </div>
 
                             <i class="mymove bi bi-arrow-right-short fw-bolder"></i>
@@ -160,7 +160,7 @@
                 @endif
                 @endforeach
                 @foreach ($product as $key => $products)
-                @if ($products->models == "popular_2" && $products->status == "Active")
+                @if ($products->models == "popular_2" && $products->status == "0")
                 <div id="boxcard2" class="boxcard2 shadow-none card bg-gradient">
                     <div>
                         <img class="img-fluid" src="{{ $products->images }}" alt="">
@@ -170,7 +170,7 @@
                         <p class="text-justify">{{$products->description}}</p>
                         <div class="d-flex">
                             <div>
-                                <a href="{{ url('/productRedirect') }}">Continue to shopping</a>
+                                <a href="{{ route('product') }}">Continue to shopping</a>
                             </div>
 
                             <i class="mymove bi bi-arrow-right-short fw-bolder"></i>
@@ -180,7 +180,7 @@
                 @endif
                 @endforeach
                 @foreach ($product as $key => $products)
-                @if ($products->models == "popular_3" && $products->status == "Active")
+                @if ($products->models == "popular_3" && $products->status == "0")
                 <div id="boxcard3" class="boxcard3 shadow-none card bg-gradient">
                     <div>
                         <img class="img-fluid" src="{{ $products->images }}" alt="">
@@ -190,7 +190,7 @@
                         <p class="text-justify">{{ $products->description }}</p>
                         <div class="d-flex">
                             <div>
-                                <a href="{{ url('/productRedirect') }}">Continue to shopping</a>
+                                <a href="{{ route('product') }}">Continue to shopping</a>
                             </div>
 
                             <i class="mymove bi bi-arrow-right-short fw-bolder"></i>

@@ -130,7 +130,7 @@
     @endphp
     @foreach ($getproduct as $key => $products)
     @if(Session::get('link') > 0)
-    @if ($products->status == "Active" && $products->category_id == Session::get('link'))
+    @if ($products->status == "0" && $products->category_id == Session::get('link'))
     <div class="col-md-3 mb-3">
       <div class="card shadow-none">
         <div class="cover">

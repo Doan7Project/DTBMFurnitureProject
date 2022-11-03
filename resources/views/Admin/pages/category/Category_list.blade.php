@@ -30,7 +30,7 @@
                     </th>
                 </tr>
             </thead>
-            @foreach($rs as $key => $data)
+            @foreach($category as $key => $data)
             <tbody class="p-2">
                 <tr>
                     <td class="px-3" VALIGN=Middle Align=Left>{{$key+1}}</td>

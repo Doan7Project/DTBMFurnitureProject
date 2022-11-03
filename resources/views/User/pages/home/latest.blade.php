@@ -70,7 +70,7 @@
         <div id="slide1" class="carousel-item active" data-bs-interval="10000">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "New arrival" && $products->status == "Active")
+                @if ($products->models == "New arrival" && $products->status == "0")
                 <div class="col-lg-3">
                     <div class="card shadow-sm">
                         <div class="cover">
@@ -100,7 +100,7 @@
         <div id="slide2" class="carousel-item" data-bs-interval="2000">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Trending" && $products->status == "Active")
+                @if ($products->models == "Trending" && $products->status == "0")
                 <div class="col-lg-3">
                     <div class="card shadow-sm">
                         <div class="cover">
@@ -128,7 +128,7 @@
         <div id="slide3" class="carousel-item">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured" && $products->status == "Active")
+                @if ($products->models == "Featured" && $products->status == "0")
                 <div class="col-lg-3">
                     <div class="card shadow-sm">
                         <div class="cover">
@@ -160,7 +160,7 @@
         <div id="slide3" class="carousel-item">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Top" && $products->status == "Active")
+                @if ($products->models == "Top" && $products->status == "0")
                 <div class="col-lg-3">
                     <div class="card shadow-sm">
                         <div class="cover">

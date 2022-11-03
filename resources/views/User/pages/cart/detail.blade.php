@@ -289,7 +289,7 @@
         <!-- card right -->
         <div class="product-content">
             <h2 class="product-title">{{ $product->product_name }}</h2>
-            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
+            <a href="{{ route('product') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
                 furniture store</a>
             <div class="product-rating">
 

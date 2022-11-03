@@ -135,7 +135,7 @@
             </p>
             <div class="d-flex">
               <div>
-                <a href="{{ url('/productRedirect') }}" class="text-decoration-none text-secondary">See all products</a>
+                <a href="{{ route('product') }}" class="text-decoration-none text-secondary">See all products</a>
               </div>
 
               <i class="mymove bi bi-arrow-right-short fw-bolder text-secondary"></i>
@@ -152,7 +152,7 @@
               <div class="row">
                 {{-- --repeat --}}
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured_1" && $products->status == "Active") <div class="col-md-3 mb-3">
+                @if ($products->models == "Featured_1" && $products->status == "0") <div class="col-md-3 mb-3">
                   <div class="card shadow-none">
                     <div class="cover">
 
@@ -193,7 +193,7 @@
             <div class="carousel-item">
               <div class="row ">
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured_2" && $products->status == "Active")
+                @if ($products->models == "Featured_2" && $products->status == "0")
                 <div class="col-md-3 mb-3">
                   <div class="card">
                     <div class="cover">

@@ -24,19 +24,13 @@ class CartController extends Controller
 
         ]);
     }
-    // public function order()
-    // {
-    //     return view('User.pages.cart.order', [
-    //         'category' => $this->productservice->getCategoryName(),
-    //     ]);
-    // }
+
     public function orderdetail(Product $data)
     {
         return view('User.pages.cart.detail', [
             'title' => 'Detailed Product',
             'product' => $data,
             'category' => $this->productservice->getCategoryName(),
-            // 'product' => $this->productservice->getAll(),
             'imagedata' => $this->imagepdservice->getAll(),
         ]);
     }

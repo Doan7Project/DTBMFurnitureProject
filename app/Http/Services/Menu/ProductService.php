@@ -19,7 +19,7 @@ class ProductService
     public function getProduct()
     {
         
-        $products = Product::where('status', 'Active');
+        $products = Product::where('status', '0');
 
         if (isset($_GET['sort']) && !empty($_GET['sort'])) :
             if ($_GET['sort'] == "product_latest") :
@@ -73,9 +73,6 @@ class ProductService
     public function insert($request)
     {
 
-        // $request->except('_token');
-
-        // Product::create($request->all());
         $unique_id = 'FNI-' . floor(time() - 999999999);
 
         try {
