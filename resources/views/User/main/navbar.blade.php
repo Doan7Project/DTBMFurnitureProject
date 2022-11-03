@@ -4,6 +4,7 @@
     z-index: 2; */
     width: 100%;
     background-color: #5ea0aa;
+    line-height: 35px;
   }
 
   .navbar-dark .navbar-nav .nav-link {
@@ -155,7 +156,7 @@
             <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="{{ url('/menulist') }}" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Furniture <i class="iconfur bi bi-caret-down-fill"></i>
             </a>
@@ -244,9 +245,9 @@
             <li class="nav-item">
               <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus pe-1"></i>Register</a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
               <a href="{{ url('/feedback') }}" class="nav-link">Feedback</a>
-            </li> --}}
+            </li>
 
             <li class="nav-item">
               <a href="{{ url('/cart') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>

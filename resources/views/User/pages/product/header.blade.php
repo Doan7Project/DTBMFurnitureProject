@@ -26,17 +26,15 @@
 </style>
 
 <div class="row Category-body container m-auto rounded">
-   
     <div class="col-lg-12 d-flex">
-
         @foreach ( $category as $categorys )
         <div class="boxCategory">
             @if (Session::get('link') == $categorys->id)
-            <a class="active bate text-decoration-none rounded text-black-50" id="active" href="{{ url("link/{$categorys->id}")
+            <a class="active bate text-decoration-none rounded text-black-50" id="active" href="{{ url("searchProduct/{$categorys->id}")
                 }}">{{
                 $categorys->CategoryName }}</a>
             @else
-            <a class="bate text-decoration-none rounded" id="active" href="{{ url("link/{$categorys->id}") }}">{{
+            <a class="bate text-decoration-none rounded" id="active" href="{{ url("searchProduct/{$categorys->id}") }}">{{
                 $categorys->CategoryName }}</a>
             @endif
         </div>

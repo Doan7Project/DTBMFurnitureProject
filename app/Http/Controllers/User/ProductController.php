@@ -37,10 +37,10 @@ class ProductController extends Controller
 
         ]);
     }
-    public function productRedirect()
-    {
-        // Session()->flush();
-        // Session()->forget('category_id');
-        return redirect()->route('product');
-    }
+    // public function productRedirect()
+    // {
+    //     // Session()->flush();
+    //     // Session()->forget('category_id');
+    //     return redirect()->route('product');
+    // }
 }

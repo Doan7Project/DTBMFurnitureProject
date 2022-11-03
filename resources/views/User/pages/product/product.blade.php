@@ -151,12 +151,7 @@
               <li>
                 <h5>{{ $products->product_name }}</h5>
               </li>
-
-              @foreach ($category as $categorys)
-              @if ($products->category_id == $categorys->id)
-              <li><small class="text-muted">{{ $categorys->CategoryName }}</small></li>
-              @endif
-              @endforeach
+              <li><small class="text-muted">{{ $products->product_categories->CategoryName  }}</small></li>
               <li>
                 <h6 class="fw-bolder fs-5" style="color: rgb(61, 61, 61)"><span class="fw-bolder-none fs-6">$</span>{{
                   $products->price }}<span class="fw-bolder-none fs-6">.00</span> </h6>

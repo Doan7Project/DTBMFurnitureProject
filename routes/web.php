@@ -197,7 +197,7 @@ Route::controller(AccountController::class)->group(function () {
 Route::controller(UserProductController::class)->group(function () {
     Route::get('/searchProduct/{data}', 'searchProduct');
     route::get('/product', 'product')->name('product');
-    route::get('/productRedirect', 'productRedirect');
+    // route::get('/productRedirect', 'productRedirect');
 });
 #10 Order Guest Account
 
