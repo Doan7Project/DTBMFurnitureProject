@@ -132,6 +132,8 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="{{url('Admin/pages/Order_list')}}"
                 class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded">Order List</a></li>
+                <li><a href="{{url('Admin/pages/report')}}"
+                  class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded">Report</a></li>
           </ul>
         </div>
       </li>

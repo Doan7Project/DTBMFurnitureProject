@@ -21,4 +21,9 @@ class OrderController extends Controller
     {
         // return view('Admin.pages.Thumb_create');
     }
+    #4 Report
+
+    Public function report(){
+        return view('Admin.pages.order.report');
+    }
 }

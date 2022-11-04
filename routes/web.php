@@ -130,6 +130,7 @@ Route::controller(SliderController::class)->group(function () {
 Route::controller(OrderController::class)->group(function () {
 
     Route::get('Admin/pages/Order_list', 'OrderList');
+    Route::get('Admin/pages/report', 'report');
 });
 # 9. Trang Feedback
 Route::controller(FeedbackController::class)->group(function () {
