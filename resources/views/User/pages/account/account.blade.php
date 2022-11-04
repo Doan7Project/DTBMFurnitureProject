@@ -18,7 +18,6 @@
     display: none;
 
   }
-
 </style>
 @php
 $path = storage_path() . "/json/city.json";
@@ -30,14 +29,19 @@ $gender = json_decode(file_get_contents($path), true);
 @endphp
 
 <div class="account">
+  @if (Session::has('success'))
+  <div class="alert alert-success">
+    {{Session::get('success')}}
+  </div>
+  @endif
   <div class="row container  m-auto">
     <div class="col-md-6 align-items-center">
-      <img class="w-100" src="{{ asset('images/account.png') }}" alt=""> 
+      <img class="w-100" src="{{ asset('images/account.png') }}" alt="">
     </div>
     <main class="col-md-6">
       <form method="post" action="">
         @csrf
-              <h4 class="text-start g-0">Your detail account information</h4>
+        <h4 class="text-start g-0">Your detail account information</h4>
         <div class="row pt-3">
           <div class="col-sm-4">
             <label for="firstName" class="form-label">First name</label>
@@ -75,7 +79,7 @@ $gender = json_decode(file_get_contents($path), true);
         <div class="row pb-3">
           <div class="col-md-6">
             <label for="phone" class="form-label">Phone number <span class="text-muted">(Account)</span></label>
-            <input type="phone" class="form-control" id="phone" value="{{ $accinfo->phone }}"
+            <input type="phone" name="phone" class="form-control" id="phone" value="{{ $accinfo->phone }}"
               placeholder="Enter you phone number">
 
           </div>
@@ -131,13 +135,19 @@ $gender = json_decode(file_get_contents($path), true);
         <div class="row" id="functionShow">
           <div class="col-md-12 d-flex">
             <div class="me-3">
-              <button class=" w-100 btn btn-primary px-4 " type="submit">Edit your account</button>
+              {{-- <button class=" w-100 btn btn-primary px-4 " type="submit">Edit your account</button> --}}
+              {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Change
+              </button> --}}
+              <a class="btn btn-primary text-white" id="myBtn">Change</a>
             </div>
-            <div>
+            {{-- <div>
               <button class="w-100 btn btn-secondary px-4" type="submit">Exit</button>
-            </div>
+            </div> --}}
+    
           </div>
         </div>
+        @include('User.pages.account.modalSubmit')
       </form>
 
     </main>

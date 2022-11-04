@@ -142,7 +142,7 @@ Route::controller(FeedbackController::class)->group(function () {
 
 Route::controller(NavbarController::class)->group(function () {
     // Route::get('link/{data}', 'link');
-    Route::get('LogoutUser','logout');
+    Route::get('LogoutUser','logout')->name('logout');
 });
 #1 Home
 Route::controller(HomeController::class)->group(function () {
@@ -189,8 +189,10 @@ Route::controller(AccountController::class)->group(function () {
 
     // route::get('/account', 'account');
     route::get('/account/{data}','account');
+    route::post('/account/{data}','changeInfoUser')->name('account.info');
     route::get('/getpassword/{data}','getpassword');
     route::post('/getpassword/{data}','changepassword')->name('account.changepassword');
+   
    
 });
 # 9 Product

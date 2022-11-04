@@ -46,6 +46,13 @@ class AccountService
 
             $data->first_name = (string) $request->input('firstname');
             $data->last_name = (string) $request->input('lastname');
+            $data->email = (string) $request->input('email');
+            $data->gender = (string) $request->input('gender');
+            $data->phone = (string) $request->input('phone');
+            $data->birthday = (string) $request->input('birthday');
+            $data->country = (string) $request->input('country');
+            $data->city = (string) $request->input('city');
+            $data->address = (string) $request->input('address');
             $data->save();
 
         }

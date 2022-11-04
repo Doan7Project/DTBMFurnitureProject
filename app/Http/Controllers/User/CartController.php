@@ -24,7 +24,7 @@ class CartController extends Controller
 
         ]);
     }
-
+    // phần hiển thị thông tin order chi tiết để bắt đầu add cart
     public function orderdetail(Product $data)
     {
         return view('User.pages.cart.detail', [

@@ -19,13 +19,16 @@ class AccountController extends Controller
         $this->productservice = $productservice;
         $this->accountservice = $accountService;
     }
+ //view thông tin khách hàng cần thay đổi
     public function account(Customer $data)
     {   
+        // dd($data);
         return view('User.pages.account.account', [
             'category' => $this->productservice->getCategoryName(),
             'accinfo' => $data,
         ]);
     }
+   // View thông tin password dạng hidden
     public function getpassword(Customer $data)
     {
         return view('User.pages.account.changepassword', [
@@ -33,16 +36,18 @@ class AccountController extends Controller
             'getdata'=>$data,
         ]);
     }
+    // thực hiện việc thay đổi passowrd
     public function changepassword(Customer $data, ChangePassRequest $request)
     {
         // dd($request->input());
           $this->accountservice->ChangePass($request, $data);
         return redirect()->back();
     }
+    
 
     public function changeInfoUser(Customer $data, Request $request){
-        //   dd($request->input());
+
         $this->accountservice->changeInfo($request, $data);
-        return redirect()->route('userIndex');
+        return redirect()->route('logout');
     }
 }
