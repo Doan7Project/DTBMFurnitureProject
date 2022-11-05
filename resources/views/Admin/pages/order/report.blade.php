@@ -29,6 +29,16 @@
     #report_filter {
         display: none;
     }
+
+    .header {
+        text-align: center;
+        font-size: 30px;
+        padding-top: 30px;
+    }
+    #time{
+        font-size: 12px;
+        border: none;
+    }
 </style>
 
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -48,9 +58,16 @@
                 @include('Admin.pages.order.filter')
             </div>
             <!-- /.card-header -->
-
+            <div class="header" id="header">
+                <div>
+                    <h3>DTBM Furniture</h3>
+                    <h4>The daily revenue report</h2>
+                </div>
+                <div class="text-end">
+                    <span class=" text-muted fs-6 px-4">{{ session('user') }}</span>
+                </div>
+            </div>
             <div class="card-body">
-                {{-- <h1>report</h1> --}}
                 <table id="report" class="table table-bordered table-striped">
 
                     <thead>
@@ -481,16 +498,14 @@
                             <th>CSS grade</th>
                         </tr>
                     </tfoot>
+               
                 </table>
             </div>
-            <!-- /.card-body -->
-
-
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+
     </section>
-    <!-- /.content -->
+
+
 </div>
 
 
@@ -536,26 +551,43 @@
     //   "info": true,
       "autoWidth": false,
       "responsive": true,
+      "dom": 'Bfrtip',
       "buttons": [ 
         {
                 extend: 'csv',
                 title: 'Data export',
+                titleAttr: 'CSV',
+                text:'<i class="bi bi-filetype-csv"></i>',
                 messageTop: 'This print was produced using the Print button for DataTables'
             },
             {
                 extend: 'excelHtml5',
                 title: 'Data export',
+                text:'<i class="bi bi-file-earmark-spreadsheet"></i>',
+                titleAttr: 'Excel',
                 messageTop: 'This print was produced using the Print button for DataTables'
             },
             {
                 extend: 'pdfHtml5',
+                text:'<i class="bi bi-filetype-pdf"></i>',
+                titleAttr: 'PDF',
                 title: 'Data export',
                 messageTop: 'This print was produced using the Print button for DataTables'
             },
             {
                 extend: 'print',
-                title: 'Data export',
-                   
+                text: '<i class="bi bi-printer"></i>',
+                titleAttr: 'Print',
+                title:'',
+                footer:true,
+            customize: function (win) {
+             var test =  $("#header")
+                $(win.document.body).prepend(test);
+            },
+    
+            exportOptions: {
+                columns: ':visible'
+            }
             
             }],
       initComplete: function () {
@@ -600,6 +632,9 @@
         },
       
     }).buttons().container().appendTo('#report_wrapper .col-md-6:eq(0)');
+
+
+    
 
     });
 

@@ -5,10 +5,16 @@
         cursor: pointer;
     }
 
-    .gj-datepicker button {
+    .gj-datepicker>button {
         border: none;
         background-color: rgb(16, 111, 199);
         color: white;
+        
+     
+    }
+    .bi-filetype-csv,.bi-file-earmark-spreadsheet,.bi-filetype-pdf,.bi-printer{
+        font-size: 20px;
+        color: rgb(22, 79, 165);
     }
     .gj-datepicker button:hover {
         background-color:  rgb(10, 84, 153);
@@ -19,11 +25,13 @@
         justify-content: center; */
     }
 .dt-buttons>button{
-    background-color:  rgb(16, 111, 199);
+    background-color:  transparent;
+
     border: none;
 }
 .dt-buttons>button:hover{
-    background-color:  rgb(10, 84, 153);
+    background-color:  transparent;
+    
 }
 </style>
 
