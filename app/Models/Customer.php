@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Customer extends Model
 {
@@ -23,7 +24,9 @@ class Customer extends Model
         'address',
     ];
 
-    public function order_masters(){
-        return $this->hasMany(order_master::class,'customer_id','id');
+    public function order_masters()
+    {
+        return $this->hasMany(order_master::class, 'customer_id', 'id');
     }
+
 }
