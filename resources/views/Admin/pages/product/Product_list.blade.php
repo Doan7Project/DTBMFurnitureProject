@@ -70,7 +70,7 @@
     </div>
     <div class="mt-6 border border-1 rounded">
         <h5 class="bg-primary bg-gradient text-white p-3">Product list information</h5>
-        <div class="table-responsive p-3 shadow-sm container" style="width: auto;">
+        <div class="table-responsive p-3 shadow-sm container" style="width: 1050px;">
             <table class="table table-bordered display ui celled " id="table">
                 <thead class="bg-primary bg-opacity-75 text-white">
                     <tr VALIGN=Middle Align=Middle>

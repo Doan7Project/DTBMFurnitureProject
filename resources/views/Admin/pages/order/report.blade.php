@@ -40,6 +40,14 @@
         font-size: 12px;
         border: none;
     }
+
+    .table {
+        border: none;
+    }
+
+    thead>tr>th {
+        background-color: transparent;
+    }
 </style>
 
 <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -48,10 +56,6 @@
 
 <div>
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-
-    </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="card" style="width: 100%;">
@@ -64,22 +68,29 @@
                     <h3>DTBM Furniture</h3>
                     <h4>The daily revenue report</h2>
                 </div>
-                <div class="text-end">
-                    <span class=" text-muted fs-6 px-4">{{ session('user') }}</span>
+                <div class="d-flex justify-content-between">
+                    <div class=" text-muted fs-6 px-4">
+                        From: <span class="" id="from"></span>
+                        To: <span id="to"></span>
+                    </div>
+                    <div>
+                        <span class=" text-muted fs-6 px-4">{{ session('user') }}</span>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
-                <table id="report" class="table table-bordered ">
+                {{-- Total: <span id="total"></span> --}}
+                <table id="report" class="table table-bordered">
 
                     <thead>
 
                         <tr>
-                            <th>Order Number</th>
                             <th>Category</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Total Price</th>
+                            <th>Order Number</th>
                             <th>Booking Date</th>
 
                         </tr>
@@ -89,12 +100,12 @@
                         @foreach ($getCategory as $getCategorys)
                         @if($getCategorys->id == $orderDetaiDatas->products->category_id)
                         <tr>
-                            <td>{{ $orderDetaiDatas->order_masters->order_number}}</td>
                             <td>{{ $getCategorys->CategoryName}}</td>
                             <td>{{ $orderDetaiDatas->products->product_name}}</td>
                             <td>{{ $orderDetaiDatas->quantity}}</td>
-                            <td>${{ $orderDetaiDatas->products->price}}</td>
-                            <th>${{ $orderDetaiDatas->quantity*$orderDetaiDatas->products->price}}</th>
+                            <td>{{ $orderDetaiDatas->products->price}}</td>
+                            <th>{{ $orderDetaiDatas->quantity*$orderDetaiDatas->products->price}}</th>
+                            <td>{{ $orderDetaiDatas->order_masters->order_number}}</td>
                             <td>{{ $orderDetaiDatas->order_masters->created_at}}</td>
 
                         </tr>
@@ -107,10 +118,10 @@
 
                             <th></th>
                             <th>Total:</th>
-                            <th></th>
-                            <th id="totalQuanity"></th>
+                            <th id="totalQuantity"></th>
                             <th></th>
                             <th id="total"></th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </tfoot>
@@ -157,44 +168,78 @@
 
 
 <script type="text/javascript">
+    var title = '<h1>My title</h1><br /> <p>by John</p>';
     $(document).ready(function () {
+        // khai bao filter by date
+        $.fn.dataTableExt.afnFiltering.push(
+	            function( oSettings, aData, iDataIndex ) {
+	                var startDate = $('#min').val();
+	                var endDate = $('#max').val();
+	                var colValue = aData[6]; //here is the column index value to be filtered
+	                var dateValue = new Date(colValue);
+	                if ( startDate == "" && endDate == "" )
+	                {
+	                    return true;
+	                }
+	                else if (startDate != null && endDate == "")
+	                {
+	                    if(new Date(startDate) <= dateValue) {
+	                        return true;
+	                    }
+	                }
+	                else if ( startDate == "" && endDate != "")
+	                {
+	                    if(dateValue <= new Date(endDate)) {
+	                        return true;
+	                    }
+	                }
+	                else if (startDate != null && endDate != null)
+	                {
+	                    if(new Date(startDate) <= dateValue && dateValue <= new Date(endDate)) {
+	                    return true;
+	                    }
+	                }
+	                return false;
+	                }
+	            );
     var table = $('#report').DataTable({
-      "paging": true,
-      "lengthChange": false,
- 
-    //   "searching": false,
-    //   "ordering": true,
-    //   "info": true,
-    'footer':true,
-      "autoWidth": false,
-      "responsive": true,
-      "dom": 'Bfrtip',
-      "buttons": [ 
+
+      paging: true,
+      lengthChange: false,
+    footer:true,
+      autoWidth: true,
+      responsive: true,
+      dom: 'Bfrtip',
+      buttons: [ 
+        "colvis",
         {
                 extend: 'csv',
-                title: 'Data export',
+                filename:'Daily Report',
+                title: 'Funiture Report',
                 titleAttr: 'CSV',
                 text:'<i class="bi bi-filetype-csv"></i>',
-                messageTop: 'This print was produced using the Print button for DataTables'
             },
             {
                 extend: 'excelHtml5',
-                title: 'Data export',
+                filename:'Daily Report',
+                title: 'Funiture Report',
                 text:'<i class="bi bi-file-earmark-spreadsheet"></i>',
                 titleAttr: 'Excel',
-                messageTop: 'This print was produced using the Print button for DataTables'
             },
-            {
-                extend: 'pdfHtml5',
-                text:'<i class="bi bi-filetype-pdf"></i>',
-                titleAttr: 'PDF',
-                title: 'Data export',
-                messageTop: 'This print was produced using the Print button for DataTables'
-            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     download: 'download',
+            //     text:'<i class="bi bi-filetype-pdf"></i>',
+            //     titleAttr: 'PDF',
+            //     footer:true,
+            //     filename:'Line1',
+            //     title:'Line2'
+            // },
             {
                 extend: 'print',
                 text: '<i class="bi bi-printer"></i>',
                 titleAttr: 'Print',
+                filename:'Daily Report',
                 title:'',
                 footer:true,
               customize: function (win) {
@@ -209,9 +254,9 @@
             },
 ],
        
-      initComplete: function () {
+      initComplete: function (settings, json) {
             this.api()
-                .columns([1])
+                .columns([0])
                 .every(function () {
                     var column = this;
                     var select = $('#searchCategory')
@@ -230,7 +275,7 @@
                         });
                 });
                 this.api()
-                .columns([2])
+                .columns([1])
                 .every(function () {
                     var column = this;
                     var select = $('#searchProduct')
@@ -248,7 +293,6 @@
                             select.append('<option value="' + d + '">' + d + '</option>');
                         });
                 });
-                
         },
      //sum data 
      footerCallback: function (row, data, start, end, display) {
@@ -261,36 +305,46 @@
  
             // Total over all pages
             total = api
-                .column(5)
+                .column(4)
                 .data()
                 .reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
-                //total quanity
                 totalQuantity = api
-                .column(3,{ page: 'current' })
+                .column(2,{ page: 'current' })
                 .data()
-                .reduce(function(a,b){
+                .reduce(function (a, b) {
                     return intVal(a) + intVal(b);
-                },0);
+                }, 0);
             // Total over this page
             pageTotal = api
-                .column(5, { page: 'current' })
+                .column(4, { page: 'current' })
                 .data()
                 .reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
  
             // Update footer
-        //    $(api.column(5).footer()).html('$' + pageTotal + ' ( $' + total + ' total)');
-        //    $(api.column(5).footer()).html('$' + pageTotal);
-           $("#total").html('$' + pageTotal);
-           $("#totalQuanity").html(totalQuantity);
+        //   $(api.column(4).footer()).html('$' + pageTotal);
+            $("#total").html('$'+pageTotal);
+            $("#totalQuantity").html(totalQuantity);
         },
       
-     }).buttons().container().appendTo('#report_wrapper .col-md-6:eq(0)');
-
-  
+     });
+     //run search
+     $('#min, #max').change(function () {
+       
+    
+	            table.draw();
+	        });
+            $('#min').change(function () {
+                var min = document.getElementById('min').value;
+                $('#from').html(min) ;   
+   });
+   $('#max').change(function () {
+                var max = document.getElementById('max').value;
+                $('#to').html(max) ;   
+   });
 
 
     });

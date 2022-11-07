@@ -35,14 +35,14 @@
 }
 </style>
 
-<div class="inputdate row">
+<div class="inputdate row pt-4 pb-4">
     <div class="col-md-3">
         <label for="">From date</label>
-        <input class="datepicker" id="fromdate" />
+        <input type="date" class="form-control date-range-filter" id="min" />
     </div>
     <div class="col-md-3">
         <label for="">To date</label>
-        <input class="datepicker" id="todate" />
+        <input type="date" class="form-control date-range-filter" id="max" />
     </div>
     <div class="col-md-3">
         <label for="">Category</label>
@@ -57,11 +57,3 @@
           </select>
     </div>
 </div>
-<script>
-    $('#fromdate').datepicker({
-        uiLibrary: 'bootstrap5'
-    });
-    $('#todate').datepicker({
-        uiLibrary: 'bootstrap5'
-    });
-</script>

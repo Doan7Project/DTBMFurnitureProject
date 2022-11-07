@@ -8,7 +8,7 @@
     .card-wrapper {
         /* padding: 50px; */
         max-width: 1100px;
-        margin: 20px auto;
+      
     }
 
     img {
@@ -220,10 +220,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 1.5rem;
+            margin:20px auto;
         }
 
         .card-wrapper {
-            /* height: 100vh; */
+      
+            margin:auto;
             display: flex;
             justify-content: center;
             align-items: center;

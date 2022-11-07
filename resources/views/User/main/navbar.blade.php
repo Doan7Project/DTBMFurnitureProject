@@ -1,14 +1,35 @@
 <style>
   .navbar {
-    /* position: fixed;
-    z-index: 2; */
+    position: fixed;
+    z-index: 99; 
     width: 100%;
     background-color: #5ea0aa;
     line-height: 35px;
+    transition: 0.4s;
   }
+  #myBtnTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
 
+}
+  /* #navbar {
+  overflow: hidden;
+  background-color: #5ea0aa;
+  line-height: 35px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+} */
   .navbar-dark .navbar-nav .nav-link {
     color: rgb(219, 219, 219);
+    
     font-size: 16px;
   }
 
@@ -136,9 +157,11 @@
     }
 
   }
+
 </style>
-<nav class="navbar bg-gradient navbar-expand-lg navbar-dark" aria-label="Offcanvas navbar large">
-  <div class="container-fluid ">
+<nav id="navbar"  class="navbar bg-gradient navbar-expand-lg navbar-dark" aria-label="Offcanvas navbar large">
+  <button onclick="topFunction()" class="btn btn-danger" id="myBtnTop" title="Go to top">Top</button>
+  <div  class="container-fluid ">
     <a class="navbar-brand mb-1" href="/">DTBM Furniture</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
       aria-controls="offcanvasNavbar2">

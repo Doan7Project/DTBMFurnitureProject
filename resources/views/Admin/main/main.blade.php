@@ -1,10 +1,15 @@
+<style>
+  .menu{
+    background-color: rgba(250, 250, 250, 0.254);
+  }
+</style>
 @include('Admin.main.header')
-<div class="position-relative p-3 shadow-sm d-flex justify-content-between">
+<div class="menu position-relative p-3 shadow-sm d-flex justify-content-between">
   <!-- Nav tabs -->
   <div class="text-start">
     <label for="" class="fs-5">DMTB Furniture Project</label>
   </div>
-  <div>
+  <div >
     <div class="btn-group">
       <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -24,18 +29,18 @@
   </div>
 </div>
 <!-- ---------------------------End----------------------------- -->
-<main class="d-flex flex-nowrap" style="height:100%;">
-  <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 240px;">
+<main class="d-flex flex-nowrap " >
+  <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 240px; height:900px;">
     <div class="text-center pb-4">
       <i class="bi bi-person-workspace fs-1"></i>
       <h5>Administration</h5>
     </div>
     <h6 class="px-4 py-3 bg-primary bg-gradient text-light">Function Controller</h6>
 
-    <ul class="list-group">
-      <a href="{{url('Admin/index')}}"
-        class="list-group-item border-0 px-4 list-group-item-action link-dark d-inline-flex text-decoration-none rounded"><i
-          class="bi bi-house-door pe-2"></i>Home</a>
+    <ul class="list-group ">
+   <a href="{{url('Admin/index')}}"
+        class="btn btn-toggle px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action">
+        <i class="bi bi-house-door pe-2"></i>Home</a>          
       <!-- Product Category -->
       <li class="mb-0 list-unstyled ">
         <button
@@ -156,7 +161,7 @@
 
 
   </div>
-  <div class="mt-5 m-auto">
+  <div class="mt-3 m-auto ">
     @yield('content')
   </div>
 </main>
