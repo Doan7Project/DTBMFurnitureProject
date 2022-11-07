@@ -24,7 +24,7 @@
   </div>
 </div>
 <!-- ---------------------------End----------------------------- -->
-<main class="d-flex flex-nowrap" style="height:100vh;">
+<main class="d-flex flex-nowrap" style="height:100%;">
   <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 240px;">
     <div class="text-center pb-4">
       <i class="bi bi-person-workspace fs-1"></i>
@@ -138,7 +138,7 @@
         </div>
       </li>
 
-      <li class="mb-0 list-unstyled ">
+      <li class="list-unstyled">
         <button
           class="btn btn-toggle px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action"
           data-bs-toggle="collapse" data-bs-target="#feedback" aria-expanded="false">

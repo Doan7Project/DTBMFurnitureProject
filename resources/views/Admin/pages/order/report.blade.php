@@ -69,19 +69,19 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="report" class="table table-bordered table-striped">
+                <table id="report" class="table table-bordered ">
 
                     <thead>
 
                         <tr>
+                            <th>Order Number</th>
                             <th>Category</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Total Price</th>
-                            <th>Order Number</th>
                             <th>Booking Date</th>
-              
+
                         </tr>
                     </thead>
                     <tbody>
@@ -89,14 +89,14 @@
                         @foreach ($getCategory as $getCategorys)
                         @if($getCategorys->id == $orderDetaiDatas->products->category_id)
                         <tr>
+                            <td>{{ $orderDetaiDatas->order_masters->order_number}}</td>
                             <td>{{ $getCategorys->CategoryName}}</td>
                             <td>{{ $orderDetaiDatas->products->product_name}}</td>
                             <td>{{ $orderDetaiDatas->quantity}}</td>
-                            <td>{{ $orderDetaiDatas->products->price}}</td>
-                            <th>{{ $orderDetaiDatas->quantity*$orderDetaiDatas->products->price}}</th>
-                            <td>{{ $orderDetaiDatas->order_masters->order_number}}</td>
+                            <td>${{ $orderDetaiDatas->products->price}}</td>
+                            <th>${{ $orderDetaiDatas->quantity*$orderDetaiDatas->products->price}}</th>
                             <td>{{ $orderDetaiDatas->order_masters->created_at}}</td>
-                          
+
                         </tr>
                         @endif
                         @endforeach
@@ -104,13 +104,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                       
+
                             <th></th>
                             <th>Total:</th>
                             <th></th>
-                            <th></th>                     
+                            <th id="totalQuanity"></th>
                             <th></th>
-                            <th></th>
+                            <th id="total"></th>
                             <th></th>
                         </tr>
                     </tfoot>
@@ -158,10 +158,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
     var table = $('#report').DataTable({
       "paging": true,
       "lengthChange": false,
+ 
     //   "searching": false,
     //   "ordering": true,
     //   "info": true,
@@ -211,7 +211,7 @@
        
       initComplete: function () {
             this.api()
-                .columns([0])
+                .columns([1])
                 .every(function () {
                     var column = this;
                     var select = $('#searchCategory')
@@ -230,7 +230,7 @@
                         });
                 });
                 this.api()
-                .columns([1])
+                .columns([2])
                 .every(function () {
                     var column = this;
                     var select = $('#searchProduct')
@@ -248,6 +248,44 @@
                             select.append('<option value="' + d + '">' + d + '</option>');
                         });
                 });
+                
+        },
+     //sum data 
+     footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+ 
+            // Remove the formatting to get integer data for summation
+            var intVal = function (i) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column(5)
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+                //total quanity
+                totalQuantity = api
+                .column(3,{ page: 'current' })
+                .data()
+                .reduce(function(a,b){
+                    return intVal(a) + intVal(b);
+                },0);
+            // Total over this page
+            pageTotal = api
+                .column(5, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+ 
+            // Update footer
+        //    $(api.column(5).footer()).html('$' + pageTotal + ' ( $' + total + ' total)');
+        //    $(api.column(5).footer()).html('$' + pageTotal);
+           $("#total").html('$' + pageTotal);
+           $("#totalQuanity").html(totalQuantity);
         },
       
      }).buttons().container().appendTo('#report_wrapper .col-md-6:eq(0)');

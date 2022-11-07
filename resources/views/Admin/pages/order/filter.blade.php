@@ -47,14 +47,12 @@
     <div class="col-md-3">
         <label for="">Category</label>
         <select class="form-select" id="searchCategory" aria-label="Default select example">
-            <option selected>Choose Category...</option>
             <option value="">All</option>
           </select>
     </div>
     <div class="col-md-3">
         <label for="">Product</label>
         <select class="form-select" id="searchProduct" aria-label="Default select example">
-            <option selected>Choose product...</option>
             <option value="">All</option>
           </select>
     </div>
