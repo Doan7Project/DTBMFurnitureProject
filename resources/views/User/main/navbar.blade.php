@@ -1,6 +1,6 @@
 <style>
   .navbar {
-    position: fixed;
+    position: block;
     z-index: 99; 
     width: 100%;
     background-color: #5ea0aa;
