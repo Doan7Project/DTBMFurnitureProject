@@ -170,13 +170,15 @@ Route::controller(UserContactController::class)->group(function () {
 });
 # 5 Login
 Route::controller(UserLoginController::class)->group(function () {
-    route::get('/login', 'login');
+    route::get('/login', 'login')->name('user.login');
     route::post('signin','signin')->name('signin');
 });
 # 6 Register
 Route::controller(UserRegisterController::class)->group(function () {
 
     route::get('/register', 'register');
+    route::post('/register','store')->name('register.store');
+    route::get('/seccesspage','successpape')->name('successpape');
 });
 # 7 Cart
 Route::controller(CartController::class)->group(function () {
@@ -197,7 +199,7 @@ Route::controller(AccountController::class)->group(function () {
     route::post('/account/{data}','changeInfoUser')->name('account.info');
     route::get('/getpassword/{data}','getpassword');
     route::post('/getpassword/{data}','changepassword')->name('account.changepassword');
-   
+
    
 });
 # 9 Product

@@ -28,7 +28,7 @@ class AccountService
             elseif ($request->input('newpassword') != $request->input('confirmedpassword')) :
                 return redirect()->back()->with('fail', 'The old password or confirmed password not match');
             else :
-                $data->password = (string) ($request->input('confirmedpassword'));
+                $data->password = (string)($request->input('confirmedpassword'));
                 $data->save();
                 session()->flash('success', 'Change password successfully!');
                 return  true;

@@ -247,6 +247,9 @@
                 </li>
                 <li><a class="dropdown-item py-2" href="{{ url('/my_order') }}"><i class="bi bi-cart pe-1"></i>Orders</a>
                 </li>
+                <li><a class="dropdown-item py-2" href="{{ url('/feedback') }}"><i class="bi bi-cart pe-1"></i>Feedback</a>
+                </li>
+         
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -266,9 +269,9 @@
             </li>
             @endif
             <li class="nav-item">
-              <a href="{{ url('/feedback') }}" class="nav-link">Feedback</a>
+              <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus-fill pe-1"></i>Register</a>
             </li>
-
+         
             <li class="nav-item">
               <a href="{{ url('/carts') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>
             </li>

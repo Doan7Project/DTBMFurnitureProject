@@ -41,7 +41,7 @@ class AccountController extends Controller
     {
         // dd($request->input());
           $this->accountservice->ChangePass($request, $data);
-        return redirect()->back();
+        return redirect()->route('successpape');
     }
     
 
