@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade');
             $table->bigInteger('product_id');
+            $table->string('status');
+            $table->string('evaluate');
             $table->string('content');
             $table->timestamps();
         });

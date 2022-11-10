@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 08:30 AM
+-- Generation Time: Nov 10, 2022 at 11:22 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `furnituredb`
 --
-CREATE DATABASE IF NOT EXISTS `project03` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `project03`;
+CREATE DATABASE IF NOT EXISTS `furnituredb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `furnituredb`;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `gender`, `email`, `password`, `phone`, `birthday`, `country`, `city`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Customer 1', 'Last Name', '1', 'customer1@gmail.com', '123456', '099811221', '2013-07-12', 'Vietnam', 'Biên Hòa', 'Bien Hoa', NULL, '2022-11-08 00:25:38');
+(1, 'Customer', 'Vip', 'Male', 'customer@gmail.com', '123456', '0981137177', '0000-00-00', 'Vietnam', '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,6 +78,8 @@ CREATE TABLE `feedback` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `evaluate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -100,18 +102,19 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_000000_create_users_table', 1),
-(14, '2014_10_12_100000_create_password_resets_table', 1),
-(15, '2019_08_19_000000_create_failed_jobs_table', 1),
-(16, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(17, '2022_10_06_082035_create_product_categories_table', 1),
-(18, '2022_10_08_040344_create_products_table', 1),
-(19, '2022_10_13_064900_create_product_images_table', 1),
-(20, '2022_10_20_054657_create_customers_table', 1),
-(21, '2022_10_20_055547_create_feedback_table', 1),
-(22, '2022_10_20_055827_create_order_details_table', 1),
-(23, '2022_10_20_055952_create_order_masters_table', 1),
-(24, '2022_10_20_060605_create_slide_shows_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_10_06_082035_create_product_categories_table', 1),
+(6, '2022_10_08_040344_create_products_table', 1),
+(7, '2022_10_13_064900_create_product_images_table', 1),
+(8, '2022_10_20_054657_create_customers_table', 1),
+(9, '2022_10_20_055547_create_feedback_table', 1),
+(10, '2022_10_20_055827_create_order_details_table', 1),
+(11, '2022_10_20_055952_create_order_masters_table', 1),
+(12, '2022_10_20_060605_create_slide_shows_table', 1),
+(13, '2022_11_10_005047_create_my_orders_table', 1);
 
 -- --------------------------------------------------------
 
@@ -137,8 +140,8 @@ CREATE TABLE `order_details` (
 CREATE TABLE `order_masters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
-  `date_required` date NOT NULL,
   `order_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -469,7 +472,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -557,18 +560,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-CREATE VIEW viewOrder 
-            AS
-            SELECT
-                order_masters.customer_id,
-                order_masters.order_number,
-                order_masters.created_at,
-                order_details.order_master_id,
-                order_details.product_id,
-                order_details.quantity,
-                products.product_name,
-                products.price,
-                products.images
-            FROM order_masters, order_details, products
-            WHERE order_masters.id = order_details.order_master_id AND order_details.product_id = products.id;
