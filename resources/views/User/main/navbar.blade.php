@@ -16,17 +16,17 @@
   border: none;
   outline: none;
 
-}
-  /* #navbar {
-  overflow: hidden;
-  background-color: #5ea0aa;
-  line-height: 35px;
-  transition: 0.4s;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 99;
-} */
+  }
+    /* #navbar {
+    overflow: hidden;
+    background-color: #5ea0aa;
+    line-height: 35px;
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+  } */
   .navbar-dark .navbar-nav .nav-link {
     color: rgb(219, 219, 219);
     
@@ -213,7 +213,7 @@
               <ul class="dropdown-menu dropbgcolor">
                 <li><a class="dropdown-item" href="{{ url('/account') }}"><i class="bi bi-person pe-1"></i>Account
                     detail</a></li>
-                <li><a class="dropdown-item" href="{{ url('/order') }}"><i class="bi bi-cart pe-1"></i>Orders</a></li>
+                <li><a class="dropdown-item" href="{{ url('/my_order') }}"><i class="bi bi-cart pe-1"></i>Orders</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -245,7 +245,7 @@
                       class="bi bi-wrench-adjustable pe-1"></i>Change your password</a>
 
                 </li>
-                <li><a class="dropdown-item py-2" href="{{ url('/order') }}"><i class="bi bi-cart pe-1"></i>Orders</a>
+                <li><a class="dropdown-item py-2" href="{{ url('/my_order') }}"><i class="bi bi-cart pe-1"></i>Orders</a>
                 </li>
                 <li>
                   <hr class="dropdown-divider">
@@ -266,14 +266,11 @@
             </li>
             @endif
             <li class="nav-item">
-              <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus pe-1"></i>Register</a>
-            </li>
-            <li class="nav-item">
               <a href="{{ url('/feedback') }}" class="nav-link">Feedback</a>
             </li>
 
             <li class="nav-item">
-              <a href="{{ url('/cart') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>
+              <a href="{{ url('/carts') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link"><i class="bi bi-megaphone-fill"></i></a>

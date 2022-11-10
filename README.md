@@ -8,13 +8,11 @@ Step 3: Call command: composer install or composer update
 
 Step 4: Change file .env.example to .env
 
-Step 5: Call command for creating database to MySQL by model function: php artisan migrate
+Step 5: Import data into database, the file was included in DatabaseInfo folder (named: furnituredb)
 
-Step 6: Import data into database, the file was included in DatabaseInfo folder
+Step 6: Call command to link and show the images to pages: php artisan storage:link
 
-Step 7: Call command to link and show the images to pages: php artisan storage:link
-
-Step 8: Run the project: php artisan serve
+Step 7: Run the project: php artisan serve
 
 Admin page: Url/Admin
 
