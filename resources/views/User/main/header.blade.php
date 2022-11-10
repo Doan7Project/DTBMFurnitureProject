@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>DTBM Furniture</title>
 
     <!-- CSS only -->
 

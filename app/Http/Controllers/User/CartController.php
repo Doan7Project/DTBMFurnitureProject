@@ -41,9 +41,8 @@ class CartController extends Controller
     
     public function show()
     {
-        // $products = $this->cartService->getProduct();
         return view('User.pages.cart.cart', [
-            'title' => 'Cart',
+            'title' => 'My Cart',
             'menu'=>$this->productservice->getCategoryName(),
             'menuchild' => $this->productservice->getAll(),
             'category' => $this->productservice->getCategoryName(),

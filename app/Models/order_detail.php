@@ -12,14 +12,16 @@ class order_detail extends Model
     protected $table = "order_details";
     protected $primaryKey = "id";
     protected $fillable= [
-        'product_id','order_master_id','quantity'
+        'product_id',
+        'order_master_id',
+        'quantity'
     ];
 
     
     public function order_masters(){
-        return $this->belongsTo(order_master::class,'order_master_id','id');
+        return $this->belongsTo(order_master::class,'id', 'order_master_id');
     }
     public function products(){
-        return $this->belongsTo(Product::class,'product_id','id');
+        return $this->belongsTo(Product::class,'id', 'product_id');
     }
 }

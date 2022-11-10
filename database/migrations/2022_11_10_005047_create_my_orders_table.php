@@ -21,14 +21,14 @@ return new class extends Migration
                 order_masters.customer_id,
                 order_masters.order_number,
                 order_masters.created_at,
-                order_details.order_id,
+                order_details.order_master_id,
                 order_details.product_id,
                 order_details.quantity,
                 products.product_name,
                 products.price,
                 products.images
             FROM order_masters, order_details, products
-            WHERE order_masters.id = order_details.order_id AND order_details.product_id = products.id;
+            WHERE order_masters.id = order_details.order_master_id AND order_details.product_id = products.id;
         ");
     }
 

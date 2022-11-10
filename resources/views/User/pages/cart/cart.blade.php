@@ -48,13 +48,16 @@
     }
 </style>
 <form class="bg0 p-t-130 p-b-85" method="post">
+    @php
+        
+    @endphp
     @include('User.alert')
     @if (count($products) != 0)
         @if(session('LoggedUser') == 0)
             @include('User.pages.login.login')
         @else
         <div class="container m-auto">
-            <h2 class="text-center">Order Product</h2>
+            <h2 class="text-center">{{$title}}</h2>
             <div class="row border-gray-500 border-0">
                 <div class="m-lr-auto m-b-50">
                     <div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -84,17 +87,18 @@
                                             </div>
                                         </td>
                                         <td class="column-2">{{ $product->product_name }}</td>
-                                        <td class="column-3">${{ number_format($product->price, 0, '', '.') }}</td>
+                                        <td class="column-3 price">${{ number_format($product->price, 0, '', '.') }}</td>
                                         <td class="column-4">
-                                            <div class="buttons_added">
-                                                <input class="minus is-form" type="button" value="-">
-                                                <input aria-label="quantity" class="input-qty" max="10" min="1" type="number" name="num_product[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
-                                                <input class="plus is-form" type="button" value="+">
+                                            <div class="buttons_added d-flex">
+                                                <input class="minus is-form" id="munis" type="button" value="-">
+                                                <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number" name="num_product[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
+                                                <input class="plus is-form" id="plus" type="button" value="+">
                                               </div>
                                         </td> 
-                                        <td class="column-5">${{ number_format($priceEnd, 0, '', '.') }}</td>
+                                        <td class="column-5" id="total">${{ number_format($priceEnd, 0, '', '.') }}</td>
                                         <td class="p-r-15">
-                                            <a href="/carts/delete/{{ $product->id }}">Delete</a>
+                                            <input type="submit" value="Delete" formaction="/carts/delete/{{ $product->id }}"
+                                            class="pointer px-2 py-1 border rounded">
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,18 +110,18 @@
                             <div class="flex-w flex-m m-r-20 m-tb-5">
                                 
                                 <div class="size-209 pt-1 d-flex justify-content-between">
-                                    <input type="submit" value="Update Cart" formaction="/update-cart"
-                                        class="pointer px-4 py-1 border rounded">
-                                        <button id="clickOrder" class="pointer px-4 py-1 border rounded">
-                                            Order
-                                        </button>
-                                    <span class="mtext-110 cl2">
+                                    <input type="submit" value="Update Order" formaction="/update-cart"
+                                                class="pointer px-2 py-1 border rounded">
+                                    <button id="clickOrder" class="pointer px-4 py-1 border rounded">
+                                        Order
+                                    </button>
+                                    <span class="mtext-110 cl2" id="sum">
                                         Total: ${{ number_format($total, 0, '', '.') }}
                                     </span>
                                 </div>
                                 <div>
                                     <label for="">Date required</label><br>
-                                    <input type="date" name="txtDateOrder" placeholder="Date required"><br>
+                                    <input type="date" name="txtDateOrder" placeholder="Date required before_or_equal:today"><br>
                                     <label for="">Note</label><br>
                                     <textarea name="txtNote" id="txtNote" cols="30" rows="5"></textarea>
                                 </div>
@@ -133,25 +137,25 @@
             <div class="text-center"><h2>Cart is empty</h2></div>
         @endif
 </form>
+<script type="">
+    const btnMunis = doc
 
-{{-- <script type="text/javascript" src="{{ URL::asset('/resources/js/cart.js') }}"> --}}
-<script>
-// up dow number
-$('input.input-qty').each(function() {
-    var $this = $(this),
-        qty = $this.parent().find('.is-form'),
-        min = Number($this.attr('min')),
-        max = Number($this.attr('max'))
-    if (min == 0) {
-        var d = 0
-    } else d = min
-    $(qty).on('click', function() {
-        if ($(this).hasClass('minus')) {
-        if (d > min) d += -1
-        } else if ($(this).hasClass('plus')) {
-        var x = Number($this.val()) + 1
-        if (x <= max) d += 1
-        }
+    $('input.input-qty').each(function() {
+        var $this = $(this),
+            qty = $this.parent().find('.is-form'),
+            min = Number($this.attr('min')),
+            max = Number($this.attr('max'))
+        if (min == 0) {
+            var d = 0
+        } else d = min
+        $(qty).on('click', function() {
+            if ($(this).hasClass('minus')) {
+            if (d > min) d += -1
+            } else if ($(this).hasClass('plus')) {
+            var x = Number($this.val()) + 1
+            if (x <= max) d += 1
+            }
+
             $this.attr('value', d).val(d)
         })
     })

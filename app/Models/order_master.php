@@ -11,13 +11,16 @@ class order_master extends Model
     protected $table = "order_masters";
     protected $primaryKey = "id";
     protected $fillable =[
-        'customer_id','date_required','order_number','notes'
+        'customer_id',
+        'date_required',
+        'order_number',
+        'notes'
     ];
 
     public function customers(){
-        return $this->belongsTo(Customer::class,'customer_id','id');
+        return $this->belongsTo(Customer::class,'id', 'customer_id');
     }
     public function order_details(){
-        return $this->hasMany(order_master::class,'order_master_id','id');
+        return $this->hasMany(order_master::class,'id', 'order_master_id');
     }
 }

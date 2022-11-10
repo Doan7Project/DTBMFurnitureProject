@@ -184,7 +184,7 @@ Route::controller(CartController::class)->group(function () {
     route::get('/orderdetail/{data}', 'orderdetail');
     route::post('/add_cart', 'index');
     route::get('/carts', 'show');
-    route::post('/carts', 'addCart');
+    route::post('/carts', 'addCart'); 
     route::post('/update-cart', 'update');
     Route::get('/carts/delete/{id}', 'remove');
     route::get('/my_order', 'showOrder');

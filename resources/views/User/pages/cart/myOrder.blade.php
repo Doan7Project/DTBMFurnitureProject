@@ -85,9 +85,15 @@
                                         </div>
                                     </td>
                                     <td class="column-2">{{ $items['product_name'] }}</td>
-                                    <td class="column-3">${{ number_format($items['price'], 0, '', '.') }}</td>
-                                    <td class="column-4">{{ $items['quantity'] }}</td>
-                                    <td class="column-5">${{ number_format($priceEnd, 0, '', '.') }}</td>
+                                    <td class="column-3">
+                                        ${{ number_format($items['price'], 0, '', '.') }}
+                                    </td>
+                                    <td class="column-4">
+                                        {{ $items['quantity'] }}
+                                    </td>
+                                    <td class="column-5 total">
+                                        ${{ number_format($priceEnd, 0, '', '.') }}
+                                    </td>
                                     <td class="p-r-15">
                                         <a href="#">Edit</a>
                                     </td>
@@ -137,6 +143,10 @@
             }
             $this.attr('value', d).val(d)
         })
+
+        $('.total',parent).text(qty*price);
+
+        total();
     })
 </script>
 @endsection

@@ -29,7 +29,6 @@ class CartService
         }
 
         $carts = Session::get('carts');
-    
         
         if (is_null($carts)) {
             Session::put('carts', [
@@ -47,7 +46,7 @@ class CartService
 
         $carts[$product_id] = $qty;
         Session::put('carts', $carts);
-
+        // dd($carts);
         return true;
         
     }
@@ -59,11 +58,11 @@ class CartService
         
         $productId = array_keys($carts);
         return Product::select('id', 'product_name', 'price', 'images')
-            ->where('status', 'Active')
+            ->where('status', '0')
             ->whereIn('id', $productId)
             ->get();
             
-        // dd($productId);
+        dd($carts);
     }
     
     public function update($request)
@@ -130,9 +129,9 @@ class CartService
         $data = [];
         foreach ($products as $product) {
             $data[] = [
-                'product_id'    => $product->id,
-                'order_id'      => $orderId,
-                'quantity'      => $carts[$product->id],
+                'product_id'        => $product->id,
+                'order_master_id'   => $orderId,
+                'quantity'          => $carts[$product->id],
             ];
         }
     return order_detail::insert($data);
@@ -152,14 +151,14 @@ class CartService
     
     public function myOrder(){
         $customerId = session('LoggedUserid');
-        $myOrder = myOrder::select('order_number','order_id','created_at','product_id','quantity','price','images','product_name')
+        $myOrder = myOrder::select('order_number','order_master_id','created_at','product_id','quantity','price','images','product_name')
             ->where('customer_id',$customerId)
             ->get();
         $data = [];
         foreach($myOrder as $items) {
             $data [] = [
                 'order_number'    => $items->order_number,
-                'order_id'    => $items->order_id,
+                'order_master_id'    => $items->order_master_id,
                 'created_at' => $items->created_at, 
                 'product_id'    => $items->product_id,
                 'quantity'    => $items->quantity,
@@ -174,7 +173,7 @@ class CartService
 
     public function numOrder(){
         $customerId = session('LoggedUserid');
-        $myOrder = myOrder::select('order_number')
+        $myOrder = myOrder::select('order_number', 'created_at')
             ->where('customer_id',$customerId)
             ->groupby('order_number')
             ->get();
@@ -182,7 +181,7 @@ class CartService
         foreach($myOrder as $items) {
             $data [] = [
                 'order_number'    => $items->order_number,
-                // 'created_at' => $items->created_at,
+                'created_at' => $items->created_at,
             ];
         }
         // // dd($data);
