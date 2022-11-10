@@ -93,10 +93,11 @@ class CartService
 
             $customerId = session('LoggedUserid');
             $unique_id = 'FNI-' . floor(time() - 999999999);
+            $status = 0;
             
             $order = order_master::create([
                 'customer_id'       => $customerId,
-                'date_required'     => $request->input('txtDateOrder'),
+                'status'            => $status,
                 'order_number'      => $unique_id,
                 'notes'             => $request->input('txtNote')
             ]);
@@ -173,7 +174,7 @@ class CartService
 
     public function numOrder(){
         $customerId = session('LoggedUserid');
-        $myOrder = myOrder::select('order_number', 'created_at')
+        $myOrder = myOrder::select('order_number', 'created_at','status')
             ->where('customer_id',$customerId)
             ->groupby('order_number')
             ->get();
@@ -182,6 +183,7 @@ class CartService
             $data [] = [
                 'order_number'    => $items->order_number,
                 'created_at' => $items->created_at,
+                'status' => $items->status,
             ];
         }
         // // dd($data);

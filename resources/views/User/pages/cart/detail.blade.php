@@ -320,16 +320,16 @@
             <div class="purchase-info">
                 <form action="/add_cart" method="POST">
                     
-                        <div class="buttons_added">
-                            <input class="minus is-form hover text-center" type="button" value="-">
-                            <input aria-label="quantity" class="input-qty" max="10" min="1" type="number" name="num_product" value="1">
-                            <input class="plus is-form hover text-center" type="button" value="+">
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            Add to Cart <i class="bi bi-cart-fill"></i>
-                        </button>
-                        <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
-                    @csrf
+                    <div class="buttons_added d-flex">
+                        <input class="minus is-form" id="munis" type="button" value="-">
+                        <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number" name="num_product" value="1">
+                        <input class="plus is-form" id="plus" type="button" value="+">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Add to Cart <i class="bi bi-cart-fill"></i>
+                    </button>
+                    <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
+                @csrf
                 </form>
             </div>
  

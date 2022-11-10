@@ -560,3 +560,19 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE VIEW viewOrder 
+  AS
+  SELECT
+      order_masters.customer_id,
+      order_masters.order_number,
+      order_masters.created_at,
+      order_masters.status,
+      order_details.order_master_id,
+      order_details.product_id,
+      order_details.quantity,
+      products.product_name,
+      products.price,
+      products.images
+  FROM order_masters, order_details, products
+  WHERE order_masters.id = order_details.order_master_id AND order_details.product_id = products.id;

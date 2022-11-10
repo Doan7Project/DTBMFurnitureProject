@@ -21,6 +21,7 @@ return new class extends Migration
                 order_masters.customer_id,
                 order_masters.order_number,
                 order_masters.created_at,
+                order_masters.status,
                 order_details.order_master_id,
                 order_details.product_id,
                 order_details.quantity,
