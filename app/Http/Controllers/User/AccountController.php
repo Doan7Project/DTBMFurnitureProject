@@ -41,7 +41,7 @@ class AccountController extends Controller
     {
         // dd($request->input());
           $this->accountservice->ChangePass($request, $data);
-        return redirect()->route('successpape');
+        return redirect()->route('successpape')->with('success','Your password has changed successfully!, Please sign in again');
     }
     
 

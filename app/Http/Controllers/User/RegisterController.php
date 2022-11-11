@@ -24,7 +24,7 @@ class RegisterController extends Controller
         ]);
     }
     public function successpape(){
-        return view('User.pages.register.success', [
+        return view('User.success', [
             'category' => $this->productservice->getCategoryName(),
         ]);
     }
@@ -56,6 +56,7 @@ class RegisterController extends Controller
                 'address'=>$request->input('address'),
 
             ]);
+            session()->flash('success','Your account has created successfully!');
             return  redirect()->route('successpape');
     }
 }
