@@ -114,7 +114,8 @@ Route::controller(ProductImageController::class)->group(function () {
 
 #5 customer (MR Minh)
 Route::controller(CustomerController::class)->group(function () {
-    Route::get('/customer/list', 'list');
+    Route::get('/customer/list', 'list')->name('customer.list');
+    Route::get('/viewCustomerDetail/{data}','view');
 });
 
 # 7. Trang Slider

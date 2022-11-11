@@ -58,14 +58,11 @@
 </div>
 @endif
 
-<div class="d-flex justify-content-between align-items-end mt-5">
-    <div>
-        <a class="btn btn-success mb-3" href="{{url("image/create")}}">
-            <i class="bi bi-plus-square text-white" pe-3"></i> Add more
-        </a>
-    </div>
-</div>
-<div class="mt-6  border border-1 rounded" style="width: 1000px;">
+
+<div class="mt-6  rounded" style="width: 100%;">
+    <a class="btn btn-success mb-3" href="{{url("image/create")}}">
+        <i class="bi bi-plus-square text-white"></i> Add more
+    </a>
     <h5 class="bg-primary bg-gradient text-white p-3">Product list information</h5>
     <div class="table-responsive p-3 shadow-sm container" style="width: auto;">
 

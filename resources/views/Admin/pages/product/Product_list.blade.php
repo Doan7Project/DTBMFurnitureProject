@@ -70,14 +70,14 @@
     </div>
     <div class="mt-6 border border-1 rounded">
         <h5 class="bg-primary bg-gradient text-white p-3">Product list information</h5>
-        <div class="table-responsive p-3 shadow-sm container" style="width: 1050px;">
+        <div class="table-responsive p-3 shadow-sm container" style="width: 1000px;">
             <table class="table table-bordered display ui celled " id="table">
                 <thead class="bg-primary bg-opacity-75 text-white">
                     <tr VALIGN=Middle Align=Middle>
                         <th VALIGN=Middle Align=Middle>No.</th>
-                        <th VALIGN=Middle Align=Left>
+                        {{-- <th VALIGN=Middle Align=Left>
                             <div style="width: 120px;">category Name</div>
-                        </th>
+                        </th> --}}
                         <th VALIGN=Middle Align=Left>
                             <div style="width: 200px;">Product Name</div>
                         </th>
@@ -120,7 +120,7 @@
                                 <i class="bi bi-pencil-square text-primary pe-2"></i>
                             </a>
                         </td>
-                        <td VALIGN=Middle Align=Left>{{$data->product_categories->CategoryName}}</td>
+                        {{-- <td VALIGN=Middle Align=Left>{{$data->product_categories->CategoryName}}</td> --}}
                         <td VALIGN=Middle Align=Left>{{$data->product_name}}</td>
                         {{-- <td VALIGN=Middle Align=Left>{{$data->price}}</td>
                         <td VALIGN=Middle Align=Middle>{{$data->unit}}</td>
