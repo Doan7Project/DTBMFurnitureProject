@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade');
+            $table->string('status');
             $table->string('order_number');
             $table->string('status');
             $table->string('notes');

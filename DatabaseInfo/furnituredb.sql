@@ -140,6 +140,7 @@ CREATE TABLE `order_details` (
 CREATE TABLE `order_masters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `status` varchar(20) NOT NULL,
   `order_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,

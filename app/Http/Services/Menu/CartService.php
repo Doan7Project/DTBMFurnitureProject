@@ -46,9 +46,7 @@ class CartService
 
         $carts[$product_id] = $qty;
         Session::put('carts', $carts);
-        // dd($carts);
         return true;
-        
     }
 
     public function getProduct()
@@ -177,7 +175,7 @@ class CartService
         $myOrder = myOrder::select('order_number', 'created_at','status')
             ->where('customer_id',$customerId)
             ->groupby('order_number')
-            ->get();
+            ->get(); 
         $data = [];
         foreach($myOrder as $items) {
             $data [] = [

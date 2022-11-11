@@ -65,6 +65,10 @@
                     <h5>Order number: {{ $value['order_number'] }}</h5>
                     <h6>Status: {{ $status }}</h6>
                     <h6>Date order: {{ $value['created_at']}}</h6>
+                @endphp
+                <div class="d-flex justify-content-between col-12 px-0">
+                    <h5 class="col-4 pl-0">Order number: {{ $value['order_number'] }}</h5>
+                    <p class="dateOrder col-4 pr-0 text-right">Date order: {{ $value['created_at']}}</p>
                 </div>
                 <table class="w-100">
                     <thead class="border-bottom">
@@ -132,6 +136,13 @@
 </form>
 
 <script>
+    // date create order my customer.
+    $( function() {
+        $('.dateOrder').datepicker({
+            format: 'mm/dd/yy'
+        });        
+    });
+    
     // up dow number
     $('input.input-qty').each(function() {
         var $this = $(this),
