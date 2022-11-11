@@ -120,10 +120,8 @@
                                     </span>
                                 </div>
                                 <div>
-                                    <label for="">Date required</label><br>
-                                    <input type="date" name="txtDateOrder" placeholder="Date required before_or_equal:today"><br>
                                     <label for="">Note</label><br>
-                                    <textarea name="txtNote" id="txtNote" cols="30" rows="5"></textarea>
+                                    <textarea name="txtNote" id="txtNote" cols="60" rows="3"></textarea>
                                 </div>
                             </div>
                             @csrf
@@ -137,9 +135,7 @@
             <div class="text-center"><h2>Cart is empty</h2></div>
         @endif
 </form>
-<script type="">
-    const btnMunis = doc
-
+<script>
     $('input.input-qty').each(function() {
         var $this = $(this),
             qty = $this.parent().find('.is-form'),

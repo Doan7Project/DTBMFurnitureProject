@@ -12,7 +12,7 @@ class order_master extends Model
     protected $primaryKey = "id";
     protected $fillable =[
         'customer_id',
-        'date_required',
+        'status',
         'order_number',
         'notes'
     ];
