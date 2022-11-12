@@ -69,133 +69,142 @@
     <div class="carousel-inner">
         <div id="slide1" class="carousel-item active" data-bs-interval="10000">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php $count = 0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "New arrival" && $products->status == "0")
-                <div class="col-lg-3">
-                    <div class="card shadow-sm">
-                        <div class="cover">
+                @if ($count < 4) @if ($products->models == "New arrival" && $products->status == "0")
+                    <div class="col-lg-3">
+                        <div class="card shadow-sm">
+                            <div class="cover">
 
-                        </div>
-                        <div class="boximge">
-                            <img class="img-fluid" src="{{ $products->images }}" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5>{{ $products->product_name }}</h5>
-                    
-                            <small class="text-muted">{{ $products->product_categories->CategoryName  }}</small>
-                     
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                            </div>
+                            <div class="boximge">
+                                <img class="img-fluid" src="{{ $products->images }}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5>{{ $products->product_name }}</h5>
+
+                                <small class="text-muted">{{ $products->product_categories->CategoryName }}</small>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3">
+                                    <div class="btn-group">
+                                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm
+                                            btn-outline-secondary">Shopping Now</a>
+                                    </div>
+                                    <small class="">${{ $products->price }}.00</small>
                                 </div>
-                                <small class="">${{ $products->price }}.00</small>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
-                @endforeach
+                    <?php $count++?>
+                    @endif
+
+                    @endif
+                    @endforeach
             </div>
         </div>
         <div id="slide2" class="carousel-item" data-bs-interval="2000">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php $count = 0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Trending" && $products->status == "0")
-                <div class="col-lg-3">
-                    <div class="card shadow-sm">
-                        <div class="cover">
+                @if ($count < 4) @if ($products->models == "Trending" && $products->status == "0")
+                    <div class="col-lg-3">
+                        <div class="card shadow-sm">
+                            <div class="cover">
 
-                        </div>
-                        <div class="boximge">
-                            <img class="img-fluid" src="{{ $products->images }}" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5>{{ $products->product_name }}</h5>      
-                            <small class="text-muted">{{ $products->product_categories->CategoryName }}</small>                      
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                            </div>
+                            <div class="boximge">
+                                <img class="img-fluid" src="{{ $products->images }}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5>{{ $products->product_name }}</h5>
+                                <small class="text-muted">{{ $products->product_categories->CategoryName }}</small>
+                                <div class="d-flex justify-content-between align-items-center pt-3">
+                                    <div class="btn-group">
+                                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm
+                                            btn-outline-secondary">Shopping Now</a>
+                                    </div>
+                                    <small class="">${{ $products->price }}.00</small>
                                 </div>
-                                <small class="">${{ $products->price }}.00</small>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
-                @endforeach
+                    <?php $count++?>
+                    @endif
+                    @endif
+                    @endforeach
             </div>
         </div>
         <div id="slide3" class="carousel-item">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php $count = 0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured" && $products->status == "0")
-                <div class="col-lg-3">
-                    <div class="card shadow-sm">
-                        <div class="cover">
+                @if ($count < 4) @if ($products->models == "Featured" && $products->status == "0")
+                    <div class="col-lg-3">
+                        <div class="card shadow-sm">
+                            <div class="cover">
 
-                        </div>
-                        <div class="boximge">
-                            <img class="img-fluid" src="{{ $products->images }}" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5>{{ $products->product_name }}</h5>
-                            @foreach ($category as $categorys)
-                            @if ($products->category_id == $categorys->id)
-                            <small class="text-muted">{{ $categorys->CategoryName }}</small>
-                            @endif
-                            @endforeach
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                            </div>
+                            <div class="boximge">
+                                <img class="img-fluid" src="{{ $products->images }}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5>{{ $products->product_name }}</h5>
+                                @foreach ($category as $categorys)
+                                @if ($products->category_id == $categorys->id)
+                                <small class="text-muted">{{ $categorys->CategoryName }}</small>
+                                @endif
+                                @endforeach
+                                <div class="d-flex justify-content-between align-items-center pt-3">
+                                    <div class="btn-group">
+                                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm
+                                            btn-outline-secondary">Shopping Now</a>
+                                    </div>
+                                    <small class="">${{ $products->price }}.00</small>
                                 </div>
-                                <small class="">${{ $products->price }}.00</small>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
-                @endforeach
+                    <?php $count++?>
+                    @endif
+                    @endif
+                    @endforeach
             </div>
         </div>
         <div id="slide3" class="carousel-item">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php $count=0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Top" && $products->status == "0")
-                <div class="col-lg-3">
-                    <div class="card shadow-sm">
-                        <div class="cover">
+                @if ($count < 4) @if ($products->models == "Top" && $products->status == "0")
+                    <div class="col-lg-3">
+                        <div class="card shadow-sm">
+                            <div class="cover">
 
-                        </div>
-                        <div class="boximge">
-                            <img class="img-fluid" src="{{ $products->images }}" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5>{{ $products->product_name }}</h5>
-                            @foreach ($category as $categorys)
-                            @if ($products->category_id == $categorys->id)
-                            <small class="text-muted">{{ $categorys->CategoryName }}</small>
-                            @endif
-                            @endforeach
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <div class="btn-group">
-                                    <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm btn-outline-secondary">Shopping Now</a>
+                            </div>
+                            <div class="boximge">
+                                <img class="img-fluid" src="{{ $products->images }}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5>{{ $products->product_name }}</h5>
+                                @foreach ($category as $categorys)
+                                @if ($products->category_id == $categorys->id)
+                                <small class="text-muted">{{ $categorys->CategoryName }}</small>
+                                @endif
+                                @endforeach
+                                <div class="d-flex justify-content-between align-items-center pt-3">
+                                    <div class="btn-group">
+                                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-sm
+                                            btn-outline-secondary">Shopping Now</a>
+                                    </div>
+                                    <small class="">${{ $products->price }}.00</small>
                                 </div>
-                                <small class="">${{ $products->price }}.00</small>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
-                @endforeach
+                    <?php $count++?>
+                    @endif
+                    @endif
+                    @endforeach
+            </div>
         </div>
     </div>
-</div>
-{{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-</button> --}}
 </div>
