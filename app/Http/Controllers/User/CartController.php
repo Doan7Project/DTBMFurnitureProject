@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Services\Menu\CartService;
 use App\Http\Services\Menu\imagePdService;
+use App\Http\Services\Menu\OrderService;
 use App\Http\Services\Menu\ProductService;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,17 +17,19 @@ class CartController extends Controller
     private $productservice;
     private $imagepdservice;
     protected $cartService;
+    protected $orderservice;
 
     public function __construct(
         ProductService $productservice, 
         imagePdService $imagePdService,
-        CartService $cartService
+        CartService $cartService,
+        OrderService $orderservice
         )
     {
         $this->productservice = $productservice;
         $this->imagepdservice = $imagePdService;
         $this->cartService = $cartService;
-
+        $this->orderservice = $orderservice;
     }
 
     public function index(Request $request)
@@ -95,6 +98,7 @@ class CartController extends Controller
             'imagedata' => $this->imagepdservice->getAll(),
             'products' => $this->cartService->getProduct(),
             'carts' => Session::get('carts'),
+            'orderDetail' => $this->orderservice->getInfoOrderDetail()
         ]);
     }
 }

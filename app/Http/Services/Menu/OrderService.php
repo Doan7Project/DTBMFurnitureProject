@@ -3,6 +3,7 @@
 
 namespace App\Http\Services\Menu;
 
+use App\Models\order_detail;
 use App\Models\order_master;
 use App\Models\ProductCategory;
 use Exception;
@@ -15,5 +16,8 @@ class OrderService
 
         return order_master::all();
     }
+    public function getInfoOrderDetail(){
 
+        return order_detail::all();
+    }
 }

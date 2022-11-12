@@ -301,6 +301,25 @@
             <div class="product-price">
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
+
+               {{-- feedback --}}
+               @foreach ($orderDetail as $key => $orderDetails )
+               @if($orderDetails->product_id == $productdetail->id
+               && $orderDetails->order_masters->status == 1
+               )
+               <button type="button" class="btn btn-danger">
+                   <i class="bi bi-chat-left-dots-fill"></i> Give me a feedback!
+               </button>
+               @else
+               <button type="button" class="btn btn-danger d-none">
+                   <i class="bi bi-chat-left-dots-fill"></i>
+               </button>
+               @endif
+            
+          
+               @endforeach
+               {{-- end feedback --}}
+
             <div class="product-detail">
                 <h3>Product Information </h2>
                     <p>{{ $productdetail->content }}</p>
