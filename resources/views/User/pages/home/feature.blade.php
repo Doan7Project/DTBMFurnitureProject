@@ -110,7 +110,7 @@
 <section class="pt-5 pb-3">
   <div class=" p-3 mb-5 bg-body rounded">
     <div class="boxLogo  rounded">
-      <img style="width:130px; "  src="images/mim.png" alt="">
+      <img style="width:130px; " src="images/mim.png" alt="">
     </div>
     <div class="row">
       <div class="text-right pe-4">
@@ -151,86 +151,93 @@
             <div class="carousel-item active">
               <div class="row">
                 {{-- --repeat --}}
+                <?php $count = 0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured_1" && $products->status == "0") <div class="col-md-3 mb-3">
-                  <div class="card shadow-none">
-                    <div class="cover">
+                @if ($count < 4) @if ($products->models == "Featured_1" && $products->status == "0") <div
+                    class="col-md-3 mb-3">
+                    <div class="card shadow-none">
+                      <div class="cover">
 
-                    </div>
+                      </div>
 
-                    <div class="imgstyle">
-                      <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
+                      <div class="imgstyle">
+                        <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
 
-                      <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping now
+                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping
+                          now
 
-                      </a>
-                    </div>
-                    <div class="card-body text-center">
-                      <div>
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5>{{ $products->product_name }}</h5>
-                          </li>
-                          <li><small class="text-muted">{{ $products->product_categories->CategoryName }}</small></li>
-                          <li>
-                            <h6 class="fw-bolder fs-5" style="color: rgb(61, 61, 61)"><span
-                                class="fw-bolder-none fs-6">$</span>{{ $products->price }}<span
-                                class="fw-bolder-none fs-6">.00</span> </h6>
-                          </li>
-                        </ul>
+                        </a>
+                      </div>
+                      <div class="card-body text-center">
+                        <div>
+                          <ul class="list-unstyled">
+                            <li>
+                              <h5>{{ $products->product_name }}</h5>
+                            </li>
+                            <li><small class="text-muted">{{ $products->product_categories->CategoryName }}</small></li>
+                            <li>
+                              <h6 class="fw-bolder fs-5" style="color: rgb(61, 61, 61)"><span
+                                  class="fw-bolder-none fs-6">$</span>{{ $products->price }}<span
+                                  class="fw-bolder-none fs-6">.00</span> </h6>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
+
                   </div>
-
-                </div>
-
-                @endif
-                @endforeach
-                {{-- end repeat --}}
+                  <?php $count++?>
+                  @endif
+                  @endif
+                  @endforeach
+                  {{-- end repeat --}}
               </div>
             </div>
 
             <div class="carousel-item">
               <div class="row ">
+                <?php $count = 0?>
                 @foreach ($product as $key => $products)
-                @if ($products->models == "Featured_2" && $products->status == "0")
-                <div class="col-md-3 mb-3">
-                  <div class="card">
-                    <div class="cover">
+                @if($count < 4) @if ($products->models == "Featured_2" && $products->status == "0")
+                  <div class="col-md-3 mb-3">
+                    <div class="card">
+                      <div class="cover">
 
-                    </div>
+                      </div>
 
-                    <div class="imgstyle">
-                      <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
-                      <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping Now</a>
-                    </div>
-                    <div class="card-body text-center">
-                      <div>
-                        <ul class="list-unstyled">
-                          <li>
-                            <h5>{{ $products->product_name }}</h5>
-                          </li>
-                          <li>
-                          </li>
-                          @foreach ($category as $categorys)
-                          @if ($products->category_id == $categorys->id)
-                          <li><small class="text-muted">{{ $categorys->CategoryName }}</small></li>
-                          @endif
-                          @endforeach
-                          <li>
-                            <h6 class="fw-bolder fs-5" style="color: rgb(61, 61, 61)"><span
-                                class="fw-bolder-none fs-6">$</span>{{ $products->price }}<span
-                                class="fw-bolder-none fs-6">.00</span> </h6>
-                          </li>
-                        </ul>
+                      <div class="imgstyle">
+                        <img class="img-fluid" alt="100%x280" src="{{ $products->images }}">
+                        <a href="{{url("/orderdetail/{$products->id}")}}" class="btn btn-success shadow-none">Shopping
+                          Now</a>
+                      </div>
+                      <div class="card-body text-center">
+                        <div>
+                          <ul class="list-unstyled">
+                            <li>
+                              <h5>{{ $products->product_name }}</h5>
+                            </li>
+                            <li>
+                            </li>
+                            @foreach ($category as $categorys)
+                            @if ($products->category_id == $categorys->id)
+                            <li><small class="text-muted">{{ $categorys->CategoryName }}</small></li>
+                            @endif
+                            @endforeach
+                            <li>
+                              <h6 class="fw-bolder fs-5" style="color: rgb(61, 61, 61)"><span
+                                  class="fw-bolder-none fs-6">$</span>{{ $products->price }}<span
+                                  class="fw-bolder-none fs-6">.00</span> </h6>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                @endif
-                @endforeach
-                {{-- end repeat --}}
+                  <?php $count++?>
+                  @endif
+                  @endif
+                  @endforeach
+                  {{-- end repeat --}}
               </div>
             </div>
 
