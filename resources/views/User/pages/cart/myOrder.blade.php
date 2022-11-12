@@ -59,7 +59,7 @@
                 @php 
                 $total = 0;
                 $status = $value['status'];
-                $status == 0 ? $status = 'Don hang dang xu ly' : $status = 'Da giao thanh cong'
+                $status == 0 ? $status = 'Pending' : $status = 'Done'
                 @endphp
                 <div class="d-flex justify-content-between align-content-center">
                     <h5>Order number: {{ $value['order_number'] }}</h5>
@@ -72,7 +72,7 @@
                             <th class="px-0 col-1">Product</th>
                             <th class="px-0 col-6"></th>
                             <th class="px-0 col-1">Price</th>
-                            <th class="px-0 col-12">Quantity</th>
+                            <th class="px-0 col-2">Quantity</th>
                             <th class="px-0 col-1">Total</th>
                             <th class="px-0 col-2">Function</th>
                         </tr>

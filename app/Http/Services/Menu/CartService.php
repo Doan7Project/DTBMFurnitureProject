@@ -79,6 +79,15 @@ class CartService
         return true;
     }
 
+    public function editOrder($request, $data):bool {
+        $orderId = $request->input('order_master_id');
+        if($orderId == $data->id)
+            $data->status = $request->input('txtStatus');
+            $data->save();
+            session()->flash('success', 'Updated successfully!');
+            return true;
+    }
+
     public function addCart($request)
     {
         try {
@@ -99,6 +108,7 @@ class CartService
                 'order_number'      => $unique_id,
                 'notes'             => $request->input('txtNote')
             ]);
+            // Session.put('orderMaster', $order);
             // dd("$order->id");
             $this->infoProductCart($carts, $order->id);
             
@@ -172,8 +182,50 @@ class CartService
 
     public function numOrder(){
         $customerId = session('LoggedUserid');
-        $myOrder = myOrder::select('order_number', 'created_at','status')
+        $myOrder = myOrder::select('order_number', 'customer_id', 'created_at','status', 'email', 'first_name', 'last_name')
             ->where('customer_id',$customerId)
+            ->groupby('order_number')
+            ->get(); 
+        $data = [];
+        foreach($myOrder as $items) {
+            $data [] = [
+                'customer_id'    => $items->customer_id,
+                'order_number'    => $items->order_number,
+                'created_at' => $items->created_at,
+                'status' => $items->status,
+                'email' => $items->email,
+                'first_name' => $items->first_name,
+                'last_name' => $items->last_name,
+            ];
+        }
+        // // dd($data);
+        return $data;
+    }
+
+    public function ListOrderNo(){
+        $myOrder = myOrder::select('order_number', 'order_master_id', 'created_at','status', 'email', 'first_name', 'last_name')
+            ->where('status', 0 )
+            ->groupby('order_number')
+            ->get(); 
+        $data = [];
+        foreach($myOrder as $items) {
+            $data [] = [
+                'order_master_id' => $items->order_master_id,
+                'order_number'    => $items->order_number,
+                'created_at' => $items->created_at,
+                'status' => $items->status,
+                'email' => $items->email,
+                'first_name' => $items->first_name,
+                'last_name' => $items->last_name,
+            ];
+        }
+        // // dd($data);
+        return $data;
+    }
+
+    public function ListOrderOk(){
+        $myOrder = myOrder::select('order_number', 'created_at','status', 'email', 'first_name', 'last_name')
+            ->where('status', 1 )
             ->groupby('order_number')
             ->get(); 
         $data = [];
@@ -182,6 +234,9 @@ class CartService
                 'order_number'    => $items->order_number,
                 'created_at' => $items->created_at,
                 'status' => $items->status,
+                'email' => $items->email,
+                'first_name' => $items->first_name,
+                'last_name' => $items->last_name,
             ];
         }
         // // dd($data);
