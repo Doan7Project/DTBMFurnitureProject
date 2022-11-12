@@ -131,7 +131,7 @@ Route::controller(SliderController::class)->group(function () {
 Route::controller(OrderController::class)->group(function () {
 
     Route::get('Admin/pages/Order_list', 'OrderList');
-    Route::post('Admin/pages/Order_list', 'updateOrder');
+    Route::get('Admin/pages/order_edit', 'updateOrder');
     Route::get('Admin/pages/report', 'report');
 });
 # 9. Trang Feedback

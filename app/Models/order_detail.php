@@ -19,9 +19,9 @@ class order_detail extends Model
 
     
     public function order_masters(){
-        return $this->belongsTo(order_master::class,'id', 'order_master_id');
+        return $this->belongsTo(order_master::class, 'order_master_id', 'id');
     }
     public function products(){
-        return $this->belongsTo(Product::class,'id', 'product_id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

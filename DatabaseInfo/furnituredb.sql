@@ -574,6 +574,12 @@ CREATE VIEW viewOrder
       order_details.quantity,
       products.product_name,
       products.price,
-      products.images
-  FROM order_masters, order_details, products
-  WHERE order_masters.id = order_details.order_master_id AND order_details.product_id = products.id;
+      products.images,
+      customers.email,
+      customers.first_name,
+      customers.last_name
+  FROM order_masters, order_details, products, customers
+  WHERE 
+      order_masters.id = order_details.order_master_id AND 
+      order_details.product_id = products.id AND
+      order_masters.customer_id = customers.id;

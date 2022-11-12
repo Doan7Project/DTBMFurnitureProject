@@ -40,6 +40,7 @@ class OrderController extends Controller
 
         return redirect('Admin/pages/Order_list');
     }
+    
     #. 2 Hiển thị trang hiển thị chi tiết
     public function OrderView()
     {

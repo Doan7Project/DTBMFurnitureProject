@@ -46,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('my_orders');
+        DB::statement('DROP VIEW IF EXISTS viewOrder');
     }
 };

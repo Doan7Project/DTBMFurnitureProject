@@ -1,6 +1,9 @@
 @extends('Admin.main.main')
 @section('content')
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <style>
+
     .lg {
         width: 992px
     }
@@ -54,7 +57,7 @@
     }
 </style>
 
-    <div class="bor10 mt-5 pt-4 pb-4 lg">
+    <div class="mt-5 pt-4 pb-4 lg">
         <h2 class="text-center">{{$title}}</h2>
         <div class="">
             <div class="panel with-nav-tabs panel-info">
@@ -87,7 +90,7 @@
                                 $index = 0;
                                 $index += 1;
                                 @endphp
-                                <form class="" action="/Admin/pages/Order_list" method="post">
+                                <form class="" action="/Admin/pages/order_edit" method="get">
                                     <tr class="items-center">
                                         <td class="px-0">{{ $index }}</td>
                                         <td class="px-0">{{ $value['first_name']}} {{ $value['last_name']}}</td>
@@ -179,5 +182,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection
