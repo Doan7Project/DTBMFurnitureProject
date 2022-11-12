@@ -8,7 +8,7 @@
 
     }
 </style>
-<div class="shadow-sm card" style="width: 700px;">
+<div class="shadow-sm card" style="width: 700px; height: 630px;">
     <h4 class="text-center bg-primary bg-gradient p-3 text-white">New Category Creating</h4>
     <p class="text-center text-black-50">Create the information to category</p>
 

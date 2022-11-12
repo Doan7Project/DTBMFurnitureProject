@@ -30,8 +30,8 @@
 </div>
 <!-- ---------------------------End----------------------------- -->
 <main class="d-flex flex-nowrap " >
-  <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 240px; height:900px;">
-    <div class="text-center pb-4">
+  <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 260px; height:900px;">
+    <div class="text-center pb-4 pt-4">
       <i class="bi bi-person-workspace fs-1"></i>
       <h5>Administration</h5>
     </div>
@@ -158,10 +158,8 @@
       </li>
     </ul>
     <hr>
-
-
   </div>
-  <div class="mt-3 m-auto ">
+  <div class="mt-3 w-100 p-4 d-flex justify-content-center">
     @yield('content')
   </div>
 </main>

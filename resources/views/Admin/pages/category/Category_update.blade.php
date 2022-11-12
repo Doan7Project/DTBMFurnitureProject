@@ -8,7 +8,7 @@ transition: 0.4s;
 
 }
 </style>
-<div class="shadow-sm card" style="width: 700px;">
+<div class="shadow-sm card" style="width: 700px; height: auto;">
     <h4 class="text-center bg-primary bg-gradient p-3 text-white">Update Category</h4>
     <p class="text-center text-black-50">{{$title}}</p>
     <form class="card-body" method="POST" action="">
@@ -30,8 +30,8 @@ transition: 0.4s;
 
         </div>
         <div class="row-cols-md py-2">
-            <label for="content" class="text-black fw-bolder">Details</label>
-            <textarea class="form-control shadow-none"  name="txtDetail">{{$menu->Detail}}</textarea>
+            <label for="content" class="form-label text-black fw-bolder">Details</label>
+            <textarea rows="5" class="form-control shadow-none"  name="txtDetail">{{$menu->Detail}}</textarea>
             <!-- <input type="text" id="content" name="txtContent " class="form-control shadow-none"> -->
         </div>
         <div class="py-2 d-flex">
