@@ -28,16 +28,16 @@ class OrderController extends Controller
     {
         return view('Admin.pages.order.Order_list', [
             'title' => "List order customers",
-            'items' => $this->cartService->ListOrderNo(),
+            'items' => $this->cartService->ListOrderPen(),
             'items2' => $this->cartService->ListOrderOk(),
+            'items3' => $this->cartService->ListOrderCancel(),
             
         ]); 
     }
 
-    public function updateOrder(Request $request, order_master $data)
+    public function updateOrder(Request $request, $id)
     {
-        $this->cartService->editOrder($request, $data);
-
+        $this->cartService->editOrder($request, $id);
         return redirect('Admin/pages/Order_list');
     }
     

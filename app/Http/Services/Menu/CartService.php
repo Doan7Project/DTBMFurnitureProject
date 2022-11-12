@@ -79,14 +79,12 @@ class CartService
         return true;
     }
 
-    public function editOrder($request, $data):bool {
-        $orderId = $request->input('order_master_id');
-        dd($data->id);
-        if($orderId == $data->id)
-            $data->status = $request->input('txtStatus');
-            $data->save();
-            session()->flash('success', 'Updated successfully!');
-            return true;
+    public function editOrder($request, $id):bool {
+        $data = order_master::find($id);
+        $data->status = (string) $request->input('txtStatus');
+        $data->save();
+        session()->flash('success', 'Updated successfully!');
+        return true;
     }
 
     public function addCart($request)
@@ -129,8 +127,7 @@ class CartService
         return true;
     }
 
-    protected function infoProductCart($carts, $orderId)
-    {
+    protected function infoProductCart($carts, $orderId){
         $productId = array_keys($carts);
         $products = Product::select('id', 'product_name', 'price', 'images')
             ->whereIn('id', $productId)
@@ -144,7 +141,7 @@ class CartService
                 'quantity'          => $carts[$product->id],
             ];
         }
-    return order_detail::insert($data);
+        return order_detail::insert($data);
     }
 
     public function getCustomer()
@@ -203,7 +200,7 @@ class CartService
         return $data;
     }
 
-    public function ListOrderNo(){
+    public function ListOrderPen(){
         $myOrder = myOrder::select('order_number', 'order_master_id', 'created_at','status', 'email', 'first_name', 'last_name')
             ->where('status', 0 )
             ->groupby('order_number')
@@ -227,6 +224,26 @@ class CartService
     public function ListOrderOk(){
         $myOrder = myOrder::select('order_number', 'created_at','status', 'email', 'first_name', 'last_name')
             ->where('status', 1 )
+            ->groupby('order_number')
+            ->get(); 
+        $data = [];
+        foreach($myOrder as $items) {
+            $data [] = [
+                'order_number'    => $items->order_number,
+                'created_at' => $items->created_at,
+                'status' => $items->status,
+                'email' => $items->email,
+                'first_name' => $items->first_name,
+                'last_name' => $items->last_name,
+            ];
+        }
+        // // dd($data);
+        return $data;
+    }
+
+    public function ListOrderCancel(){
+        $myOrder = myOrder::select('order_number', 'created_at','status', 'email', 'first_name', 'last_name')
+            ->where('status', 2 )
             ->groupby('order_number')
             ->get(); 
         $data = [];

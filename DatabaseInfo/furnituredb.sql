@@ -142,7 +142,6 @@ CREATE TABLE `order_masters` (
   `customer_id` bigint(20) UNSIGNED NOT NULL,
   `status` varchar(20) NOT NULL,
   `order_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
