@@ -14,6 +14,8 @@ Step 6: Call command to link and show the images to pages: php artisan storage:l
 
 Step 7: Run the project: php artisan serve
 
+Step 8: Start xampp application
+
 Admin page: Url/Admin
 
 username: admin@gmail.com
