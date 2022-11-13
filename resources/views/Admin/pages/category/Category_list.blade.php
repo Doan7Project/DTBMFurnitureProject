@@ -1,11 +1,12 @@
 @extends('Admin.main.main')
 @section('content')
-@if (Session::has('success'))
+
+<div class="m-5 rounded">
+    @if (Session::has('success'))
 <div class="alert alert-success">
     {{Session::get('success')}}
 </div>
 @endif
-<div class="m-5 rounded">
     <a class="btn btn-success mb-3" href="{{url("Admin/pages/Category_create")}}">
         <i class="bi bi-plus-square text-white pe-2" ></i> Add more
     </a>
