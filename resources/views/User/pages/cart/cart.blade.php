@@ -119,9 +119,11 @@
                                         Total: ${{ number_format($total, 0, '', '.') }}
                                     </span>
                                 </div>
-                                <div>
-                                    <label for="">Note</label><br>
-                                    <textarea name="txtNote" id="txtNote" cols="60" rows="3"></textarea>
+                                <div class="w-48">
+                                    <label class="form-label" for="txtNote">Note</label><br>
+                                    <textarea class="form-control" name="txtNote" id="txtNote" cols="60" rows="3" required></textarea>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                             @csrf

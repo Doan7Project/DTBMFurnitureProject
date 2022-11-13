@@ -281,7 +281,7 @@
         </div>
     </div>
     @else
-        <h1>Don't order</h1>
+        <h1 class="text-center">Don't order</h1>
     @endif
 </form>
 

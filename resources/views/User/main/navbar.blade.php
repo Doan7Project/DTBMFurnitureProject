@@ -109,6 +109,17 @@
     transform: translate(-50%, -4%);
   }
 
+  .numberCart {
+    top: 8px;
+    right: 60px;
+    padding: 4px;
+    height: 24px;
+    line-height: 1;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid;
+    color: paleturquoise;
+  }
 
   @media only screen and (max-width: 1050px) {
     .offcanvas-body {
@@ -211,9 +222,18 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="bi bi-person-circle pe-1"></i>{{session('LoggedUser') }}</a>
               <ul class="dropdown-menu dropbgcolor">
-                <li><a class="dropdown-item" href="{{ url('/account') }}"><i class="bi bi-person pe-1"></i>Account
-                    detail</a></li>
-                <li><a class="dropdown-item" href="{{ url('/my_order') }}"><i class="bi bi-cart pe-1"></i>Orders</a></li>
+                <li>
+                  <a class="dropdown-item" href="{{ url('/account') }}">
+                    <i class="bi bi-person pe-1"></i>
+                    Account detail
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ url('/my_order') }}">
+                    <i class="bi bi-cart pe-1"></i>
+                      Orders
+                    </a>
+                  </li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -225,7 +245,10 @@
             @else
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="bi bi-person-circle pe-1"></i>{{ session('LoggedUser')}}</a>
+                aria-expanded="false">
+                <i class="bi bi-person-circle pe-1"></i>
+                {{ session('LoggedUser')}}
+              </a>
                 
               {{-- lấy session theo id --}}
               <a class="d-none" href="">{{ session('LoggedUserid') }}</a>
@@ -235,19 +258,30 @@
               endif;
               @endphp
               <ul class="dropdown-menu dropbgcolor">
-                <li class="pt-2"><a class="dropdown-item py-2" href="{{ url("/account/{$getdata}") }}"><i
-                      class="bi bi-person pe-1"></i>Account
-                    detail</a></li>
+                <li class="pt-2">
+                  <a class="dropdown-item py-2" href="{{ url("/account/{$getdata}") }}">
+                    <i class="bi bi-person pe-1"></i>
+                    Account detail
+                  </a>
+                </li>
                 <li>
         
 
-                  <a class="dropdown-item py-2" href="{{ url("/getpassword/{$getdata}") }}"><i
-                      class="bi bi-wrench-adjustable pe-1"></i>Change your password</a>
+                  <a class="dropdown-item py-2" href="{{ url("/getpassword/{$getdata}") }}">
+                    <i class="bi bi-wrench-adjustable pe-1"></i>
+                    Change your password
+                  </a>
 
                 </li>
-                <li><a class="dropdown-item py-2" href="{{ url('/my_order') }}"><i class="bi bi-cart pe-1"></i>Orders</a>
+                <li><a class="dropdown-item py-2" href="{{ url('/my_order') }}">
+                  <i class="bi bi-cart pe-1"></i>
+                  Orders
+                </a>
                 </li>
-                <li><a class="dropdown-item py-2" href="{{ url('/feedback') }}"><i class="bi bi-cart pe-1"></i>Feedback</a>
+                <li><a class="dropdown-item py-2" href="{{ url('/feedback') }}">
+                  <i class="bi bi-cart pe-1"></i>
+                  Feedback
+                </a>
                 </li>
          
                 <li>
@@ -265,18 +299,31 @@
             </li>
             @else
             <li class="nav-item">
-              <a href="{{ url('/login') }}" class="nav-link "><i class="bi bi-box-arrow-in-right pe-1"></i>Sign in</a>
+              <a href="{{ url('/login') }}" class="nav-link ">
+                <i class="bi bi-box-arrow-in-right pe-1"></i>
+                Sign in
+              </a>
             </li>
             @endif
             <li class="nav-item">
-              <a href="{{ url('/register') }}" class="nav-link"><i class="bi bi-person-plus-fill pe-1"></i>Register</a>
+              <a href="{{ url('/register') }}" class="nav-link">
+                <i class="bi bi-person-plus-fill pe-1"></i>
+                Register
+              </a>
             </li>
          
             <li class="nav-item">
-              <a href="{{ url('/carts') }}" class="nav-link"><i class="bi bi-cart-fill"></i></a>
+              <a href="{{ url('/carts') }}" class="nav-link">
+                <p class="position-absolute numberCart">
+                  {{ !is_null(Session::get('carts')) ? count(Session::get('carts')) : 0 }}
+                </p>
+                <i class="bi bi-cart-fill"></i>
+              </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link"><i class="bi bi-megaphone-fill"></i></a>
+              <a href="#" class="nav-link">
+                <i class="bi bi-megaphone-fill"></i>
+              </a>
             </li>
           </ul>
         </div>
