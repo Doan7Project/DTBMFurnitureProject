@@ -7,6 +7,7 @@ use App\Http\Requests\User\ChangePassRequest;
 use App\Http\Services\Menu\AccountService;
 use App\Http\Services\Menu\ProductService;
 use App\Models\Customer;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -49,5 +50,55 @@ class AccountController extends Controller
 
         $this->accountservice->changeInfo($request, $data);
         return redirect()->route('logout');
+    }
+
+    // show register page
+    public function register()
+    {
+        return view('User.pages.register.register', [
+            'category' => $this->productservice->getCategoryName(),
+        ]);
+    }
+    
+    //show trang success khi thanh cong
+    public function successpape(){
+        return view('User.success', [
+            'category' => $this->productservice->getCategoryName(),
+        ]);
+    }
+    // tạo tài khoản
+    public function store(Request $request, Message $message)
+    {
+        // bắt lỗi
+        $this->validate($request,[
+            'firstname'=>'required|regex:/([A-Za-z])/',
+            'lastname'=>'required|regex:/([A-Za-z])/',
+            'email'=>'required|email:rfc|unique:customers,email',
+            'gender'=>'required',
+            'phone'=>'required|unique:customers,phone',
+            'birthday'=>'required',
+            'country'=>'required',
+            'city'=>'required',
+            'address'=>'required',
+            'txtpassword'=>'required',
+            'confirmpassword'=>'required',
+        ]);
+        // thực hiện tạo tài khoản
+            Customer::create([
+                'first_name'=>$request->input('firstname'),
+                'last_name'=>$request->input('lastname'),
+                'gender'=>$request->input('gender'),
+                'email'=>$request->input('email'),
+                'password'=>$request->input('txtpassword'),
+                'phone'=>$request->input('phone'),
+                'birthday'=>$request->input('birthday'),
+                'country'=>$request->input('country'),
+                'city'=>$request->input('city'),
+                'address'=>$request->input('address'),
+
+            ]);
+            // Thông báo nếu tạo thành công
+            session()->flash('success','Your account has created successfully!');
+            return  redirect()->route('successpape');
     }
 }

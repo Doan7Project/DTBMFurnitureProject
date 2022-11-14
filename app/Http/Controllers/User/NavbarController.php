@@ -35,6 +35,7 @@ class NavbarController extends Controller
 
         ]);
     }
+    // logout 
     public function logout(Request $request)
     {
         Auth::logout();

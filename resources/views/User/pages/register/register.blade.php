@@ -29,6 +29,7 @@
   }
 
 </style>
+{{-- // file json thành phố và tỉnh thành --}}
 @php
 $path = storage_path() . "/json/city.json";
 $city = json_decode(file_get_contents($path), true);

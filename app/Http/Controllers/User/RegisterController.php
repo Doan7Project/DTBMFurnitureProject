@@ -17,6 +17,7 @@ class RegisterController extends Controller
     {
         $this->productservice = $productservice;
     }
+    
     public function register()
     {
         return view('User.pages.register.register', [
@@ -28,8 +29,10 @@ class RegisterController extends Controller
             'category' => $this->productservice->getCategoryName(),
         ]);
     }
+
     public function store(Request $request, Message $message)
     {
+
         $this->validate($request,[
             'firstname'=>'required|regex:/([A-Za-z])/',
             'lastname'=>'required|regex:/([A-Za-z])/',

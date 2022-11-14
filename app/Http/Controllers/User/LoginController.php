@@ -16,6 +16,7 @@ class LoginController extends Controller
     {
         $this->productservice = $productservice;
     }
+    // Hiển thị trang login
     public function login()
     {
         return view('User.pages.login.login', [
@@ -24,15 +25,15 @@ class LoginController extends Controller
     }
     public function signin(Request $request)
     {
-
+        // Kiểm tra lỗi
         $this->validate($request, [
 
             'email' => 'required|email:filter',
             'password' => 'required'
         ]);
-
+        //Lấy thông tin từ dd
         $userInfo = Customer::where('email', '=', $request->email)->first();
-
+        //kiểm tra thông tin so sách thông tin nhập và dd
         if (!$userInfo) :
             return back()->with('fail', 'We do not recognize you email address');
         else :
