@@ -1,5 +1,35 @@
 @extends('User.main.main')
 @section('content')
+<?php
+$arrfeeds = [
+    [
+    
+    'id' => '1',
+    'evalue' => 'Good'
+    ],
+    [
+    
+    'id' => '2',
+    'evalue' => 'Bad'
+    ]
+    
+    
+    ];
+    
+    $arrsta = [
+        [
+        
+        'id' => '1',
+        'sta' => 'Active'
+        ],
+        [
+        
+        'id' => '2',
+        'sta' => 'Inative'
+        ]
+        
+        
+        ];?>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
@@ -246,36 +276,8 @@
             top: -9999px;
             left: -9999px;
         }
+    }
 </style>
-<?php
-$arrfeeds = [
-    [
-    
-    'id' => '1',
-    'evalue' => 'Good'
-    ],
-    [
-    
-    'id' => '2',
-    'evalue' => 'Bad'
-    ]
-    
-    
-    ];
-    $arrsta = [
-        [
-        
-        'id' => '1',
-        'sta' => 'Active'
-        ],
-        [
-        
-        'id' => '2',
-        'sta' => 'Inative'
-        ]
-        
-        
-        ];?>
 <div class="card-wrapper">
     <div class="card cards">
         <!-- card left -->
@@ -337,7 +339,7 @@ $arrfeeds = [
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
 
-            {{-- feedback --}}
+
             @foreach ($orderDetail as $key => $orderDetails )
             @if($orderDetails->product_id == $productdetail->id
             && $orderDetails->order_masters->status == 1
@@ -351,10 +353,8 @@ $arrfeeds = [
                 <i class="bi bi-chat-left-dots-fill"></i>
             </button>
             @endif
-
-
             @endforeach
-            {{-- end feedback --}}
+
 
             <div class="product-detail">
                 <h3>Product Information </h2>
@@ -395,7 +395,8 @@ $arrfeeds = [
         </div>
     </div>
 </div>
-<!-- //modal bảo thêm-->
+
+
 <form action="{{ url('/orderdetail/{feeds}') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"

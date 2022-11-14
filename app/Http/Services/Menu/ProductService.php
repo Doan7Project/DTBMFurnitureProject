@@ -3,6 +3,7 @@
 
 namespace App\Http\Services\Menu;
 
+use App\Models\order_detail;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Exception;
@@ -10,6 +11,13 @@ use Exception;
 class ProductService
 {
 
+    //lấy order detail
+    public function getOrderDetailInfo()
+    {
+
+        return order_detail::all();
+    }
+    
     public function getAll()
     {
         $products = Product::all();
@@ -18,13 +26,13 @@ class ProductService
 
     public function getProduct()
     {
-        
+
         $products = Product::where('status', '0');
 
         if (isset($_GET['sort']) && !empty($_GET['sort'])) :
             if ($_GET['sort'] == "product_latest") :
-               return  $products->orderby('id', 'Desc')->paginate(100);
-            elseif ($_GET['sort'] == "price_lowest"):
+                return  $products->orderby('id', 'Desc')->paginate(100);
+            elseif ($_GET['sort'] == "price_lowest") :
                 return  $products->orderby('price', 'Asc')->paginate(100);
             elseif ($_GET['sort'] == "price_highest") :
                 return  $products->orderby('price', 'Desc')->paginate(100);

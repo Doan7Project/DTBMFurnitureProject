@@ -29,7 +29,8 @@ class ProductController extends Controller
 
         return view('Admin.pages.product.Product_list', [
             'title' => "Product List",
-            'items' => $this->productservice->getAll(),       
+            'items' => $this->productservice->getAll(),   
+            'orderDetail' => $this->productservice->getOrderDetailInfo()    
         ]);
         
     }

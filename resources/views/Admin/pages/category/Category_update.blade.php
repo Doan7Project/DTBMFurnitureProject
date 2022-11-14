@@ -8,31 +8,38 @@ transition: 0.4s;
 
 }
 </style>
-<div class="shadow-sm card" style="width: 700px; height: auto;">
-    <h4 class="text-center bg-primary bg-gradient p-3 text-white">Update Category</h4>
-    <p class="text-center text-black-50">{{$title}}</p>
+<div class="shadow-sm mt-5 card" style="width: 700px; height: auto;">
+    <h4 class="text-center bg-gradient pt-4 pb-2 text-secondary">Update Category</h4>
+    <p class="text-center text-muted">{{$title}}</p>
     <form class="card-body" method="POST" action="">
     <div class="text-end">
             <a href="{{route('categorylist')}}" class="txtback fs-5 text-decoration-none"><i class="bi bi-reply-fill fs-4"></i>Back</a>
         </div>
     @csrf
         <div class="row-cols-md py-2">
-            <label for="categoryName" class="form-label text-black fw-bolder">ID</label>
+            <label for="categoryName" class="form-label text-muted fw-bolder">Product ID</label>
             <input type="text" id="categoryName"  class="form-control shadow-none" value="{{$menu->id}}" readonly>
         </div>
         <div class="row-cols-md py-2">
-            <label for="categoryName" class="form-label text-black fw-bolder">Category Name</label>
+            <label for="categoryName" class="form-label text-muted fw-bolder">Category Name</label>
             <input type="text" id="categoryName" name="txtCategoryName" class="form-control shadow-none" value="{{$menu->CategoryName}}" placeholder="Enter category name">
+            @error('txtCategoryName')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
         </div>
         <div class="row-cols-md py-2">
-            <label for="category" class="form-label text-black fw-bolder">Description</label>
-            <textarea rows="4" id="category" name="txtDescription" class="form-control shadow-none" placeholder="Description is not greater than 200 charater">{{$menu->Description}}</textarea>
-
+            <label for="categorys" class="form-label text-muted fw-bolder">Description</label>
+            <textarea rows="4" id="categorys" name="txtDescription" class="form-control shadow-none" placeholder="Description is not greater than 200 charater">{{$menu->Description}}</textarea>
+            @error('txtDescription')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
         </div>
         <div class="row-cols-md py-2">
-            <label for="content" class="form-label text-black fw-bolder">Details</label>
+            <label for="content" class="form-label text-muted fw-bolder">Details</label>
             <textarea rows="5" class="form-control shadow-none"  name="txtDetail">{{$menu->Detail}}</textarea>
-            <!-- <input type="text" id="content" name="txtContent " class="form-control shadow-none"> -->
+            @error('txtDetail')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
         </div>
         <div class="py-2 d-flex">
             <div class="">
