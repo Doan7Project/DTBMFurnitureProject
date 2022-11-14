@@ -157,6 +157,10 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(UserFeedbackController::class)->group(function () {
 
     route::get('/feedback', 'feedback');
+    route::get('/feedbacks/{data}', 'feedbackuser');
+    Route::put('/feedbackpro/{data}', 'feedbackuserpro');
+    route::get('/orderdetail/{data}', 'createfeedback');
+    Route::post('/orderdetail/{data}', 'createfeedbackpro');
 });
 
 # 3 About us
