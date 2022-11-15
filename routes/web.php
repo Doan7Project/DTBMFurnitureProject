@@ -192,6 +192,7 @@ Route::controller(CartController::class)->group(function () {
     route::post('/update-cart', 'update');
     Route::get('/carts/delete/{id}', 'remove');
     route::get('/my_order', 'showOrder');
+    Route::get('/order-cancel/{id}', 'cancelOrder');
 });
 # 8 Account
 Route::controller(AccountController::class)->group(function () {
