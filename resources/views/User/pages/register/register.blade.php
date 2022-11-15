@@ -52,10 +52,10 @@ $gender = json_decode(file_get_contents($path), true);
     <main class="col-md-6">
       <form method="post" action="" >
         @csrf
-        <h4 class="text-start g-0">Making your account</h4>
+        <h4 class="text-start g-0 text-muted fw-bolder">Making your account</h4>
         <div class="row pt-3">
           <div class="col-sm-5">
-            <label for="firstName" class="form-label">First name</label>
+            <label for="firstName" class="form-label text-muted fw-bolder">First name<span class="text-danger">(*)</span></label>
             <input type="text" class="form-control shadow-none" name="firstname" id="firstName" placeholder=""
               value="{{ old('firstname') }}">
             @error('firstname')
@@ -63,7 +63,7 @@ $gender = json_decode(file_get_contents($path), true);
             @enderror
           </div>
           <div class="col-sm-7">
-            <label for="lastName" class="form-label">Last name</label>
+            <label for="lastName" class="form-label text-muted fw-bolder">Last name<span class="text-danger">(*)</span></label>
             <input type="text" class="form-control shadow-none" name="lastname" id="lastName" placeholder=""
               value="{{ old('lastname') }}">
             @error('lastname')
@@ -73,7 +73,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pt-3 pb-3">
           <div class="col-md-7">
-            <label for="email" class="form-label">Email <span class="text-muted">(Account)</span></label>
+            <label for="email" class="form-label text-muted fw-bolder">Email <span class="text-muted"><span class="text-danger">(*)</span></label>
             <input type="text" autocomplete="off" class="form-control shadow-none" name="email" id="email" value="{{ old('email') }}"
               placeholder="you@example.com">
             @error('email')
@@ -81,7 +81,7 @@ $gender = json_decode(file_get_contents($path), true);
             @enderror
           </div>
           <div class="col-md-5">
-            <label for="gender" class="form-label">Gender</label>
+            <label for="gender" class="form-label text-muted fw-bolder">Gender<span class="text-danger">(*)</span></label>
             <select name="gender" class="form-select shadow-none" id="gender">
               <option value="">Choose...</option>
               @foreach ($gender as $genders )
@@ -96,7 +96,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-6">
-            <label for="phone" class="form-label">Phone number <span class="text-muted">(Account)</span></label>
+            <label for="phone" class="form-label text-muted fw-bolder">Phone number <span class="text-muted"><span class="text-danger">(*)</label>
             <input type="phone" name="phone" class="form-control shadow-none" id="phone" value="{{ old('phone') }}"
               placeholder="Enter you phone number">
             @error('phone')
@@ -104,7 +104,7 @@ $gender = json_decode(file_get_contents($path), true);
             @enderror
           </div>
           <div class="col-md-6">
-            <label for="birthday" class="form-label">Birthday</label>
+            <label for="birthday" class="form-label text-muted fw-bolder">Birthday<span class="text-muted"><span class="text-danger">(*)</span></label>
             <input type="date" class="form-control shadow-none" value="{{ old('birthday') }}" name="birthday"
               id="birthday">
             @error('birthday')
@@ -114,14 +114,14 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-6">
-            <label for="password" class="form-label">Password<span class="text-danger text-muted">(*)</span></label>
+            <label for="password" class="form-label  text-muted fw-bolder">Password<span class="text-muted"><span class="text-danger">(*)</span></label>
             <input class="form-control shadow-none" id="password" type="password" name="txtpassword" value="{{ old('txtpassword') }}" placeholder="Enter your password"> 
             @error('txtpassword')
             <span class="text-danger">{{$message}}</span>
             @enderror
           </div>
           <div class="col-md-6">
-            <label for="confirmpassword" class="form-label">Confirm Password<span class="text-muted">(*)</span></label>
+            <label for="confirmpassword" class="form-label  text-muted fw-bolder">Confirm Password<span class="text-muted"><span class="text-danger">(*)</span></label>
             <input type="password" name="confirmpassword" class="form-control shadow-none" id="confirmpassword"
               value="{{ old('confirmpassword') }}" placeholder="Enter your confirm password">
             @error('confirmpassword')
@@ -135,7 +135,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-6">
-            <label for="country" class="form-label">Country</label>
+            <label for="country" class="form-label  text-muted fw-bolder">Country<span class="text-muted"><span class="text-danger">(*)</span></label>
             <select class="form-select shadow-none" id="country" name="country">
               <option value="">Choose...</option>
               @foreach ($country as $countries )
@@ -150,7 +150,7 @@ $gender = json_decode(file_get_contents($path), true);
           </div>
           <div class="col-md-6 ">
 
-            <label for="city" class="form-label">City</label>
+            <label for="city" class="form-label text-muted fw-bolder">City<span class="text-muted"><span class="text-danger">(*)</span></label>
             <select class="form-select shadow-none" id="city" name="city">
               <option value="">Choose...</option>
               @foreach ($city as $cities )
@@ -166,7 +166,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-12">
-            <label for="address" class="form-label shadow-none">Address</label>
+            <label for="address" class="form-label shadow-none  text-muted fw-bolder">Address<span class="text-muted"><span class="text-danger">(*)</span></label>
             <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}"
               placeholder="1234 Main St">
             @error('address')

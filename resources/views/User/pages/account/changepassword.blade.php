@@ -54,7 +54,7 @@
                 <span class="showHide text-danger" id="notmatch" >The password is not matching</span>
         </div>
         <div class="pt-3">
-            <button type="submit" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample"
+            <button type="submit" onclick="return confirm('Are you sure to Change your password')" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample"
                 role="button" aria-expanded="false" aria-controls="collapseExample">
                 Change
             </button>

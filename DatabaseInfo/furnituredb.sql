@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2022 at 11:22 AM
+-- Generation Time: Nov 15, 2022 at 09:06 AM
 -- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- PHP Version: 8.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `gender`, `email`, `password`, `phone`, `birthday`, `country`, `city`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Customer', 'Vip', 'Male', 'customer@gmail.com', '123456', '0981137177', '0000-00-00', 'Vietnam', '', '', NULL, NULL);
+(1, 'Customer', 'Vip', 'Male', 'customer@gmail.com', '123456', '0981137177', '0000-00-00', 'Vietnam', '', '', NULL, NULL),
+(2, 'Huỳnh', 'Thanh', '1', 'huynhthanh@gmail.com', '123', '098821111', '2022-11-15', 'Vietnam', 'Hồ Chí Minh', '80 Phan Van Tri', '2022-11-15 07:09:18', '2022-11-15 07:09:18'),
+(3, 'Herry', 'Pitter', '1', 'herry@gmail.com', '123', '0908500139', '1991-01-15', 'Antigua and Barbuda', 'Hà Nội', 'HCM', '2022-11-15 07:10:22', '2022-11-15 07:10:22'),
+(4, 'David', 'Cook', '1', 'david@gmail.com', '1234', '098125778', '1997-01-15', 'Vietnam', 'Hồ Chí Minh', 'Cao Lanh', '2022-11-15 07:56:51', '2022-11-15 07:58:24');
 
 -- --------------------------------------------------------
 
@@ -84,6 +87,15 @@ CREATE TABLE `feedback` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `customer_id`, `product_id`, `status`, `evaluate`, `content`, `created_at`, `updated_at`) VALUES
+(1, 2, 15, 'Active', 'Good', 'Good Product', '2022-11-15 07:39:51', '2022-11-15 07:39:51'),
+(2, 2, 2, 'Active', 'Good', 'Good Product 4 starts', '2022-11-15 07:44:49', '2022-11-15 07:44:49'),
+(3, 4, 12, 'Active', 'Good', 'The product is good!', '2022-11-15 08:00:25', '2022-11-15 08:00:25');
 
 -- --------------------------------------------------------
 
@@ -131,6 +143,25 @@ CREATE TABLE `order_details` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `product_id`, `order_master_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '1', NULL, NULL),
+(2, 15, 2, '1', NULL, NULL),
+(3, 8, 3, '2', NULL, NULL),
+(4, 12, 4, '3', NULL, NULL),
+(5, 41, 5, '1', NULL, NULL),
+(6, 25, 6, '1', NULL, NULL),
+(7, 21, 7, '1', NULL, NULL),
+(8, 1, 8, '1', NULL, NULL),
+(9, 16, 8, '1', NULL, NULL),
+(10, 32, 8, '1', NULL, NULL),
+(11, 1, 9, '1', NULL, NULL),
+(12, 36, 9, '1', NULL, NULL),
+(13, 12, 10, '1', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -140,12 +171,28 @@ CREATE TABLE `order_details` (
 CREATE TABLE `order_masters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
-  `status` varchar(20) NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_masters`
+--
+
+INSERT INTO `order_masters` (`id`, `customer_id`, `status`, `order_number`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 2, '1', 'FNI-668497653', 'Notes', '2022-11-15 07:34:12', '2022-11-15 07:35:05'),
+(2, 2, '1', 'FNI-668497673', 'Notes', '2022-11-15 07:34:32', '2022-11-15 07:38:57'),
+(3, 2, '0', 'FNI-668497905', 'Notes', '2022-11-15 07:38:24', '2022-11-15 07:38:24'),
+(4, 2, '2', 'FNI-668497925', 'Notes', '2022-11-15 07:38:44', '2022-11-15 07:41:50'),
+(5, 2, '2', 'FNI-668497957', 'Notes', '2022-11-15 07:39:16', '2022-11-15 07:42:09'),
+(6, 2, '2', 'FNI-668497970', 'Notes', '2022-11-15 07:39:29', '2022-11-15 07:42:07'),
+(7, 2, '1', 'FNI-668498088', 'Notes', '2022-11-15 07:41:27', '2022-11-15 07:41:38'),
+(8, 2, '1', 'FNI-668498175', 'Notes', '2022-11-15 07:42:54', '2022-11-15 07:43:09'),
+(9, 4, '2', 'FNI-668499146', 'Notes', '2022-11-15 07:59:05', '2022-11-15 07:59:14'),
+(10, 4, '1', 'FNI-668499170', 'Note', '2022-11-15 07:59:29', '2022-11-15 07:59:58');
 
 -- --------------------------------------------------------
 
@@ -262,7 +309,8 @@ INSERT INTO `products` (`id`, `product_name`, `product_code`, `price`, `unit`, `
 (53, 'Thea Queen', 'FNI-667891179', 260.00, 'Unit', 100, '0', 'Featured', 'China', 4, '/storage/uploads/2022/11/08/h_thea-queen-gallotti-radice-598894-reldda72b3a.webp', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-08 00:06:18', '2022-11-08 00:18:12'),
 (54, 'Chair Twins', 'FNI-667891208', 160.00, 'Unit', 160, '0', 'Featured', 'China', 4, '/storage/uploads/2022/11/08/h_TWINS-Chair-with-armrests-emu-596349-rel5846aba7.webp', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-08 00:06:47', '2022-11-08 00:18:03'),
 (55, 'Prodioti Bedroom', 'FNI-667891495', 2500.00, 'Unit', 100, '0', 'Default', 'Japan', 2, '/storage/uploads/2022/11/08/h_prodotti-179241-relc9d5bf2a9098448db72e09ac2510abd4.webp', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-08 00:11:34', '2022-11-08 00:13:57'),
-(56, 'Stable Bed', 'FNI-667891524', 1700.00, 'Unit', 100, '0', 'Default', 'Japan', 2, '/storage/uploads/2022/11/08/h_STABLE-Bed-Mathy-by-Bols-556267-rel9d7be5b4.webp', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-08 00:12:03', '2022-11-08 00:22:02');
+(56, 'Stable Bed', 'FNI-667891524', 1700.00, 'Unit', 100, '0', 'Default', 'Japan', 2, '/storage/uploads/2022/11/08/h_STABLE-Bed-Mathy-by-Bols-556267-rel9d7be5b4.webp', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-08 00:12:03', '2022-11-08 00:22:02'),
+(57, 'BedRoom 200', 'FNI-668498880', 200.00, 'Unit', 12, '1', 'Default', 'Singapore', 5, '/storage/uploads/2022/11/15/h_LAYLA-Flou-593292-rel3c45a26a.webp', 'Lorn', 'Logn', '2022-11-15 07:54:39', '2022-11-15 07:54:48');
 
 -- --------------------------------------------------------
 
@@ -287,7 +335,8 @@ INSERT INTO `product_categories` (`id`, `CategoryName`, `Description`, `Detail`,
 (1, 'Children\'s bedroom', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-07 23:28:29', '2022-11-07 23:28:29'),
 (2, 'Kids furnitures', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-07 23:28:49', '2022-11-07 23:28:49'),
 (3, 'Sofas and armchairs', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-07 23:29:07', '2022-11-07 23:29:07'),
-(4, 'Tables and chairs', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-07 23:29:24', '2022-11-07 23:29:24');
+(4, 'Tables and chairs', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In sint nostrum deleniti ipsa sunt atque unde est sapiente odit accusamus, ipsam suscipit soluta a quam, recusandae corporis reprehenderit. Eos, esse!', '2022-11-07 23:29:24', '2022-11-07 23:29:24'),
+(5, 'Children\'s bedroom 200', 'Lorg', 'logrn', '2022-11-15 07:53:37', '2022-11-15 07:53:37');
 
 -- --------------------------------------------------------
 
@@ -303,6 +352,17 @@ CREATE TABLE `product_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `product_id`, `image`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, '/storage/uploads/2022/11/15/h_KILIAN-Calligaris-598489-rel7d5943fa.webp', 'lorgn', '2022-11-15 07:13:47', '2022-11-15 07:13:47'),
+(2, 1, '/storage/uploads/2022/11/15/h_park-1-poliform-608974-reld631b1b.webp', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt eaque nemo adipisci consequatur deleniti atque quis unde nulla nihil hic esse placeat voluptatibus voluptate, consequuntur labore sequi repellendus cupiditate ut.', '2022-11-15 07:18:13', '2022-11-15 07:18:13'),
+(3, 1, '/storage/uploads/2022/11/15/h_a-box-twils-611009-rela00c4412.webp', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt eaque nemo adipisci consequatur deleniti atque quis unde nulla nihil hic esse placeat voluptatibus voluptate, consequuntur labore sequi repellendus cupiditate ut.', '2022-11-15 07:18:26', '2022-11-15 07:18:26'),
+(4, 2, '/storage/uploads/2022/11/15/h_code-bedside-table-poliform-608960-rel7a285880.webp', 'lorg', '2022-11-15 07:24:30', '2022-11-15 07:24:30'),
+(5, 57, '/storage/uploads/2022/11/15/h_hug-sicis-607690-rele8305888.webp', 'Logn', '2022-11-15 07:55:25', '2022-11-15 07:55:25');
 
 -- --------------------------------------------------------
 
@@ -454,7 +514,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -466,7 +526,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -478,13 +538,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `order_masters`
 --
 ALTER TABLE `order_masters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -496,19 +556,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `slide_shows`
@@ -560,7 +620,6 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
 CREATE VIEW viewOrder 
   AS
   SELECT

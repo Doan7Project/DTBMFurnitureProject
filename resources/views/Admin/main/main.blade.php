@@ -38,7 +38,8 @@
       <i class="bi bi-person-workspace fs-1"></i>
       <h5 class="pt-2">Administration</h5>
     </div>
-    <h6 class="px-4 py-3 bg-color bg-gradient text-light">Product Controller</h6>
+    <hr>
+    <h6 class="px-4 pt-2 bg-gradient text-muted fw-bolder">Product Controller</h6>
     <ul class="list-group ">
    <a href="{{url('Admin/index')}}"
         class="btn btn-toggle px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action">
@@ -115,7 +116,7 @@
       <!-- End Slide-->
       <!-- information detail -->
 
-      <h6 class="px-4 py-3 bg-color bg-gradient text-light">Customer Information</h6>
+      <h6 class="px-4 bg-gradient text-muted fw-bolder">Customer Information</h6>
       <li class="mb-0 list-unstyled ">
         <button
           class="btn btn-toggle  px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action"
@@ -125,7 +126,7 @@
         <div class="collapse" id="about">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="{{url('/customer/list')}}"
-                class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded">List Information</a></li>
+                class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded ">List Information</a></li>
           </ul>
         </div>
       </li>

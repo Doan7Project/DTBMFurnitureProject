@@ -7,15 +7,16 @@
 
     }
 </style>
-<div class="shadow-sm card" style="width: 500px;">
-    <h4 class="text-center bg-primary bg-gradient p-3 text-white">New Product Image Creating</h4>
-    <p class="text-center text-black-50">Create the information to Product Image</p>
+<div class="" style="width:400px;">
+    <h4 class="text-center bg-gradient pt-5 pb-3 text-muted fw-bolder">Creating Product Thumds</h4>
+    
 
-    <form action="" class="card-body" method="post">
+    <form action="" class=" shadow-sm card card-body" method="post">
+        <p class="text-center text-black-50">Create the information to Product Image</p>
         @csrf
         <div class=" text-end">
             <a class="text-decoration-none btn btn-success text-light" href="{{route('listimage')}}">
-                <i class="bi bi-card-list pe-2"></i>List Item
+                List Item
             </a>
         </div>
         @if (Session::has('success'))
@@ -25,7 +26,7 @@
         @endif
 
         <div class="row-cols-md py-2">
-            <label for="productid" class="form-label text-black fw-bolder">Product Name</label>
+            <label for="productid" class="form-label text-muted fw-bolder">Product Name<span class="text-danger">(*)</span></label>
             <select class="form-select shadow-none" name="txtProductID" id="productid">
                 <option value="">Please choose product name...</option>
                 @foreach($productname as $productnames)
@@ -37,9 +38,9 @@
             @enderror
         </div>
         <div class="row-cols-md pt-2">
-            <label for="upload" class="form-label text-black">Image</label>
+            <label for="upload" class="form-label text-muted fw-bolder">Image<span class="text-danger">(*)</span></label>
             <input type="file" class="form-control shadow-none" name="txtImage" id="upload" onchange="loadFile(event)" value="{{ old('txtImage') }}">
-            <div class="shadow-sm d-flex position-relative rounded border-0 mt-2" style="width: 100% ; height:280px;">
+            <div class="shadow-sm d-flex position-relative rounded border-0 mt-2" style="width: 100% ; height:180px;">
                 <span style="z-index: 1 ;" class="align-self-center text-black-50 position-absolute top-50 start-50 translate-middle fs-4">Image Review...</span>
                 <img class="w-100" src="{{ old('txtImage') }}" class="p-1" id="output" style="z-index: 2;">
             </div>
@@ -48,9 +49,9 @@
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
-        <div class="row-cols-md">
-            <label for="content" class="form-label text-black">Content</label>
-            <textarea class="form-control shadow-none" name="txtContent" id="content" cols="30" rows="5">{{ old('txtContent') }}</textarea>
+        <div class="row-cols-md  pt-2">
+            <label for="content" class="form-label text-muted fw-bolder">Content<span class="text-danger">(*)</span></label>
+            <textarea class="form-control shadow-none" name="txtContent" id="content" cols="30" rows="3">{{ old('txtContent') }}</textarea>
             @error('txtContent')
             <span class="text-danger">{{$message}}</span>
             @enderror

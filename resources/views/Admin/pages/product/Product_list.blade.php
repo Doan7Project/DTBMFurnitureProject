@@ -61,27 +61,30 @@
         {{Session::get('success')}}
     </div>
     @endif
-    <div>
-        @include('Admin.pages.product.ViewManagement')
-    </div>
 
-    
-        <div class="pt-3 p-2">
-            <a href="" class="text-muted fs-5 text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">View Management</a>
-        </div>
-    
+
+
 
     <div class="mt-6  rounded">
+        <div>
+            @include('Admin.pages.product.ViewManagement')
+        </div>
+
         <div class="table-responsive p-3 shadow-sm container" style="width: 1000px;">
+            <div class="pt-3">
+                <a href="" class="text-muted fs-5 text-decoration-none" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View
+                    Management</a>
+            </div>
+
             <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
                 <div>
                     <h4 class=" bg-gradient text-muted">Product list information</h5>
-        
+
                 </div>
                 <div>
                     <a class="btn btn-success" href="{{url("product/create")}}">
-                       Add more
+                        Add more
                     </a>
                 </div>
             </div>
@@ -161,9 +164,12 @@
                             </a>
                         </td>
                         <?php 
+                        $count = 0;
+                        $value ="";
                         foreach ($orderDetail as $orderDetails):
                         if($orderDetails->product_id == $data->id):
                         $value = "disabled" ;
+               
                         break;
                   else:
                   $value = "";
@@ -171,7 +177,8 @@
                   endforeach;
                       ?>
                         <td VALIGN=Middle Align=Middle>
-                            <button {{  $value }} href="{{url("product/destroy/{$data->id}")}}" class="btn btn-danger text-white"
+                            <button {{ $value }} href="{{url("product/destroy/{$data->id}")}}" class="btn btn-danger
+                                text-white"
                                 onclick="return confirm('Are you sure to delete {{$data->product_name}}')">
                                 <i class="bi bi-trash3 pe-2"></i>Delete
                             </button>

@@ -60,13 +60,21 @@
     {{Session::get('success')}}
 </div>
 @endif
-
-    <a class="btn btn-success mb-3" href="{{url("image/create")}}">
-        <i class="bi bi-plus-square text-white"></i> Add more
-    </a>
-    <h5 class="bg-primary bg-gradient text-white p-3">Product list information</h5>
-    <div class="table-responsive p-3 shadow-sm container" style="width: auto;">
-
+ 
+    <div class="table-responsive pt-4 shadow-sm container" style="width: auto;">
+        <div class="d-flex justify-content-between align-items-center pb-4">
+    
+            <div>
+                <h5 class=" bg-gradient text-muted fw-bolder">Product images information</h5>
+    
+            </div>
+            <div>
+                <a class="btn btn-success" href="{{url("image/create")}}">
+                   Add more
+                </a>
+                
+            </div>
+        </div>
         <table class="table table-bordered display ui celled " id="table">
             
             <thead class="bg-primary bg-opacity-75 text-white">

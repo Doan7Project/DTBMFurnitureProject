@@ -4,7 +4,7 @@ namespace App\Http\Requests\Menu;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class imageRequest extends FormRequest
+class UpdateRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,21 @@ class imageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'txtProductID' =>'required',
-            'txtImage' =>'required',
-            'txtContent' =>'required'
+            'firstname'=>'required|regex:/([A-Za-z])/',
+            'lastname'=>'required|regex:/([A-Za-z])/',
+            'email'=>'required',
+            'gender'=>'required',
+            'phone'=>'required',
+            'birthday'=>'required',
+            'country'=>'required',
+            'city'=>'required',
+            'address'=>'required',
         ];
     }
-
     public function messages()
     {
         return [
-            //
-            'txtProductID.required' =>'The product Name is required',
-            'txtImage.required' =>'The image  is required',
-            'txtContent.required' =>'The Content  is required'
+            'txtpassword.required'=>'The password field  is required',
         ];
     }
 }
