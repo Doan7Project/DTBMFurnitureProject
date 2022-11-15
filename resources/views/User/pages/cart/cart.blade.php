@@ -47,7 +47,7 @@
         margin:0;
     }
 </style>
-<form class="was-validated" action="/carts" method="POST">
+<form class=" needs-validation novalidate" action="/carts" method="POST">
     @include('User.alert')
     @if (count($products) != 0)
         @if(session('LoggedUser') == 0)
@@ -127,14 +127,21 @@
                         Total: ${{ number_format($total, 0, '', '.') }}
                     </span>
                 </div>
-                <div>
+                {{-- <div>
                     <label for="" class="form-label">Note</label><br>
                     <textarea 
                         class="form-control" name="txtNote" 
-                        id="txtNote" cols="60" rows="3"></textarea>
+                        id="txtNote" cols="60" rows="3" required></textarea>
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
-                </div>
+                </div> --}}
+                <div class="col-md-6">
+                    <label for="txtNote" class="form-label">Note</label>
+                    <textarea class="form-control" name="txtNote" id="txtNote" required ></textarea>
+                    <div class="invalid-feedback">
+                      Please provide a valid note.
+                    </div>
+                  </div>
             </div>
             @csrf
         </div>
@@ -163,7 +170,5 @@
             $this.attr('value', d).val(d)
         })
     })
-
-    
 </script>
 @endsection
