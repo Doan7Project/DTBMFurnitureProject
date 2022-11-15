@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Menu\UpdateProductRequest;
 use App\Http\Requests\Menu\CreateFormProductRequest;
 use App\Http\Services\Menu\ProductService;
 use App\Models\Product;
@@ -117,7 +118,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $data, Request $request)
+    public function edit(Product $data, UpdateProductRequest $request)
     {
         $this->productservice->edit($request, $data);
         return redirect()->route('list');

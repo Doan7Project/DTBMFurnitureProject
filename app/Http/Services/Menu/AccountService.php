@@ -40,25 +40,20 @@ class AccountService
         return true;
     }
 
-    public function changeInfo($request, $data){
-
-        try{
-
-            $data->first_name = (string) $request->input('firstname');
-            $data->last_name = (string) $request->input('lastname');
-            $data->email = (string) $request->input('email');
-            $data->gender = (string) $request->input('gender');
-            $data->phone = (string) $request->input('phone');
-            $data->birthday = (string) $request->input('birthday');
-            $data->country = (string) $request->input('country');
-            $data->city = (string) $request->input('city');
-            $data->address = (string) $request->input('address');
+    public function changeInfo($request, $data):bool
+{   
+     
+            $data->first_name =$request->input('firstname');
+            $data->last_name =  $request->input('lastname');
+            $data->email = $request->input('email');
+            $data->gender =  $request->input('gender');
+            $data->phone =  $request->input('phone');
+            $data->birthday = $request->input('birthday');
+            $data->country = $request->input('country');
+            $data->city =  $request->input('city');
+            $data->address =  $request->input('address');
             $data->save();
-
-        }
-        catch(\Exception $err){
-            session()->flash('error',$err->getMessage());
-        }
         return true;
-    }
+    
+}
 }

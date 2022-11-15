@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Menu\CreateFormRequest;
+use App\Http\Requests\Menu\UpdateCategory;
 use App\Http\Services\Menu\CategoryService;
 use App\Models\ProductCategory;
 use Exception;
@@ -54,7 +55,7 @@ class CategoryController extends Controller
         ]);
     }
     # 5 Thực hiện lệnh chỉnh sữa dữ liệu
-    public function CategoryUpdateProcess(ProductCategory $menu, CreateFormRequest $request)
+    public function CategoryUpdateProcess(ProductCategory $menu, UpdateCategory $request)
     {
         
         $this->categoryservice->update($request, $menu);

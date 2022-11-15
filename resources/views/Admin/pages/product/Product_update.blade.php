@@ -90,8 +90,8 @@ $arrmodels = [
     ]
 
 ?>
-<div class="card shadow-sm" style="width:100% ;">
-    <h4 class="text-center bg-primary bg-gradient p-3 text-white">Update Product Table</h4>
+<div class="card shadow-sm" style="width:90% ;">
+    <h4 class="text-center pt-5 pb-2 bg-gradient p-3 text-muted fw-bolder">Update Product Table</h4>
     <p class="text-center text-black-50">Update the information to product</p>
     <form action="" method="post" class="card-body">
         <div class="text-end">
@@ -103,7 +103,7 @@ $arrmodels = [
             <!-- --------------------------------- -->
             <div class="col-md-4">
 
-                <label for="categoryid" class="form-label text-black">Category preferences</label>
+                <label for="categoryid" class="form-label text-muted fw-bolder">Category preferences</label>
                 <select class="form-select shadow-none" name="txtCategoryID" id="categoryid">
                     @foreach ($Menus as $key => $data)
                     @if($data->id== $menu->category_id)
@@ -122,7 +122,7 @@ $arrmodels = [
             </div>
 
             <div class="col-md-3">
-                <label for="productCode" class="form-label text-black">Product Code</label>
+                <label for="productCode" class="form-label text-muted fw-bolder">Product Code</label>
                 <input type="text" id="productCode" class="form-control shadow-none" name="txtProductCode"
                     placeholder="Enter product code" style="text-transform:uppercase;" value="{{$menu->product_code}}"
                     readonly>
@@ -131,7 +131,7 @@ $arrmodels = [
                 @enderror
             </div>
             <div class="col-md-5">
-                <label for="productname" class="form-label text-black">Product Name</label>
+                <label for="productname" class="form-label text-muted fw-bolder">Product Name</label>
                 <input type="text" id="productname" class="form-control shadow-none" name="txtProductName"
                     value="{{$menu->product_name}}" placeholder="Enter product name">
                 @error('txtProductName')
@@ -141,26 +141,30 @@ $arrmodels = [
         </div>
         <div class="row pt-2">
             <div class="col-md-2">
-                <label for="price" class="form-label text-black">Price - $</label>
+                <label for="price" class="form-label text-muted fw-bolder">Price - $</label>
                 <input type="number" id="price" class="form-control shadow-none" value="{{$menu->price}}"
                     name="txtPrice">
-
+                    @error('txtPrice')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
             </div>
             <div class="col-md-2">
-                <label for="unit" class="form-label text-black">Unit</label>
+                <label for="unit" class="form-label text-muted fw-bolder">Unit</label>
                 <input type="text" id="unit" class="form-control shadow-none" value="{{$menu->unit}}" name="txtUnit">
                 @error('txtUnit')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="col-md-2">
-                <label for="quantity" class="form-label text-black">Quantity</label>
+                <label for="quantity" class="form-label text-muted fw-bolder">Quantity</label>
                 <input type="number" id="quantity" class="form-control shadow-none" value="{{$menu->quantity}}"
                     name="txtQuantity">
-
+                    @error('txtQuantity')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
             </div>
             <div class="col-md-2">
-                <label for="status" class="form-label text-black">Status</label>
+                <label for="status" class="form-label text-muted fw-bolder">Status</label>
                 <select class="form-select shadow-none" name="txtStatus" id="status">
                     @foreach($arrstatus as $value)
                     @if($value['status']==$menu->status)
@@ -170,9 +174,12 @@ $arrmodels = [
                     @endif
                     @endforeach
                 </select>
+                @error('txtStatus')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div class="col-md-2">
-                <label for="models" class="form-label text-black">Models</label>
+                <label for="models" class="form-label text-muted fw-bolder">Models</label>
                 <select class="form-select shadow-none" name="txtModel" id="models">
                     @foreach($arrmodels as $value)
                     @if($value['model']==$menu->models)
@@ -182,10 +189,12 @@ $arrmodels = [
                     @endif
                     @endforeach
                 </select>
-
+                @error('txtModel')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
             <div class="col-md-2">
-                <label for="madein" class="form-label text-black">Made In</label>
+                <label for="madein" class="form-label text-muted fw-bolder">Made In</label>
                 <select class="form-select shadow-none" name="txtMadein" id="madein">
                     @foreach($arrmade as $value)
                     @if($value['madein']==$menu->made_in)
@@ -195,12 +204,14 @@ $arrmodels = [
                     @endif
                     @endforeach
                 </select>
-
+                @error('txtMadein')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="upload" class="form-label text-black">Image</label>
+                <label for="upload" class="form-label text-muted fw-bolder">Image</label>
                 <input type="file" class="form-control shadow-none" name="txtImage" id="upload"
                     onchange="loadFile(event)">
                 <div class="shadow-sm d-flex position-relative rounded border-0 mt-2"
@@ -216,17 +227,22 @@ $arrmodels = [
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="content" class="form-label text-black">Content</label>
+                <label for="content" class="form-label text-muted fw-bolder">Content</label>
                 <textarea class="form-control shadow-none" name="txtContent" id="content" cols="30"
                     rows="13">{{$menu->content}}</textarea>
-
+                    @error('txtContent')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-md-12">
-                <label for="content" class="form-label text-black">Description</label>
+                <label for="content" class="form-label text-muted fw-bolder">Description</label>
                 <textarea class="form-control shadow-none" name="txtDescription" id="editor1" cols="30"
                     rows="3">{{$menu->description}}</textarea>
+                    @error('txtDescription')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
             </div>
         </div>
         <div class="pt-3 d-flex">

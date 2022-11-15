@@ -92,7 +92,7 @@ $arrmade = [
 ]
 ?>
 <div class="card shadow-sm" style="width:100% ;">
-    <h4 class="text-center bg-primary bg-gradient p-3 text-white">Create Product Table</h4>
+    <h4 class="text-center bg-gradient pt-5 pb-2 text-muted fw-bolder">Create Product Table</h4>
     <p class="text-center text-black-50">Create the information to product</p>
 
     <form action="" method="post" class="card-body">

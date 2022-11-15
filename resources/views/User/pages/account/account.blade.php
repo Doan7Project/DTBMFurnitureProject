@@ -41,30 +41,35 @@ $gender = json_decode(file_get_contents($path), true);
     <main class="col-md-6">
       <form method="post" action="">
         @csrf
-        <h4 class="text-start g-0">Your detail account information</h4>
+        <h4 class="text-start text-muted fw-bolder g-0">Your detail account information</h4>
         <div class="row pt-3">
           <div class="col-sm-4">
-            <label for="firstName" class="form-label">First name</label>
+            <label for="firstName" class="form-label text-muted fw-bolder">First name</label>
             <input type="text" class="form-control" name="firstname" id="firstName" placeholder=""
-              value="{{ $accinfo->first_name }}" required>
-
+              value="{{ $accinfo->first_name }}">
+              @error('firstname')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
           </div>
           <div class="col-sm-8">
             <label for="lastName" class="form-label">Last name</label>
             <input type="text" class="form-control" name="lastname" id="lastName" placeholder=""
-              value="{{ $accinfo->last_name }}" required>
+              value="{{ $accinfo->last_name }}">
+              @error('lastname')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
           </div>
         </div>
         <div class="row pt-3 pb-3">
           <div class="col-md-7">
-            <label for="email" class="form-label">Email <span class="text-muted">(Account)</span></label>
-            <input type="email" class="form-control" name="email" id="email" value="{{ $accinfo->email }}"
+            <label for="email" class="form-label">Email<span class="text-muted">(Account)</span></label>
+            <input type="email" readonly class="form-control" name="email" id="email" value="{{ $accinfo->email }}"
               placeholder="you@example.com">
 
           </div>
           <div class="col-md-5">
             <label for="gender" class="form-label">Gender</label>
-            <select name="gender" class="form-select" id="gender" required>
+            <select name="gender" class="form-select" id="gender">
               @foreach ($gender as $genders)
               @if ($genders['id'] == $accinfo->gender)
               <option value="{{ $genders['id'] }}" selected>{{ $genders['gender'] }}</option>
@@ -81,13 +86,17 @@ $gender = json_decode(file_get_contents($path), true);
             <label for="phone" class="form-label">Phone number <span class="text-muted">(Account)</span></label>
             <input type="phone" name="phone" class="form-control" id="phone" value="{{ $accinfo->phone }}"
               placeholder="Enter you phone number">
-
+              @error('phone')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
           </div>
           <div class="col-md-6">
             <label for="birthday" class="form-label">Birthday</label>
             <input type="date" class="form-control" value="{{ $accinfo->birthday }}" name="birthday" id="birthday"
               placeholder="Enter you phone number">
-
+              @error('birthday')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
           </div>
         </div>
         <div class="row pb-3">
@@ -105,7 +114,9 @@ $gender = json_decode(file_get_contents($path), true);
               @endforeach
 
             </select>
-
+            @error('country')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
           </div>
           <div class="col-md-6 ">
 
@@ -121,7 +132,9 @@ $gender = json_decode(file_get_contents($path), true);
               @endforeach
 
             </select>
-
+            @error('city')
+            <span class="text-danger">{{$message}}</span>
+            @enderror
           </div>
         </div>
         <div class="row pb-3">
@@ -129,6 +142,9 @@ $gender = json_decode(file_get_contents($path), true);
             <label for="address" class="form-label">Address</label>
             <input type="text" class="form-control" id="address" name="address" value="{{ $accinfo->address }}"
               placeholder="1234 Main St">
+              @error('address')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
           </div>
         </div>
 
@@ -139,7 +155,8 @@ $gender = json_decode(file_get_contents($path), true);
               {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Change
               </button> --}}
-              <a class="btn btn-primary text-white" id="myBtn">Change</a>
+              {{-- <a class="btn btn-primary text-white" id="myBtn">Change</a> --}}
+              <button type="submit" class="btn btn-primary">Change</button>
             </div>
             {{-- <div>
               <button class="w-100 btn btn-secondary px-4" type="submit">Exit</button>
@@ -147,7 +164,7 @@ $gender = json_decode(file_get_contents($path), true);
     
           </div>
         </div>
-        @include('User.pages.account.modalSubmit')
+    
       </form>
 
     </main>
