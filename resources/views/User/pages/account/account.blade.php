@@ -156,7 +156,7 @@ $gender = json_decode(file_get_contents($path), true);
                 Change
               </button> --}}
               {{-- <a class="btn btn-primary text-white" id="myBtn">Change</a> --}}
-              <button type="submit" class="btn btn-primary">Change</button>
+              <button type="submit" onclick="return confirm('Are you sure to update data')" class="btn btn-primary">Change</button>
             </div>
             {{-- <div>
               <button class="w-100 btn btn-secondary px-4" type="submit">Exit</button>

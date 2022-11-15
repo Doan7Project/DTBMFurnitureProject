@@ -50,7 +50,7 @@
             @enderror
         </div>
         <div class="row-cols-md  pt-2">
-            <label for="content" class="form-label text-muted fw-bolder">Content</label>
+            <label for="content" class="form-label text-muted fw-bolder">Content<span class="text-danger">(*)</span></label>
             <textarea class="form-control shadow-none" name="txtContent" id="content" cols="30" rows="3">{{ old('txtContent') }}</textarea>
             @error('txtContent')
             <span class="text-danger">{{$message}}</span>

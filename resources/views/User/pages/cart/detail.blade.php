@@ -277,6 +277,10 @@ $arrfeeds = [
             left: -9999px;
         }
     }
+    .review{
+        overflow: auto;
+        max-height: 200px;
+    }
 </style>
 <div class="card-wrapper">
     <div class="card cards">
@@ -306,6 +310,7 @@ $arrfeeds = [
                     <a href="#" data-id="1">
                         <img class="img-fluid" src="{{ $productdetail->images }}" alt="shoe image">
                     </a>
+         
                 </div>
                 @endif
                 <?php $i=1?>
@@ -339,21 +344,26 @@ $arrfeeds = [
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
 
+            <?php $count = 0;
+             $value =0;
+            foreach ($feedback as $key => $feedbacks) {
+                if ($feedbacks->customer_id == $feedbacks->customers->id && $feedbacks->product_id == $productdetail->id): 
+                    $value = "disabled";
+                    $count++;               
+            else:
+            $value = "";
+            endif;
+               
+        
 
-            @foreach ($orderDetail as $key => $orderDetails )
-            @if($orderDetails->product_id == $productdetail->id
-            && $orderDetails->order_masters->status == 1
-            )
-
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                <i class="bi bi-chat-left-dots-fill"></i> Give me a feedback!
+            }
+            
+            
+            ?>
+ 
+            <button {{ $value }} type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                <i class="bi bi-chat-left-dots-fill"></i>Give me a feedback!
             </button>
-            @else
-            <button type="button" class="btn btn-danger d-none">
-                <i class="bi bi-chat-left-dots-fill"></i>
-            </button>
-            @endif
-            @endforeach
 
 
             <div class="product-detail">
@@ -444,7 +454,35 @@ $arrfeeds = [
         </div>
     </div>
 </form>
+<div class="container pb-4">
+ 
+    <h4 class="text-start">Customer Review
+        <div class="product-rating">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+        </div>
+    </h1>
+    <?php $count = 1
 
+    ?>
+    <div class="card card-body review">
+        @foreach ($feedback as $key => $feedbacks)
+        @if ($feedbacks->product_id == $productdetail->id)
+        <div class="d-flex justify-content-start">
+            <h5 class="fw-bolder pe-4">Review {{ $count }}</h5>
+            <h6 class="text-muted">Guest: {{ $feedbacks->customers->first_name }} </h6>
+        </div>
+        <p>{{ $feedbacks->content }}</p>
+
+        <?php $count++?>
+        @endif
+        @endforeach
+    </div>
+    
+</div>
 <script>
     const imgs = document.querySelectorAll('.img-select a');
     const imgBtns = [...imgs];

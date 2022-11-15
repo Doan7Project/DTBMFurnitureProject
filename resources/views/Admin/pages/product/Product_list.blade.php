@@ -164,9 +164,12 @@
                             </a>
                         </td>
                         <?php 
+                        $count = 0;
+                        $value ="";
                         foreach ($orderDetail as $orderDetails):
                         if($orderDetails->product_id == $data->id):
                         $value = "disabled" ;
+               
                         break;
                   else:
                   $value = "";

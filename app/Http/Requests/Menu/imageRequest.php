@@ -26,7 +26,8 @@ class imageRequest extends FormRequest
         return [
             //
             'txtProductID' =>'required',
-            'txtImage' =>'required'
+            'txtImage' =>'required',
+            'txtContent' =>'required'
         ];
     }
 
@@ -34,8 +35,9 @@ class imageRequest extends FormRequest
     {
         return [
             //
-            'txtProductID.required' =>'Product Name is required',
-            'txtImage.required' =>'Product image  is required'
+            'txtProductID.required' =>'The product Name is required',
+            'txtImage.required' =>'The image  is required',
+            'txtContent.required' =>'The Content  is required'
         ];
     }
 }

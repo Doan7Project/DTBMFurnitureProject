@@ -104,7 +104,8 @@ class CartController extends Controller
             'imagedata' => $this->imagepdservice->getAll(),
             'products' => $this->cartService->getProduct(),
             'carts' => Session::get('carts'),
-            'orderDetail' => $this->orderservice->getInfoOrderDetail()
+            'orderDetail' => $this->orderservice->getInfoOrderDetail(),
+            'feedback' => $this->orderservice->getInfoFeedback(),
         ]);
     }
 }
