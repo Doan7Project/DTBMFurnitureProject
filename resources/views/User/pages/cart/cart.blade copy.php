@@ -46,14 +46,18 @@
         -webkit-appearance:none;
         margin:0;
     }
+
+    .primary-bg {
+        background-color: #5ea0aa;
+    }
 </style>
-<form class="was-validated" action="/carts" method="POST">
+<div class="container m-auto">
     @include('User.alert')
     @if (count($products) != 0)
         @if(session('LoggedUser') == 0)
-            @include('User.pages.login.login')
+        @include('User.pages.login.login')
         @else
-        <div class="container m-auto">
+        <div class="">
             <h2 class="text-center">{{$title}}</h2>
             <div class="row border-gray-500 border-0">
                 <div class="wrap-table-shopping-cart">
@@ -84,29 +88,44 @@
                                 <td class="column-2">{{ $product->product_name }}</td>
                                 <td class="column-3 price">${{ number_format($product->price, 0, '', '.') }}</td>
                                 <td class="column-4">
+
                                     <div class="buttons_added d-flex">
-                                        <input class="minus is-form" id="munis" type="button" value="-">
-                                        <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number" name="num_product[{{ $product->id }}]" value="{{ $carts[$product->id] }}">
-                                        <input class="plus is-form" id="plus" type="button" value="+">
-                                        </div>
+                                        <input 
+                                            data-bs-toggle="tooltip" 
+                                            data-bs-placement="top" title="Min 1!"
+                                            class="minus is-form btn btn-outline-success" id="munis" 
+                                            type="button" value="-">
+                                        <input 
+                                            aria-label="quantity" id="qty" class="input-qty" 
+                                            max="20" min="1" type="number" name="num_product[{{ $product->id }}]" 
+                                            value="{{ $carts[$product->id] }}" readonly>
+                                        <input 
+                                            data-bs-toggle="tooltip" 
+                                            data-bs-placement="top" title="Max 20!"
+                                            class="plus is-form btn btn-outline-success" 
+                                            id="plus" type="button" value="+">
+                                    </div>
                                 </td> 
                                 <td class="column-5" id="total">${{ number_format($priceEnd, 0, '', '.') }}</td>
                                 <td class="p-r-15">
                                     <div class="d-flex">
-                                        {{-- Edit product on cart  --}}
-                                        <form action="/update-cart" method="POST">
+                                        {{-- update number product on cart --}}
+                                        <form action="" method="post">
                                             <button type="submit"
                                                 data-bs-toggle="tooltip" 
                                                 data-bs-placement="top" title="Update product!"
+                                                {{-- formaction="" --}}
+                                                formaction="/update-cart"
                                                 class="pointer px-2 py-1 border rounded btn btn-outline-success">
                                                 <i class="bi bi-arrow-up-square"></i>
                                             </button>
                                         </form>
-                                        {{-- Delete product on cart --}}
+                                        {{-- delete product on cart --}}
                                         <form action="/carts/delete/{{ $product->id }}" method="get">
                                             <button type="submit" 
                                                 data-bs-toggle="tooltip" 
                                                 data-bs-placement="top" title="Delete product!"
+                                                {{-- formaction="" --}}
                                                 class="pointer px-2 py-1 border rounded btn btn-outline-danger">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -118,31 +137,29 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="size-209 pt-1 d-flex justify-content-between">
-                        <button type="submit" id="clickOrder" class="pointer px-4 py-1 border rounded">
-                            Order
-                        </button>
+                    <button id="clickOrder" 
+                        class="btn btn-outline-success">
+                        Order
+                    </button>
                     <span class="mtext-110 cl2" id="sum">
                         Total: ${{ number_format($total, 0, '', '.') }}
                     </span>
                 </div>
-                <div>
-                    <label for="" class="form-label">Note</label><br>
-                    <textarea 
-                        class="form-control" name="txtNote" 
-                        id="txtNote" cols="60" rows="3"></textarea>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
-                </div>
+                @csrf
             </div>
-            @csrf
+        </div>
+        <div class="pb-5 pt-2">
+            <label class="form-label" for="txtNote">Note</label><br>
+            <textarea class="form-control" name="txtNote" id="txtNote" cols="60" rows="3"></textarea>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
         </div>
         @endif
-        @else
-            <div class="text-center"><h2>Cart is empty</h2></div>
-        @endif
-</form>
+    @else
+        <div class="text-center"><h2>Cart is empty</h2></div>
+    @endif
+</div>
 <script>
     $('input.input-qty').each(function() {
         var $this = $(this),
@@ -164,6 +181,9 @@
         })
     })
 
-    
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 </script>
 @endsection

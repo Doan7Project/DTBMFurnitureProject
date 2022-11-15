@@ -110,15 +110,14 @@
   }
 
   .numberCart {
-    top: 8px;
+    top: 14px;
     right: 60px;
-    padding: 4px;
-    height: 24px;
-    line-height: 1;
-    border-radius: 10px;
+    padding: 0 4px;
+    line-height: 1.1;
+    border-radius: 6px;
     font-size: 14px;
-    border: 1px solid;
-    color: paleturquoise;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.75)
   }
 
   @media only screen and (max-width: 1050px) {

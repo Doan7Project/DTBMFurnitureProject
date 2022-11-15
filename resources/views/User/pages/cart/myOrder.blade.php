@@ -1,5 +1,6 @@
 @extends('User.main.main')
 @section('content')
+
 <style>
     .buttons_added {
     opacity:1;
@@ -67,6 +68,7 @@
         
         <!-- Tab panes -->
         <div class="tab-content">
+            {{-- Show order list pending --}}
             <div class="tab-pane container active" id="peding">
                 @foreach($numOrder as $key=>$value)
                     @if($value['status']==0)
@@ -97,6 +99,7 @@
                                             $priceEnd = $items['price'] * $items['quantity'];
                                             $total += $priceEnd;
                                         @endphp
+                                        <form action="/order-cancel/{{$items['order_master_id']}}" method="get">
                                         <tr class="table_row col-12 border-bottom">
                                             <td class="column-1">
                                                 <div class="how-itemcart1">
@@ -113,10 +116,22 @@
                                             <td class="column-5 total">
                                                 ${{ number_format($priceEnd, 0, '', '.') }}
                                             </td>
+                                            @php
+                                                // $date = Carbon::now();
+                                            @endphp
                                             <td class="p-r-15">
-                                                <a href="#">Cancel</a>
+                                                {{-- <p>{{ $date }}</p> --}}
+                                                <button 
+                                                    class="btn btn-outline-danger" 
+                                                    type="submit"
+                                                    value="2"
+                                                    name="btnStatus"
+                                                    >
+                                                    Cancel
+                                                </button>
                                             </td>
                                         </tr>
+                                        </form>
                                     @endif
                                 @endforeach
                             </tbody>
@@ -132,6 +147,8 @@
                     @endforeach
                 @csrf
             </div>
+
+            {{-- Show order list done --}}
             <div class="tab-pane container fade" id="done">
                 @foreach($numOrder as $key=>$value)
                     @if($value['status']==1)
@@ -181,7 +198,12 @@
                                             </td>
                                             <td class="pr-2">
                                                 <a href="{{url("/orderdetail/{$items['product_id']}")}}">
-                                                    <button type="button" class="btn btn-info">
+                                                    <button type="button" 
+                                                        class="btn btn-outline-info"
+                                                        data-bs-toggle="tooltip" 
+                                                        data-bs-placement="top" 
+                                                        title="Feedback product?"
+                                                        >
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </a>
@@ -207,6 +229,8 @@
                     @endforeach
                 @csrf
             </div>
+
+            {{-- Show order list cancel --}}
             <div class="tab-pane container fade" id="cancel">
                 @foreach($numOrder as $key=>$value)
                     @if($value['status']==2)
@@ -224,10 +248,9 @@
                                 <tr class="table_head col-12 ">
                                     <th class="px-0 col-1">Product</th>
                                     <th class="px-0 col-6"></th>
-                                    <th class="px-0 col-1">Price</th>
+                                    <th class="px-0 col-2">Price</th>
                                     <th class="px-0 col-2">Quantity</th>
                                     <th class="px-0 col-1">Total</th>
-                                    <th class="px-0 col-2">Function</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -253,9 +276,6 @@
                                             </td>
                                             <td class="column-5 total">
                                                 ${{ number_format($priceEnd, 0, '', '.') }}
-                                            </td>
-                                            <td class="p-r-15">
-                                                <a href="#">Edit</a>
                                             </td>
                                         </tr>
                                     @endif

@@ -36,7 +36,7 @@ class CartController extends Controller
     {
         $result = $this->cartService->create($request);
         if ($result === false) {
-            return redirect()->back(); 
+            return redirect()->back();  
         }
         
         return redirect('/carts');
@@ -65,6 +65,12 @@ class CartController extends Controller
             'numOrder' => $this->cartService->numOrder(),
             'carts' => Session::get('carts')
         ]);
+    }
+
+    public function cancelOrder(Request $request, $id)
+    {
+        $this->cartService->cancelOrder($request, $id);
+        return redirect('/my_order');
     }
     
     public function update(Request $request)

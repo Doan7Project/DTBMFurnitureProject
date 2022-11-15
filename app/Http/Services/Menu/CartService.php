@@ -11,6 +11,7 @@ use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 /**
  * Class CartService
@@ -86,6 +87,15 @@ class CartService
         $data->save();
         session()->flash('success', 'Updated successfully!');
         return true;
+    }   
+
+    // Update status order customer
+    public function cancelOrder($request, $id):bool {
+        $data = order_master::find($id);
+        $data->status = (string) $request->input('btnStatus');
+        $data->save();
+        session()->flash('success', 'Cancel order successfully!');
+        return true;
     }
 
     public function addCart($request)
@@ -158,6 +168,7 @@ class CartService
     }
     
     public function myOrder(){
+        
         $customerId = session('LoggedUserid');
         $myOrder = myOrder::select('order_number','order_master_id','created_at','product_id','quantity','price','images','product_name')
             ->where('customer_id',$customerId)
@@ -181,20 +192,21 @@ class CartService
 
     public function numOrder(){
         $customerId = session('LoggedUserid');
-        $myOrder = myOrder::select('order_number', 'customer_id', 'created_at','status', 'email', 'first_name', 'last_name')
+        $myOrder = myOrder::select('order_number', 'order_master_id', 'customer_id', 'created_at','status', 'email', 'first_name', 'last_name')
             ->where('customer_id',$customerId)
             ->groupby('order_number')
             ->get(); 
         $data = [];
         foreach($myOrder as $items) {
             $data [] = [
-                'customer_id'    => $items->customer_id,
-                'order_number'    => $items->order_number,
-                'created_at' => $items->created_at,
-                'status' => $items->status,
                 'email' => $items->email,
-                'first_name' => $items->first_name,
+                'status' => $items->status,
                 'last_name' => $items->last_name,
+                'created_at' => $items->created_at,
+                'first_name' => $items->first_name,
+                'customer_id' => $items->customer_id,
+                'order_number' => $items->order_number,
+                'order_master_id' => $items->order_master_id,
             ];
         }
         // // dd($data);
