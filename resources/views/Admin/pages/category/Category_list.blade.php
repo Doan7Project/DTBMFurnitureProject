@@ -1,17 +1,27 @@
 @extends('Admin.main.main')
 @section('content')
-@if (Session::has('success'))
-<div class="alert alert-success">
-    {{Session::get('success')}}
-</div>
-@endif
+
 <div class="m-5 rounded">
-    <a class="btn btn-success mb-3" href="{{url("Admin/pages/Category_create")}}">
-        <i class="bi bi-plus-square text-white pe-2" ></i> Add more
-    </a>
-    <h4 class="bg-primary bg-gradient text-white p-3 px-3 rounded">Category list information</h4>
-    <div class="p-2 border border-1 rounded container">
-        <table class="table  rounded" id="table">
+    @if (Session::has('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    <div class="d-flex justify-content-between align-items-center  pb-3 ">
+
+        <div>
+
+            <h4 class="bg-gradient text-secondary rounded">Category list information</h4>
+        </div>
+        <div>
+
+            <a class="btn btn-success" href="{{url("Admin/pages/Category_create")}}">
+                <i class="bi bi-building-add text-white"></i> Add more
+            </a>
+        </div>
+    </div>
+    <div class="p-2 bg-white border border-1 rounded container">
+        <table class="table   rounded" id="table">
             <thead>
                 <tr>
                     <th class="px-3">No.</th>
@@ -23,10 +33,10 @@
                     </th>
 
                     <th class="px-3">
-                        <div style="width: 50px ;">Edit</div>
+                        <div style="width: 80px ;">Edit</div>
                     </th>
                     <th class="px-3">
-                        <div style="width: 50px ;">Delete</div>
+                        <div style="width: 80px ;">Delete</div>
                     </th>
                 </tr>
             </thead>
@@ -41,13 +51,27 @@
                             <i class="bi bi-pencil-square pe-2"></i>Edit
                         </a>
                     </td>
+                    <?php 
+                      foreach ($product as $products):
+                      if($products->category_id == $data->id):
+                      $value = "disabled" ;
+                      break;
+                else:
+                $value = "";
+                endif;
+                endforeach;
+                    ?>
+
                     <td VALIGN=Middle Align=Left>
-                        <a class="btn btn-danger text-white" href="{{url("Admin/pages/delete/{$data->id}")}}" onclick="return confirm('Are you sure to delete {{$data->CategoryName}}')" style="color: orangered;">
+                        <button {{ $value }} class="btn btn-danger text-white" href="{{url("Admin/pages/delete/{$data->id}")}}"
+                            onclick="return confirm('Are you sure to delete {{$data->CategoryName}}')" style="color:
+                            orangered;">
                             <i class="bi bi-trash3 pe-2"></i>Delete
-                        </a>
+                        </button>
                     </td>
                 </tr>
             </tbody>
+        
             @endforeach
         </table>
     </div>

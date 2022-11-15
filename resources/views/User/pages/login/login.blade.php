@@ -99,8 +99,11 @@
 
     /*# sourceMappingURL=Login.css.map */
 </style>
+
 <div class="loginPage bg-gradient">
+
     <div class="card rounded-3 p-2">
+       
         <form class="card-body" action="{{ route('signin') }}" method="post">
             <div class="row-cols-1 py-0 text-center">
                 <i class="bi bi-person-bounding-box fs-1 text-black-50"></i>

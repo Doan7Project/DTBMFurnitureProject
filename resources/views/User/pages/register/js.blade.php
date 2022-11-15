@@ -1,3 +1,5 @@
+
+{{-- Kiểm tra password và confirm password --}}
 <script>
     $(document).ready(function () {
         $("#confirmpassword").keyup(function () { 

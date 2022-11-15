@@ -104,7 +104,7 @@ $arrmade = [
         @csrf
         <div class="row pt-2">
             <div class="col-md-4">
-                <label for="categoryid" class="form-label text-black">Category preferences</label>
+                <label for="categoryid" class="form-label text-muted fw-bolder">Category preferences<span class="text-danger">(*)</span></label>
                 <select class="form-select shadow-none" name="txtCategoryID" id="categoryid">
                     <option value="">Please choose category...</option>
                     @foreach($category as $key=> $categorys)
@@ -117,21 +117,21 @@ $arrmade = [
             </div>
 
             <div class="col-md-3 d-none">
-                <label for="productCode" class="form-label text-black">Product Code</label>
+                <label for="productCode" class="form-label text-black fw-bolder">Product Code</label>
                 <input  type="text" id="productCode" class="form-control shadow-none" name="txtProductCode" placeholder="Enter product code" style="text-transform:uppercase;" value="{{old('txtProductCode')}}">
                 @error('txtProductCode')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="col-md-5">
-                <label for="productname" class="form-label text-black">Product Name</label>
+                <label for="productname" class="form-label text-muted fw-bolder">Product Name<span class="text-danger">(*)</span></label>
                 <input type="text" id="productname" value="{{ old('txtProductName') }}" class="form-control shadow-none" name="txtProductName" placeholder="Enter product name">
                 @error('txtProductName')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="col-md-3">
-                <label for="price" class="form-label text-black">Price - $</label>
+                <label for="price" class="form-label text-muted fw-bolder">Price - $<span class="text-danger">(*)</span></label>
                 <input type="number" id="price" class="form-control shadow-none" name="txtPrice" value="{{ old('txtPrice') }}">
                 @error('txtPrice')
                 <span class="text-danger">{{$message}}</span>
@@ -140,21 +140,21 @@ $arrmade = [
         </div>
         <div class="row pt-2">        
             <div class="col-md-2">
-                <label for="unit" class="form-label text-black">Unit</label>
+                <label for="unit" class="form-label text-muted fw-bolder">Unit<span class="text-danger">(*)</span></label>
                 <input type="text" id="unit" class="form-control shadow-none" name="txtUnit" value="{{ old('txtUnit') }}">
                 @error('txtUnit')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="col-md-2">
-                <label for="quantity" class="form-label text-black">Quantity</label>
+                <label for="quantity" class="form-label text-muted fw-bolder">Quantity<span class="text-danger">(*)</span></label>
                 <input type="number" id="quantity" class="form-control shadow-none" name="txtQuantity" value="{{ old('txtQuantity') }}">
                 @error('txtQuantity')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
             <div class="col-md-3">
-                <label for="status" class="form-label text-black">Status</label>
+                <label for="status" class="form-label text-muted fw-bolder">Status</label>
                 <select class="form-select shadow-none" name="txtStatus" id="status">
                     @foreach($arrstatus as $value)
                     <option value="{{$value['status']}}">{{$value['descrip']}}</option>
@@ -163,7 +163,7 @@ $arrmade = [
 
             </div>
             <div class="col-md-2">
-                <label for="models" class="form-label text-black">Models</label>
+                <label for="models" class="form-label text-muted fw-bolder">Models</label>
                 <select class="form-select shadow-none" name="txtModel" id="models">
 
                     @foreach($arrmodels as $value)
@@ -173,7 +173,7 @@ $arrmade = [
 
             </div>
             <div class="col-md-3">
-                <label for="madein" class="form-label text-black">Made In</label>
+                <label for="madein" class="form-label text-muted fw-bolder">Made In<span class="text-danger">(*)</span></label>
                 <select class="form-select shadow-none" name="txtMadein" id="madein">
                     <option value="">Please choose....</option>
                     @foreach($arrmade as $key => $value)
@@ -187,7 +187,7 @@ $arrmade = [
         </div>
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="upload" class="form-label text-black">Image</label>
+                <label for="upload" class="form-label text-muted fw-bolder">Image<span class="text-danger">(*)</span></label>
                 <input type="file" class="form-control shadow-none" value="{{ old('txtImage') }}"  name="txtImage" id="upload" onchange="loadFile(event)">
                 <div class="shadow-sm d-flex position-relative rounded border-0 mt-2" style="width: 100% ; height:280px;">
                     <span style="z-index: 1 ;" class="align-self-center text-black-50 position-absolute top-50 start-50 translate-middle fs-4">Image Review...</span>
@@ -199,7 +199,7 @@ $arrmade = [
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="content" class="form-label text-black">Content</label>
+                <label for="content" class="form-label text-muted fw-bolder">Content<span class="text-danger">(*)</span></label>
                 <textarea class="form-control shadow-none" name="txtContent" id="content" cols="30" rows="13">{{ old('txtContent') }}</textarea>
                 @error('txtContent')
                 <span class="text-danger">{{$message}}</span>
@@ -208,7 +208,7 @@ $arrmade = [
         </div>
         <div class="row pt-2">
             <div class="col-md-12">
-                <label for="content" class="form-label text-black">Description</label>
+                <label for="content" class="form-label text-muted fw-bolder">Description<span class="text-danger">(*)</span></label>
                 <textarea class="form-control shadow-none" name="txtDescription" id="editor1" cols="30" rows="3">{{ old('txtDescription') }}</textarea>
                 @error('txtDescription')
                 <span class="text-danger">{{$message}}</span>

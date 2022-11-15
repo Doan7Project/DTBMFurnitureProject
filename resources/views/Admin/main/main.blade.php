@@ -1,17 +1,20 @@
 <style>
-  .menu{
-    background-color: rgba(250, 250, 250, 0.254);
+  .bg-color{
+    background-color: rgba(13, 78, 111, 0.899);
+  }
+  .function-table{
+    background-color: rgba(130, 130, 130, 0.034);
   }
 </style>
 @include('Admin.main.header')
-<div class="menu position-relative p-3 shadow-sm d-flex justify-content-between">
+<div class="bg-color position-relative p-3 shadow-sm d-flex justify-content-between">
   <!-- Nav tabs -->
   <div class="text-start">
-    <label for="" class="fs-5">DMTB Furniture Project</label>
+    <label for="" class="fs-5 text-white">DMTB Furniture Project</label>
   </div>
   <div >
     <div class="btn-group">
-      <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         <i class="bi bi-person-circle pe-2"></i>{{ session('user') }}
       </button>
@@ -29,14 +32,13 @@
   </div>
 </div>
 <!-- ---------------------------End----------------------------- -->
-<main class="d-flex flex-nowrap " >
-  <div class="d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 260px; height:900px;">
+<main class="d-flex flex-nowrap">
+  <div class=" d-flex flex-column flex-shrink-0 py-4 shadow-sm" style="width: 260px; height:900px;">
     <div class="text-center pb-4 pt-4">
       <i class="bi bi-person-workspace fs-1"></i>
-      <h5>Administration</h5>
+      <h5 class="pt-2">Administration</h5>
     </div>
-    <h6 class="px-4 py-3 bg-primary bg-gradient text-light">Function Controller</h6>
-
+    <h6 class="px-4 py-3 bg-color bg-gradient text-light">Product Controller</h6>
     <ul class="list-group ">
    <a href="{{url('Admin/index')}}"
         class="btn btn-toggle px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action">
@@ -93,19 +95,7 @@
       </li>
       <!-- End product thumb-->
       <!--about -->
-      <li class="mb-0 list-unstyled ">
-        <button
-          class="btn btn-toggle  px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action"
-          data-bs-toggle="collapse" data-bs-target="#about" aria-expanded="false">
-          <i class="bi bi-file-earmark-person pe-2"></i>Customer
-        </button>
-        <div class="collapse" id="about">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="{{url('/customer/list')}}"
-                class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded">List Information</a></li>
-          </ul>
-        </div>
-      </li>
+
 
       <li class="mb-0 list-unstyled mb-2">
         <button
@@ -125,8 +115,20 @@
       <!-- End Slide-->
       <!-- information detail -->
 
-      <h6 class="px-4 py-3 bg-primary bg-gradient text-light">Information</h6>
-
+      <h6 class="px-4 py-3 bg-color bg-gradient text-light">Customer Information</h6>
+      <li class="mb-0 list-unstyled ">
+        <button
+          class="btn btn-toggle  px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action"
+          data-bs-toggle="collapse" data-bs-target="#about" aria-expanded="false">
+          <i class="bi bi-file-earmark-person pe-2"></i>Customer
+        </button>
+        <div class="collapse" id="about">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{url('/customer/list')}}"
+                class="link-dark px-5 pt-2 d-inline-flex text-decoration-none rounded">List Information</a></li>
+          </ul>
+        </div>
+      </li>
       <li class="mb-0 list-unstyled ">
         <button
           class="btn btn-toggle  px-4 d-inline-flex align-items-center rounded border-0 list-group-item list-group-item-action"
@@ -159,7 +161,7 @@
     </ul>
     <hr>
   </div>
-  <div class="mt-3 w-100 p-4 d-flex justify-content-center">
+  <div class="function-table  w-100 p-4 d-flex justify-content-center">
     @yield('content')
   </div>
 </main>

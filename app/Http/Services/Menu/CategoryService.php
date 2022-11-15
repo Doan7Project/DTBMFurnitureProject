@@ -3,19 +3,30 @@
 
 namespace App\Http\Services\Menu;
 
+use App\Models\order_detail;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Exception;
 use Illuminate\Contracts\Session\Session;
 
 class CategoryService
 {
-
+    //Lấy tất cả category
     public function getAll(){
 
        return ProductCategory::all();
 
     }
+    //lấy order detail
+    public function getOrderDetailInfo(){
 
+        return order_detail::all();
+    }
+    public function getOrderProduct(){
+
+        return Product::all();
+    }
+    // Create category
     public function create($request)
     {
         try {
@@ -34,21 +45,12 @@ class CategoryService
 
     public function update($request, $menu) :bool
     {
-
-        // $menu->fill($request->input());
-        // $menu->CategoryCode =(string) $request->input('txtCategoryCode');
         $menu->CategoryName =(string) $request->input('txtCategoryName');
         $menu->Description = (string) $request->input('txtDescription');
         $menu->Detail = (string) $request->input('txtDetail');
         $menu->save();
         session()->flash('success', 'Updated successfully!');
         return true;
-        // ProductCategory::with('id', $id)
-
-        //     ->update([
-        //         'CategoryName' => $categoryname,
-        //         'Description' => $descriptions,
-        //         'Detail' => $detail
-        //     ]);
+   
     }
 }

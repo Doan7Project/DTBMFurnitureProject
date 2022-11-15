@@ -1,5 +1,35 @@
 @extends('User.main.main')
 @section('content')
+<?php
+$arrfeeds = [
+    [
+    
+    'id' => '1',
+    'evalue' => 'Good'
+    ],
+    [
+    
+    'id' => '2',
+    'evalue' => 'Bad'
+    ]
+    
+    
+    ];
+    
+    $arrsta = [
+        [
+        
+        'id' => '1',
+        'sta' => 'Active'
+        ],
+        [
+        
+        'id' => '2',
+        'sta' => 'Inative'
+        ]
+        
+        
+        ];?>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
@@ -8,7 +38,7 @@
     .card-wrapper {
         /* padding: 50px; */
         max-width: 1100px;
-      
+
     }
 
     img {
@@ -220,12 +250,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 1.5rem;
-            margin:20px auto;
+            margin: 20px auto;
         }
 
         .card-wrapper {
-      
-            margin:auto;
+
+            margin: auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -239,6 +269,12 @@
 
         .product-content {
             padding-top: 0;
+        }
+
+        .an {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
         }
     }
 </style>
@@ -288,7 +324,8 @@
         <!-- card right -->
         <div class="product-content">
             <h2 class="product-title">{{ $productdetail->product_name }}</h2>
-            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit furniture store</a>
+            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
+                furniture store</a>
             <div class="product-rating">
 
                 <i class="bi bi-star-fill"></i>
@@ -302,23 +339,22 @@
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
 
-               {{-- feedback --}}
-               @foreach ($orderDetail as $key => $orderDetails )
-               @if($orderDetails->product_id == $productdetail->id
-               && $orderDetails->order_masters->status == 1
-               )
-               <button type="button" class="btn btn-danger">
-                   <i class="bi bi-chat-left-dots-fill"></i> Give me a feedback!
-               </button>
-               @else
-               <button type="button" class="btn btn-danger d-none">
-                   <i class="bi bi-chat-left-dots-fill"></i>
-               </button>
-               @endif
-            
-          
-               @endforeach
-               {{-- end feedback --}}
+
+            @foreach ($orderDetail as $key => $orderDetails )
+            @if($orderDetails->product_id == $productdetail->id
+            && $orderDetails->order_masters->status == 1
+            )
+
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                <i class="bi bi-chat-left-dots-fill"></i> Give me a feedback!
+            </button>
+            @else
+            <button type="button" class="btn btn-danger d-none">
+                <i class="bi bi-chat-left-dots-fill"></i>
+            </button>
+            @endif
+            @endforeach
+
 
             <div class="product-detail">
                 <h3>Product Information </h2>
@@ -338,20 +374,21 @@
 
             <div class="purchase-info">
                 <form action="/add_cart" method="POST">
-                    
+
                     <div class="buttons_added d-flex">
                         <input class="minus is-form" id="munis" type="button" value="-">
-                        <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number" name="num_product" value="1">
+                        <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number"
+                            name="num_product" value="1">
                         <input class="plus is-form" id="plus" type="button" value="+">
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Add to Cart <i class="bi bi-cart-fill"></i>
                     </button>
                     <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
-                @csrf
+                    @csrf
                 </form>
             </div>
- 
+
             <div class="social-links">
 
             </div>
@@ -359,6 +396,54 @@
     </div>
 </div>
 
+
+<form action="{{ url('/orderdetail/{feeds}') }}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2 class="modal-title" id="exampleModalLongTitle">{{ $productdetail->product_name }}</h2>
+
+
+                    <input type="text " class="an" name="product_id" value="{{ $productdetail->id }}">
+                    <input type="text" class="an" name="customer_id" value="{{ session('LoggedUserid') }}">
+                    <h5 class="modal-title an" id="exampleModalLongTitle" name="customer_id">
+                        {{ session('LoggedUserid') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea name="content" id="" cols="50" rows="5" required></textarea>
+                    <select class="form-select" aria-label="Default select example" name="evaluate" required>
+
+                        @foreach($arrfeeds as $value)
+
+                        <option value="{{$value['evalue']}}">{{$value['evalue']}}</option>
+                        <!-- <option value="0">Inactive</option> -->
+                        @endforeach
+                    </select>
+                    <select class="form-select d-none" aria-label="Default select example" name="status" required>
+
+                        @foreach($arrsta as $value)
+
+                        <option value="{{$value['sta']}}">{{$value['sta']}}</option>
+                        <!-- <option value="0">Inactive</option> -->
+                        @endforeach
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <script>
     const imgs = document.querySelectorAll('.img-select a');

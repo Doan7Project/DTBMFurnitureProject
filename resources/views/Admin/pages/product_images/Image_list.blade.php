@@ -52,14 +52,15 @@
     }
 
 </style>
-@if (Session::has('success'))
+
+
+<div class="mt-6  rounded" style="width: 100%;">
+    @if (Session::has('success'))
 <div class="alert alert-success">
     {{Session::get('success')}}
 </div>
 @endif
 
-
-<div class="mt-6  rounded" style="width: 100%;">
     <a class="btn btn-success mb-3" href="{{url("image/create")}}">
         <i class="bi bi-plus-square text-white"></i> Add more
     </a>

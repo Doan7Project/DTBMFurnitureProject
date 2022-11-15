@@ -23,13 +23,11 @@ class CategoryController extends Controller
     # 1 Hiển thị danh sách Category
     public function CategoryList()
     {
-        // $rs = ProductCategory::all();
-        // return view('Admin.pages.category.Category_list')->with(['rs' => $rs]);
-            // dd($this->categoryservice->getAll());
+
         return view('Admin.pages.category.Category_list',[
             'title' => 'Danh sach moi',
-            'category' => $this->categoryservice->getAll()
-
+            'category' => $this->categoryservice->getAll(),
+            'product'=> $this->categoryservice->getOrderProduct(),
         ]);
     }
     # 2 Hiện thị bảng tạo thông tin
@@ -56,7 +54,7 @@ class CategoryController extends Controller
         ]);
     }
     # 5 Thực hiện lệnh chỉnh sữa dữ liệu
-    public function CategoryUpdateProcess(ProductCategory $menu, Request $request)
+    public function CategoryUpdateProcess(ProductCategory $menu, CreateFormRequest $request)
     {
         
         $this->categoryservice->update($request, $menu);
@@ -69,35 +67,5 @@ class CategoryController extends Controller
         ProductCategory::where('id',$id)->delete();
         return redirect()->route('categorylist');
     }
-    #.7 view
-    // public function view(ProductCategory $menu){
-    //     return view('Admin.pages.category.Category_view', [
-    //         'title' => "Category name:  " . $menu->CategoryName,
-    //         'menu' => $menu
-    //     ]);
-        
-    // }
-    public function store(CreateFormRequest $request)
-    {
-        //     $validate = Validator::make(
-        //         $request->all(),
-        //         [
-        //             'txtCategoryCode' => 'required|min:5',
-        //             'txtCategory' => 'required|max:20'
-        //         ],
-        //         [
-        //             'txtCategoryCode.required' => 'Category Code is required',
-        //             'txtCategoryCode.min' => 'Category must have 5 charater',
-        //             'txtCategory.required' => 'Category is required',
-        //             'txtCategory.max' => 'Category is not greater than 20 charater',
-        //         ]
-        //     );
 
-        //     if ($validate->fails()) {
-        //         return back()->withErrors($validate->errors())->withInput();
-        //     }
-
-        //     dd($request->all());
-        // }
-    }
 }

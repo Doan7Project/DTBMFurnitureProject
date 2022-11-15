@@ -157,6 +157,10 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(UserFeedbackController::class)->group(function () {
 
     route::get('/feedback', 'feedback');
+    route::get('/feedbacks/{data}', 'feedbackuser');
+    Route::put('/feedbackpro/{data}', 'feedbackuserpro');
+    route::get('/orderdetail/{data}', 'createfeedback');
+    Route::post('/orderdetail/{data}', 'createfeedbackpro');
 });
 
 # 3 About us
@@ -175,13 +179,15 @@ Route::controller(UserLoginController::class)->group(function () {
     route::get('/login', 'login')->name('user.login');
     route::post('signin','signin')->name('signin');
 });
-# 6 Register
-Route::controller(UserRegisterController::class)->group(function () {
 
-    route::get('/register', 'register');
-    route::post('/register','store')->name('register.store');
-    route::get('/seccesspage','successpape')->name('successpape');
-});
+# 6 Register / không sài
+// Route::controller(UserRegisterController::class)->group(function () {
+
+//     route::get('/register', 'register');
+//     route::post('/register','store')->name('register.store');
+//     route::get('/seccesspage','successpape')->name('successpape');
+// });
+
 # 7 Cart
 Route::controller(CartController::class)->group(function () {
 
@@ -194,15 +200,26 @@ Route::controller(CartController::class)->group(function () {
     route::get('/my_order', 'showOrder');
     Route::get('/order-cancel/{id}', 'cancelOrder');
 });
+
+
 # 8 Account
 Route::controller(AccountController::class)->group(function () {
 
     // route::get('/account', 'account');
+    // Hiển thị trang tài khoản
     route::get('/account/{data}','account');
+    // edit thông tin tài khoản
     route::post('/account/{data}','changeInfoUser')->name('account.info');
+    
     route::get('/getpassword/{data}','getpassword');
     route::post('/getpassword/{data}','changepassword')->name('account.changepassword');
 
+    // Hiển thị trang register
+    route::get('/register', 'register');
+    //Thực hiện lệnh tạo tài khoản
+    route::post('/register','store')->name('register.store');
+    //Trang tạo tài khoản thành công
+    route::get('/seccesspage','successpape')->name('successpape');
    
 });
 # 9 Product

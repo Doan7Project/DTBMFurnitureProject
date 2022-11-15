@@ -64,23 +64,27 @@
     <div>
         @include('Admin.pages.product.ViewManagement')
     </div>
-    <div class="d-flex mt-5 justify-content-between align-items-end">
-        <div>
-            <a class="btn btn-success mb-3" href="{{url("product/create")}}">
-                <i class="bi bi-plus-square text-white pe-2"></i> Add more
-            </a>
-        </div>
-        <div class="mb-3 pe-2">
-            <a href="" class="text-secondary text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-plus"></i>View Management</a>
-         
-        </div>
 
-    </div>
-   
-    <div class="mt-6 border border-1 rounded">
-        <h5 class="bg-primary bg-gradient text-white p-3">Product list information</h5>
+    
+        <div class="pt-3 p-2">
+            <a href="" class="text-muted fs-5 text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">View Management</a>
+        </div>
+    
+
+    <div class="mt-6  rounded">
         <div class="table-responsive p-3 shadow-sm container" style="width: 1000px;">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
+                <div>
+                    <h4 class=" bg-gradient text-muted">Product list information</h5>
+        
+                </div>
+                <div>
+                    <a class="btn btn-success" href="{{url("product/create")}}">
+                       Add more
+                    </a>
+                </div>
+            </div>
             <table class="table table-bordered display ui celled " id="table">
                 <thead class="bg-primary bg-opacity-75 text-white">
                     <tr VALIGN=Middle Align=Middle>
@@ -156,11 +160,21 @@
                                 <i class="bi bi-pencil-square text-white pe-2"></i>Edit
                             </a>
                         </td>
+                        <?php 
+                        foreach ($orderDetail as $orderDetails):
+                        if($orderDetails->product_id == $data->id):
+                        $value = "disabled" ;
+                        break;
+                  else:
+                  $value = "";
+                  endif;
+                  endforeach;
+                      ?>
                         <td VALIGN=Middle Align=Middle>
-                            <a href="{{url("product/destroy/{$data->id}")}}" class="btn btn-danger text-white"
+                            <button {{  $value }} href="{{url("product/destroy/{$data->id}")}}" class="btn btn-danger text-white"
                                 onclick="return confirm('Are you sure to delete {{$data->product_name}}')">
                                 <i class="bi bi-trash3 pe-2"></i>Delete
-                            </a>
+                            </button>
 
                         </td>
                     </tr>
