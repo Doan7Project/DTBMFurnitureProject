@@ -92,7 +92,7 @@ $gender = json_decode(file_get_contents($path), true);
           </div>
           <div class="col-md-6">
             <label for="birthday" class="form-label text-muted fw-bolder">Birthday</label>
-            <input type="date" class="form-control" value="{{ $accinfo->birthday }}" name="birthday" id="birthday"
+            <input type="date" max="01-01-2000" class="form-control" value="{{ $accinfo->birthday }}" name="birthday" id="birthday"
               placeholder="Enter you phone number">
               @error('birthday')
               <span class="text-danger">{{$message}}</span>
