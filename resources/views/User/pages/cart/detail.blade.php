@@ -377,7 +377,7 @@ $arrfeeds = [
 
             <button {{ $value }} type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalCenter">
-                <i class="bi bi-chat-left-dots-fill pe-2"></i>Leave your a comment!
+                <i class="bi bi-chat-left-dots-fill pe-2"></i>Give me a feedback!
             </button>
            <div>
             <span class="text-muted text-justify">{{  $alert }}</span>
