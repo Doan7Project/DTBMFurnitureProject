@@ -42,30 +42,7 @@ class FeedbackController extends Controller
         
     }
     #. 2 Hiển thị trang danh sách chi tiết
-    public function FeedbackView(Request $request,$id )
-    {
-       
-        $ddd = DB::table('feedback')->join('customers', 'feedback.id', '=', 'customers.id')
-        ->select('feedback.*', 'customers.*')
-        ->get();
-        $sss = DB::table('order_details')->get();
-        $hhh = DB::table('customers')->get();
-        $pro = DB::table('products')->get();
-        $feeds=feedback::find($id );
-        $feeds->product_id = $request->input('product_id');
-        $feeds->customer_id = $request->input('customer_id');
-        $feeds->evalue = $request->input('evalue');
-        $feeds->content = $request->input('content');
-        return view('Admin.pages.feedback.Feedback_view',[        
-            
-            'feedback'=>$ddd,
-            'order_detail'=>$sss,
-            'cus'=>$hhh,
-            'feee'=>$feeds,
-            'pro'=>$pro,
-            
-           ]);
-    }
+   
     #. 3 Thực hiện lệnh xóa
     public function FeedbackDeleteProcess()
     {
@@ -73,5 +50,48 @@ class FeedbackController extends Controller
     }
 
     # Mr bao feedback
+    public function FeedbackView($id )
+    {
+       
+        $ddd = DB::table('feedback')->join('customers', 'feedback.customer_id', '=', 'customers.id')
+        ->select('feedback.*', 'customers.*')
+        ->where ('customer_id',$id) ->first();
+        // $sss = DB::table('order_details')->get();
+         $hhh = DB::table('customers') ->where ('id',$id) ->first();
+        $pro = DB::table('products')->where ('id',$id) ->first();
+        $feeds=feedback::find($id );
+        //  $feeds->customer_id = $request->input('customer_id');
+        // $feeds->product_id = $request->input('product_id');
+        // $feeds->status = $request->input('status');
+       
+        // $feeds->evalue = $request->input('evalue');
+        // $feeds->content = $request->input('content');
+        return view('Admin.pages.feedback.Feedback_view',[        
+            
+        'feedback'=>$ddd,
+        //     // 'order_detail'=>$sss,
+        'cus'=>$hhh,
+            'feeds'=>$feeds,
+         'pro'=>$pro,
+        ]);
+    }     
+    public function FeedbackViewPro(Request $request, $id){
+        $cus = DB::table('customers')->where ('id',$id) ->first();
+        $pro = DB::table('products')->where ('id',$id) ->first();
+        $feeds=feedback::find($id );
+          $feeds->customer_id = $request->input('customer_id');
+        $feeds->product_id = $request->input('product_id');
+        $feeds->status = $request->input('status');
+       
+        $feeds->evalue = $request->input('evalue');
+        $feeds->content = $request->input('content');
+        
+        
+        $feeds->update();
+        $cus->update();
+
+        return redirect()->route('adminfeed');
+    }
+    
     
 }

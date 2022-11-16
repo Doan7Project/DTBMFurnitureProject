@@ -137,7 +137,9 @@ Route::controller(OrderController::class)->group(function () {
 # 9. Trang Feedback
 Route::controller(FeedbackController::class)->group(function () {
 
-    Route::get('Admin/pages/Feedback_list', 'FeedbackList');
+    Route::get('Admin/pages/Feedback_list', 'FeedbackList')->name('adminfeed');
+    Route::get('Admin/pages/Feedback_view/{data} ', 'FeedbackView');
+    Route::get('Admin/pages/Feedback_view_pro/{data} ', 'FeedbackViewPro');
 });
 
 # II User---------------------------------------
