@@ -346,42 +346,9 @@ $arrfeeds = [
             <div class="product-price">
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
+            {{-- <span>{{ session('LoggedUserid') }}</span> --}}
             {{-- $productdetail->id == $feedbacks->product_id --}}
-            <?php 
-            $count = 0;
-     
-            foreach ($feedback as $key => $feedbacks):
-            foreach ($orderDetail as $key => $orderDetails):
-              
-                if ($feedbacks->customer_id == $feedbacks->customers->id && $orderDetails->product_id == $productdetail->id 
-                && $productdetail->id != $feedbacks->product_id
-                ): 
-                $value = "";
-                    $count++;        
-                   
-            else:
-        
-            $value = "disabled";
-            endif;
-               
-            if ($feedbacks->customer_id == $feedbacks->customers->id && $productdetail->id == $feedbacks->product_id   ):
-             $alert = "Had commented!";
-        else:
-        $alert = "";
-        endif;
-        endforeach;
-        endforeach;
-            
-            
-            ?>
 
-            <button {{ $value }} type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#exampleModalCenter">
-                <i class="bi bi-chat-left-dots-fill pe-2"></i>Give me a feedback!
-            </button>
-           <div>
-            <span class="text-muted text-justify">{{  $alert }}</span>
-           </div>
 
             <div class="product-detail">
                 <h3>Product Information </h2>
@@ -402,7 +369,7 @@ $arrfeeds = [
             <div class="purchase-info">
                 <form action="/add_cart" method="POST">
 
-                    <div class="buttons_added d-flex">
+                    <div class="buttons_added d-flex pb-3">
                         <input class="minus is-form" id="munis" type="button" value="-">
                         <input aria-label="quantity" id="qty" class="input-qty" max="10" min="1" type="number"
                             name="num_product" value="1">
@@ -411,7 +378,7 @@ $arrfeeds = [
                     <button type="submit" class="btn btn-primary">
                         Add to Cart <i class="bi bi-cart-fill"></i>
                     </button>
-                    <input type="text" name="product_id" value="{{ $productdetail->id }}">
+                    <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
                     @csrf
                 </form>
             </div>
@@ -472,32 +439,58 @@ $arrfeeds = [
     </div>
 </form>
 <div class="container pb-4">
-
-    <h4 class="text-start">Customer Comments
-        <div class="product-rating">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-half"></i>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h4 class="text-start">Customer Comments
+                <div class="product-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                </div>
+            </h4>
         </div>
-        </h1>
-        <?php $count = 1
+        <?php 
+    $counts = 0;
 
+    foreach ($orderDetail as $key => $orderDetails):
+      if(session('LoggedUserid')  && $orderDetails->order_masters->status == 1):
+      $counts++;
+  
+
+          $disable = "";
+    else:
+
+$disable = "disabled";
+    endif;
+     
+endforeach;
+
+    
+    
     ?>
-        <div class="card card-body review">
-            @foreach ($feedback as $key => $feedbacks)
-            @if ($feedbacks->product_id == $productdetail->id)
-            <div class="d-flex justify-content-start">
-                <h5 class="fw-bolder pe-4">Review {{ $count }}</h5>
-                <h6 class="text-muted">Guest: {{ $feedbacks->customers->first_name }} </h6>
-            </div>
-            <p>{{ $feedbacks->content }}</p>
-
-            <?php $count++?>
-            @endif
-            @endforeach
+        <div>
+            <button {{ $disable }} type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#exampleModalCenter">
+                <i class="bi bi-chat-left-dots-fill pe-2"></i>Give me a comment!
+            </button>
         </div>
+    </div>
+    <?php $count = 1?>
+    <div class="card card-body review">
+        @foreach ($feedback as $key => $feedbacks)
+        @if ($feedbacks->product_id == $productdetail->id)
+        <div class="d-flex justify-content-start">
+            <h5 class="fw-bolder pe-4">Review {{ $count }}</h5>
+            <h6 class="text-muted">Guest: {{ $feedbacks->customers->first_name }} </h6>
+        </div>
+        <p>{{ $feedbacks->content }}</p>
+
+        <?php $count++?>
+        @endif
+        @endforeach
+    </div>
 
 </div>
 <script>
