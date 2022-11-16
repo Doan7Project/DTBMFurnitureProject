@@ -120,9 +120,6 @@
     background-color: rgba(255, 255, 255, 0.75)
   }
 
-  .btn {
-    background-color: transparent;
-  }
 
   @media only screen and (max-width: 1050px) {
     .offcanvas-body {

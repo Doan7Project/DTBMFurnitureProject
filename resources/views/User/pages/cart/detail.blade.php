@@ -277,7 +277,8 @@ $arrfeeds = [
             left: -9999px;
         }
     }
-    .review{
+
+    .review {
         overflow: auto;
         max-height: 200px;
     }
@@ -291,7 +292,7 @@ $arrfeeds = [
                     <?php $count=1?>
                     <img src="{{ $productdetail->images }}" alt="shoe image">
                     @foreach ($imagedata as $imagedatas)
-                    @if ($imagedatas->product_id == $productdetail->product_code)
+                    @if ($imagedatas->product_id == $productdetail->id)
                     <?php $count++?>
                     <img src="{{ $imagedatas->image }}" alt="shoe image">
                     @endif
@@ -303,6 +304,7 @@ $arrfeeds = [
                 <div class="img-item">
                     <a href="#" data-id="1">
                         <img class="img-fluid" src="{{ $productdetail->images }}" alt="shoe image">
+
                     </a>
                 </div>
                 @else
@@ -310,17 +312,18 @@ $arrfeeds = [
                     <a href="#" data-id="1">
                         <img class="img-fluid" src="{{ $productdetail->images }}" alt="shoe image">
                     </a>
-         
+
                 </div>
                 @endif
                 <?php $i=1?>
                 @foreach ($imagedata as $key=> $imagedatas)
-                @if ($imagedatas->product_id == $productdetail->product_code)
+                @if ($imagedatas->product_id == $productdetail->id)
                 <?php $i++ ?>
                 <div class="img-item">
                     <a href="#" data-id="<?= $i ?>">
                         <img class="img-fluid" src="{{ $imagedatas->image  }}" alt="shoe image">
                     </a>
+
                 </div>
                 @endif
                 @endforeach
@@ -329,7 +332,7 @@ $arrfeeds = [
         <!-- card right -->
         <div class="product-content">
             <h2 class="product-title">{{ $productdetail->product_name }}</h2>
-            <a href="{{ url('/productRedirect') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
+            <a href="{{ route('product') }}" class="product-link py-1 px-4 rounded btn btn-primary">visit
                 furniture store</a>
             <div class="product-rating">
 
@@ -343,28 +346,42 @@ $arrfeeds = [
             <div class="product-price">
                 <p class="new-price">New Price: <span>${{ $productdetail->price }}</span></p>
             </div>
-
-            <?php $count = 0;
-             $value =0;
-            foreach ($feedback as $key => $feedbacks) {
-                if ($feedbacks->customer_id == $feedbacks->customers->id && $feedbacks->product_id == $productdetail->id): 
-                    $value = "disabled";
-                    $count++;               
+            {{-- $productdetail->id == $feedbacks->product_id --}}
+            <?php 
+            $count = 0;
+     
+            foreach ($feedback as $key => $feedbacks):
+            foreach ($orderDetail as $key => $orderDetails):
+              
+                if ($feedbacks->customer_id == $feedbacks->customers->id && $orderDetails->product_id == $productdetail->id 
+                && $productdetail->id != $feedbacks->product_id
+                ): 
+                $value = "";
+                    $count++;        
+                   
             else:
-            $value = "";
+        
+            $value = "disabled";
             endif;
                
-        
-
-            }
+            if ($feedbacks->customer_id == $feedbacks->customers->id && $productdetail->id == $feedbacks->product_id   ):
+             $alert = "Had commented!";
+        else:
+        $alert = "";
+        endif;
+        endforeach;
+        endforeach;
             
             
             ?>
- 
-            <button {{ $value }} type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                <i class="bi bi-chat-left-dots-fill"></i>Give me a feedback!
-            </button>
 
+            <button {{ $value }} type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#exampleModalCenter">
+                <i class="bi bi-chat-left-dots-fill pe-2"></i>Leave your a comment!
+            </button>
+           <div>
+            <span class="text-muted text-justify">{{  $alert }}</span>
+           </div>
 
             <div class="product-detail">
                 <h3>Product Information </h2>
@@ -394,7 +411,7 @@ $arrfeeds = [
                     <button type="submit" class="btn btn-primary">
                         Add to Cart <i class="bi bi-cart-fill"></i>
                     </button>
-                    <input type="hidden" name="product_id" value="{{ $productdetail->id }}">
+                    <input type="text" name="product_id" value="{{ $productdetail->id }}">
                     @csrf
                 </form>
             </div>
@@ -455,8 +472,8 @@ $arrfeeds = [
     </div>
 </form>
 <div class="container pb-4">
- 
-    <h4 class="text-start">Customer Review
+
+    <h4 class="text-start">Customer Comments
         <div class="product-rating">
             <i class="bi bi-star-fill"></i>
             <i class="bi bi-star-fill"></i>
@@ -464,24 +481,24 @@ $arrfeeds = [
             <i class="bi bi-star-fill"></i>
             <i class="bi bi-star-half"></i>
         </div>
-    </h1>
-    <?php $count = 1
+        </h1>
+        <?php $count = 1
 
     ?>
-    <div class="card card-body review">
-        @foreach ($feedback as $key => $feedbacks)
-        @if ($feedbacks->product_id == $productdetail->id)
-        <div class="d-flex justify-content-start">
-            <h5 class="fw-bolder pe-4">Review {{ $count }}</h5>
-            <h6 class="text-muted">Guest: {{ $feedbacks->customers->first_name }} </h6>
-        </div>
-        <p>{{ $feedbacks->content }}</p>
+        <div class="card card-body review">
+            @foreach ($feedback as $key => $feedbacks)
+            @if ($feedbacks->product_id == $productdetail->id)
+            <div class="d-flex justify-content-start">
+                <h5 class="fw-bolder pe-4">Review {{ $count }}</h5>
+                <h6 class="text-muted">Guest: {{ $feedbacks->customers->first_name }} </h6>
+            </div>
+            <p>{{ $feedbacks->content }}</p>
 
-        <?php $count++?>
-        @endif
-        @endforeach
-    </div>
-    
+            <?php $count++?>
+            @endif
+            @endforeach
+        </div>
+
 </div>
 <script>
     const imgs = document.querySelectorAll('.img-select a');

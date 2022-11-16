@@ -35,7 +35,7 @@
                     <th class="px-3">
                         <div style="width: 80px ;">Edit</div>
                     </th>
-                    <th class="px-3">
+                    <th class="px-3 text-center">
                         <div style="width: 80px ;">Delete</div>
                     </th>
                 </tr>
@@ -54,20 +54,23 @@
                     <?php 
                       foreach ($product as $products):
                       if($products->category_id == $data->id):
-                      $value = "disabled" ;
+                      $value = "d-none" ;
+                      $invalid = "";
                       break;
                 else:
                 $value = "";
+                $invalid = "d-none";
                 endif;
                 endforeach;
                     ?>
 
-                    <td VALIGN=Middle Align=Left>
-                        <button {{ $value }} class="btn btn-danger text-white" href="{{url("Admin/pages/delete/{$data->id}")}}"
+                    <td VALIGN=Middle Align=Center>
+                        <a  class="{{ $value }} btn btn-danger text-white" href="{{url("Admin/pages/delete/{$data->id}")}}"
                             onclick="return confirm('Are you sure to delete {{$data->CategoryName}}')" style="color:
                             orangered;">
                             <i class="bi bi-trash3 pe-2"></i>Delete
-                        </button>
+                        </a>
+                        <span class="{{ $invalid }} fw-bolder text-muted text-center">Invalid</span>
                     </td>
                 </tr>
             </tbody>

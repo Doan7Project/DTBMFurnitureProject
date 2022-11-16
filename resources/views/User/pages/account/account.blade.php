@@ -52,8 +52,8 @@ $gender = json_decode(file_get_contents($path), true);
               @enderror
           </div>
           <div class="col-sm-8">
-            <label for="lastName" class="form-label">Last name</label>
-            <input type="text" class="form-control" name="lastname" id="lastName" placeholder=""
+            <label for="lastName" class="form-label text-muted fw-bolder">Last name</label>
+            <input type="text" class="form-control " name="lastname" id="lastName" placeholder=""
               value="{{ $accinfo->last_name }}">
               @error('lastname')
               <span class="text-danger">{{$message}}</span>
@@ -62,13 +62,13 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pt-3 pb-3">
           <div class="col-md-7">
-            <label for="email" class="form-label">Email<span class="text-muted">(Account)</span></label>
+            <label for="email" class="form-label text-muted fw-bolder">Email<span class="text-muted">(Account)</span></label>
             <input type="email" readonly class="form-control" name="email" id="email" value="{{ $accinfo->email }}"
               placeholder="you@example.com">
 
           </div>
           <div class="col-md-5">
-            <label for="gender" class="form-label">Gender</label>
+            <label for="gender" class="form-label text-muted fw-bolder">Gender</label>
             <select name="gender" class="form-select" id="gender">
               @foreach ($gender as $genders)
               @if ($genders['id'] == $accinfo->gender)
@@ -83,7 +83,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-6">
-            <label for="phone" class="form-label">Phone number <span class="text-muted">(Account)</span></label>
+            <label for="phone" class="form-label text-muted fw-bolder">Phone number <span class="text-muted">(Account)</span></label>
             <input type="phone" name="phone" class="form-control" id="phone" value="{{ $accinfo->phone }}"
               placeholder="Enter you phone number">
               @error('phone')
@@ -91,7 +91,7 @@ $gender = json_decode(file_get_contents($path), true);
               @enderror
           </div>
           <div class="col-md-6">
-            <label for="birthday" class="form-label">Birthday</label>
+            <label for="birthday" class="form-label text-muted fw-bolder">Birthday</label>
             <input type="date" class="form-control" value="{{ $accinfo->birthday }}" name="birthday" id="birthday"
               placeholder="Enter you phone number">
               @error('birthday')
@@ -101,7 +101,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-6">
-            <label for="country" class="form-label">Country</label>
+            <label for="country" class="form-label text-muted fw-bolder">Country</label>
             <select class="form-select" id="country" name="country">
               <option value="">Choose...</option>
               @foreach ( $country as $jsons)
@@ -120,7 +120,7 @@ $gender = json_decode(file_get_contents($path), true);
           </div>
           <div class="col-md-6 ">
 
-            <label for="city" class="form-label">City</label>
+            <label for="city" class="form-label text-muted fw-bolder">City</label>
             <select class="form-select" id="city" name="city">
               <option value="">Choose...</option>
               @foreach ( $city as $jsons)
@@ -139,7 +139,7 @@ $gender = json_decode(file_get_contents($path), true);
         </div>
         <div class="row pb-3">
           <div class="col-md-12">
-            <label for="address" class="form-label">Address</label>
+            <label for="address" class="form-label text-muted fw-bolder">Address</label>
             <input type="text" class="form-control" id="address" name="address" value="{{ $accinfo->address }}"
               placeholder="1234 Main St">
               @error('address')

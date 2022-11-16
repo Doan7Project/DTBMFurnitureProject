@@ -168,21 +168,22 @@
                         $value ="";
                         foreach ($orderDetail as $orderDetails):
                         if($orderDetails->product_id == $data->id):
-                        $value = "disabled" ;
-               
+                        $value = "d-none" ;
+                        $invalid = "";
                         break;
                   else:
                   $value = "";
+                  $invalid = "d-none";
                   endif;
                   endforeach;
                       ?>
                         <td VALIGN=Middle Align=Middle>
-                            <button {{ $value }} href="{{url("product/destroy/{$data->id}")}}" class="btn btn-danger
+                            <a  href="{{url("product/destroy/{$data->id}")}}" class="{{ $value }} btn btn-danger
                                 text-white"
                                 onclick="return confirm('Are you sure to delete {{$data->product_name}}')">
                                 <i class="bi bi-trash3 pe-2"></i>Delete
-                            </button>
-
+                            </a>
+                            <span class="{{ $invalid }} fw-bolder text-muted text-center">Invalid</span>
                         </td>
                     </tr>
 
