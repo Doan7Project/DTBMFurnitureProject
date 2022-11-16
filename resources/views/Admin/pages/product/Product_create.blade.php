@@ -132,7 +132,7 @@ $arrmade = [
             </div>
             <div class="col-md-3">
                 <label for="price" class="form-label text-muted fw-bolder">Price - $<span class="text-danger">(*)</span></label>
-                <input type="number" id="price" class="form-control shadow-none" name="txtPrice" value="{{ old('txtPrice') }}">
+                <input min="10" max="50000" type="number" id="price" class="form-control shadow-none" name="txtPrice" value="{{ old('txtPrice') }}">
                 @error('txtPrice')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -148,7 +148,7 @@ $arrmade = [
             </div>
             <div class="col-md-2">
                 <label for="quantity" class="form-label text-muted fw-bolder">Quantity<span class="text-danger">(*)</span></label>
-                <input type="number" id="quantity" class="form-control shadow-none" name="txtQuantity" value="{{ old('txtQuantity') }}">
+                <input type="number" min="1" max="10000" id="quantity" class="form-control shadow-none" name="txtQuantity" value="{{ old('txtQuantity') }}">
                 @error('txtQuantity')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

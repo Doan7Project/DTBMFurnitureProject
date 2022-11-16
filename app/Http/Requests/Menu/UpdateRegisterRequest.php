@@ -28,7 +28,7 @@ class UpdateRegisterRequest extends FormRequest
             'lastname'=>'required|regex:/([A-Za-z])/',
             'email'=>'required',
             'gender'=>'required',
-            'phone'=>'required',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'birthday'=>'required',
             'country'=>'required',
             'city'=>'required',
