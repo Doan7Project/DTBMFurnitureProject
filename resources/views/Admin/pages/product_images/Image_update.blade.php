@@ -31,11 +31,11 @@
             <label for="productid" class="form-label text-black fw-bolder">Product Name - </label>
             <span  id="productIdConference">{{ $productImage->product_id  }}</span>
             <select class="form-select shadow-none" name="txtProductID" id="productid">
-                @foreach($getAllImage as $getAllImages)
-                    @if($getAllImages->product_id ==$getAllImages->products->id)
-                    <option value="{{$getAllImages->product_id}}" selected>{{$getAllImages->products->product_name}} - {{$getAllImages->products->product_code}}</option>
+                @foreach($productname as $productnames)
+                    @if($productnames->id == $productImage->product_id )
+                    <option value="{{$productnames->id}}" selected>{{$productnames->product_name}} - {{$productnames->product_code}}</option>
                     @else
-                    <option value="{{$getAllImages->product_id}}">{{$getAllImages->products->product_name}} - {{$getAllImages->products->product_code}}</option>
+                    <option value="{{$productnames->id}}">{{$productnames->product_name}} - {{$productnames->product_code}}</option>
                     @endif
                 @endforeach
             </select>

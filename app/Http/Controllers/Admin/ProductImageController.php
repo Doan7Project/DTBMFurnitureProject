@@ -68,6 +68,7 @@ class ProductImageController extends Controller
         return view('Admin.pages.product_images.Image_update',[
             
             'title'=>'Update furniture images',
+            'productname' => $this->imagepdservice->getProductid(),
             'getAllImage' => $this->imagepdservice->getAll(),
             'productImage' => $data
 
