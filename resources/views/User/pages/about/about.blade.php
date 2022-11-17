@@ -85,7 +85,7 @@
         <div class="card" style="width: 20rem;">
           <img src="{{ asset('images/doan.jpg') }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Leader</h5>
+            <h5 class="card-title">Phạm Anh Đoàn</h5>
             <p class="card-text text-muted">Some quick example text to build on the card title and make up the bulk of the
               card's content.</p>
   
@@ -107,7 +107,7 @@
         <div class="card" style="width: 20rem;">
           <img src="{{ asset('images/thanh.png') }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Member</h5>
+            <h5 class="card-title">Khương Xuân Thanh</h5>
             <p class="card-text text-muted">Some quick example text to build on the card title and make up the bulk of the
               card's content.</p>
   
@@ -129,7 +129,7 @@
         <div class="card" style="width: 20rem;">
           <img src="{{ asset('images/bao.jpg') }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Member</h5>
+            <h5 class="card-title">Phan Như Bảo</h5>
             <p class="card-text text-muted">Some quick example text to build on the card title and make up the bulk of the
               card's content.</p>
   
@@ -149,9 +149,9 @@
       </div>
       <div class="col-lg-3">
         <div class="card" style="width: 20rem;">
-          <img src="" class="card-img-top" alt="...">
+          <img src="{{ asset('images/Minh.jpg') }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">Trần Nhật Minh</h5>
             <p class="card-text text-muted">Some quick example text to build on the card title and make up the bulk of the
               card's content.</p>
   
